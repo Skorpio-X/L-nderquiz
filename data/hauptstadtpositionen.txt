@@ -1,0 +1,135 @@
+(72, 74)
+Hauptstadt: reykjavik
+reykjavik
+(123, 274)
+Hauptstadt: dublin
+dublin
+(176, 318)
+Hauptstadt: london
+london
+(284, 200)
+Hauptstadt: oslo
+oslo
+(343, 210)
+Hauptstadt: stockholm
+stockholm
+(394, 191)
+Hauptstadt: helsinki
+helsinki
+(507, 235)
+Hauptstadt: moskau
+moskau
+(398, 206)
+Hauptstadt: tallinn
+tallinn
+(394, 243)
+Hauptstadt: riga
+riga
+(410, 278)
+Hauptstadt: vilnius
+vilnius
+(429, 285)
+Hauptstadt: minsk
+minsk
+(470, 334)
+Hauptstadt: kiew
+kiew
+(463, 389)
+Hauptstadt: chisinau
+chisinau
+(530, 483)
+Hauptstadt: ankara
+ankara
+(557, 557)
+Hauptstadt: nikosia
+nikosia
+(428, 535)
+Hauptstadt: athen
+athen
+(311, 575)
+Hauptstadt: valetta
+valetta
+(289, 480)
+Hauptstadt: rom
+rom
+(289, 450)
+Hauptstadt: san marino
+san marino
+(227, 447)
+Hauptstadt: monaco
+monaco
+(164, 457)
+Hauptstadt: andorra la vella
+andorra la vella
+(89, 474)
+Hauptstadt: madrid
+madrid
+(26, 481)
+Hauptstadt: lissabon
+lissabon
+(189, 364)
+Hauptstadt: paris
+paris
+(229, 354)
+Hauptstadt: luxemburg
+luxemburg
+(215, 336)
+Hauptstadt: brüssel
+brüssel
+(223, 311)
+Hauptstadt: amsterdam
+amsterdam
+(296, 268)
+Hauptstadt: kopenhagen
+kopenhagen
+(303, 314)
+Hauptstadt: berlin
+berlin
+(239, 399)
+Hauptstadt: bern
+bern
+(262, 397)
+Hauptstadt: vaduz
+vaduz
+(332, 384)
+Hauptstadt: wien
+wien
+(309, 352)
+Hauptstadt: prag
+prag
+(373, 319)
+Hauptstadt: warschau
+warschau
+(342, 383)
+Hauptstadt: bratislava
+bratislava
+(360, 393)
+Hauptstadt: budapest
+budapest
+(444, 429)
+Hauptstadt: bukarest
+bukarest
+(415, 461)
+Hauptstadt: sofia
+sofia
+(394, 475)
+Hauptstadt: skopje
+skopje
+(377, 489)
+Hauptstadt: tirana
+tirana
+(366, 472)
+Hauptstadt: podgorica
+podgorica
+(377, 442)
+Hauptstadt: belgrad
+belgrad
+(355, 448)
+Hauptstadt: sarajevo
+sarajevo
+(328, 420)
+Hauptstadt: zagreb
+zagreb
+(314, 416)
+Hauptstadt: ljubljana
+ljubljana
