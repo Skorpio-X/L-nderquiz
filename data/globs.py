@@ -13,8 +13,18 @@ windowwidth, windowheight = 800, 600
 screen = pygame.display.set_mode([windowwidth, windowheight])
 
 # Load images
-europe_map = pygame.image.load(os.path.join('graphics',"europakarte.png")).convert()
-africa_map = pygame.image.load(os.path.join('graphics',"afrikakarteB.png")).convert()
+europe_map = pygame.image.load(
+    os.path.join('graphics',"europakarte.png")
+    ).convert()
+africa_map = pygame.image.load(
+    os.path.join('graphics',"afrikakarteB.png")
+    ).convert()
+asia_map = pygame.image.load(
+    os.path.join('graphics',"asienkarte.png")
+    ).convert()
+southamerica_map = pygame.image.load(
+    os.path.join('graphics',"suedamerikakarte.png")
+    ).convert()
 
 #font = pygame.font.Font(os.path.join('graphics',"ARIAL.TTF"), 30)
 font = pygame.font.Font("C:/WINDOWS/Fonts/ARIAL.TTF", 25)
