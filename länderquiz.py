@@ -41,6 +41,14 @@ def main():
             windowwidth = get_windowsize(southamerica_map)[0]
             windowheight = get_windowsize(southamerica_map)[1]
             screen = pygame.display.set_mode([windowwidth, windowheight])
+        elif game.scene == "NorthAmerica":
+            game = NorthAmerica(northamerica_map, northamerica_list)
+            windowwidth, windowheight = get_windowsize(northamerica_map)
+            screen = pygame.display.set_mode([windowwidth, windowheight])
+        elif game.scene == "AustraliaOceania":
+            game = AustraliaOceania(australiaoceania_map, australiaoceania_list)
+            windowwidth, windowheight = get_windowsize(australiaoceania_map)
+            screen = pygame.display.set_mode([windowwidth, windowheight])
 
         FPSCLOCK.tick(FPS)
 ##    print(game.marker_list)

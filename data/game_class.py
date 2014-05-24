@@ -1,5 +1,5 @@
 import random
-import pygbutton
+import data.pygbutton as pygbutton
 
 from .globs import *
 #import data.lists
@@ -7,6 +7,8 @@ from data.lists.europe_list import europe_list
 from data.lists.africa_list import africa_list
 from data.lists.asia_list import asia_list
 from data.lists.southamerica_list import southamerica_list
+from data.lists.northamerica_list import northamerica_list
+from data.lists.australiaoceania_list import australiaoceania_list
 
 ##from .europe_list import *
 ##from .africa_list import *
@@ -67,6 +69,10 @@ class Game():
                     self.name += " "
                 if event.key == pygame.K_MINUS or event.key == pygame.K_SLASH:
                     self.name += "-"
+                if event.key == pygame.K_PERIOD:
+                    self.name += "."
+                if event.key == pygame.K_COMMA:
+                    self.name += ","
 ##                if event.key == pygame.K_QUOTE:
 ##                    self.name += "'"
                 if event.key == 92:
@@ -84,6 +90,7 @@ class Game():
                             self.incorrect_answer = False
                         else:
                             self.incorrect_answer = True
+                            self.false_name = self.name
                             self.name = ""
                         
                 if event.key == pygame.K_BACKSPACE:
@@ -137,13 +144,23 @@ class Game():
                 name_text = font.render(self.name, True, BLUE)
                 screen.blit(name_text, [self.active_position[0] + 10,
                                   self.active_position[1] - 40])
+                if len(self.country_list[self.counter]) > 2:
+                    country_name = font.render(
+                        "Nenne die Hauptstadt von " + str(self.country_list[
+                        self.counter][2]), True, GREEN)
+                    screen.blit(country_name, [3, 10])
 
         if self.incorrect_answer and len(self.country_list) >= self.counter:
-            inc_name_text = font.render(self.country_list[self.counter - 1][1], True, RED)
+
+            inc_name_text = font.render(self.country_list[self.counter - 1][1],
+                                        True, RED)
             screen.blit(inc_name_text, [self.last_position[0] + 10,
                         self.last_position[1] - 22])
+            last_answer = font.render("Ihre Antwort war " +
+                                      self.false_name, True, RED)
+            screen.blit(last_answer, [10, self.gamemap.get_height() - 60])
             inc_text = font.render(
-                "Die korrekte Antwort lautet "+
+                "Die korrekte Antwort lautet " +
                 self.country_list[self.counter - 1][1],
                 True, RED)
             screen.blit(inc_text, [10, self.gamemap.get_height() - 30])
@@ -166,18 +183,18 @@ class Game():
                     )), True, BLACK
             )
         )
-        screen.blit(score_txt,[20, 20])
+        screen.blit(score_txt,[3, 40])
         if self.game_over:
             game_over_txt = (
                 font.render(
                     "Spiel beendet - Pfeiltaste links für das nächste Quiz",
-                    True, BLACK
+                    True, GREEN
                 )
             )
             game_over_txt2 = (font.render("ESC um ins Hauptmenü zu gelangen",
-                                         True, BLACK))
-            screen.blit(game_over_txt,[20, 50])
-            screen.blit(game_over_txt2,[20, 80])
+                                         True, GREEN))
+            screen.blit(game_over_txt,[20, 70])
+            screen.blit(game_over_txt2,[20, 100])
             
         pygame.display.flip()
 
@@ -208,6 +225,22 @@ class Asia(Game):
 class SouthAmerica(Game):
     gamemap = southamerica_map
     scene = None
+    next_scene = "NorthAmerica"
+
+    def __init__(self, background, country_list):
+        Game.__init__(self, background, country_list)
+
+class NorthAmerica(Game):
+    gamemap = northamerica_map
+    scene = None
+    next_scene = "AustraliaOceania"
+
+    def __init__(self, background, country_list):
+        Game.__init__(self, background, country_list)
+
+class AustraliaOceania(Game):
+    gamemap = australiaoceania_map
+    scene = None
     next_scene = "Europe"
 
     def __init__(self, background, country_list):
@@ -225,7 +258,11 @@ class Title():
                                         'Asiens Hauptstädte')
     button_southamerica = pygbutton.PygButton((50, 250, 200, 30),
                                         'Südamerikas Hauptstädte')
-    button_quit = pygbutton.PygButton((50, 300, 200, 30),
+    button_northamerica = pygbutton.PygButton((50, 300, 200, 30),
+                                        'Nordamerikas Hauptstädte')
+    button_australiaoceania = pygbutton.PygButton((50, 350, 200, 30),
+                                        'Australiens u. Ozeaniens Hauptstädte')
+    button_quit = pygbutton.PygButton((50, 400, 200, 30),
                                             'Beenden')
 
     def __init__(self):
@@ -247,6 +284,10 @@ class Title():
                 self.scene = "Asia"
             if 'click' in self.button_southamerica.handleEvent(event):
                 self.scene = "SouthAmerica"
+            if 'click' in self.button_northamerica.handleEvent(event):
+                self.scene = "NorthAmerica"
+            if 'click' in self.button_australiaoceania.handleEvent(event):
+                self.scene = "AustraliaOceania"
             if 'click' in self.button_quit.handleEvent(event):
                 self.done = True
 ##                sys.exit()
@@ -263,6 +304,8 @@ class Title():
         self.button_africa.draw(screen)
         self.button_asia.draw(screen)
         self.button_southamerica.draw(screen)
+        self.button_northamerica.draw(screen)
+        self.button_australiaoceania.draw(screen)
         self.button_quit.draw(screen)
         pygame.display.flip()
         
