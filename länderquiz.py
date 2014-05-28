@@ -16,14 +16,18 @@ def main():
     
     FPSCLOCK = pygame.time.Clock()
     pygame.mouse.set_visible(True)
-    game = Title()
+    game = TitleMain()
     while not game.done:
         if game.scene == None:
             game.process_events()
             game.run_logic()
             game.display_frame(screen)
-        elif game.scene == "Title":
-            game = Title()
+        elif game.scene == "TitleMain":
+            game = TitleMain()
+        elif game.scene == "TitleCountries":
+            game = TitleCountries()
+        elif game.scene == "TitleCapitals":
+            game = TitleCapitals()
         elif game.scene == "Africa":
             game = Africa(africa_map, africa_list)
             windowwidth, windowheight = get_windowsize(africa_map)
@@ -49,10 +53,36 @@ def main():
             game = AustraliaOceania(australiaoceania_map, australiaoceania_list)
             windowwidth, windowheight = get_windowsize(australiaoceania_map)
             screen = pygame.display.set_mode([windowwidth, windowheight])
+        elif game.scene == "AfricaCountries":
+            game = AfricaCountries(africa_map2, africa_list)
+            windowwidth, windowheight = get_windowsize(africa_map2)
+            screen = pygame.display.set_mode([windowwidth, windowheight])
+        elif game.scene == "EuropeCountries":
+            game = EuropeCountries(europe_map, europe_list)
+            windowwidth, windowheight = get_windowsize(europe_map)
+            screen = pygame.display.set_mode([windowwidth, windowheight])
+        elif game.scene == "AsiaCountries":
+            game = AsiaCountries(asia_map2, asia_list)
+            windowwidth, windowheight = get_windowsize(asia_map2)
+            screen = pygame.display.set_mode([windowwidth, windowheight])
+        elif game.scene == "SouthAmericaCountries":
+            game = SouthAmericaCountries(southamerica_map2, southamerica_list)
+            windowwidth = get_windowsize(southamerica_map2)[0]
+            windowheight = get_windowsize(southamerica_map2)[1]
+            screen = pygame.display.set_mode([windowwidth, windowheight])
+        elif game.scene == "NorthAmericaCountries":
+            game = NorthAmericaCountries(northamerica_map2, northamerica_list)
+            windowwidth, windowheight = get_windowsize(northamerica_map2)
+            screen = pygame.display.set_mode([windowwidth, windowheight])
+        elif game.scene == "AustraliaOceaniaCountries":
+            game = AustraliaOceaniaCountries(australiaoceania_map2, australiaoceania_list)
+            windowwidth, windowheight = get_windowsize(australiaoceania_map2)
+            screen = pygame.display.set_mode([windowwidth, windowheight])
 
         FPSCLOCK.tick(FPS)
 ##    print(game.marker_list)
     pygame.quit()
+##    sys.exit()
 
 if __name__ == "__main__":
     main()          

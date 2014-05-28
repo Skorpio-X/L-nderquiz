@@ -17,6 +17,7 @@ europe_list = [
     [(428, 535), "Athen", 'Griechenland'],
     [(311, 575), "Valetta", 'Malta'],
     [(289, 480), "Rom", 'Italien'],
+    [(289, 480), "Vatikanstadt", 'Vatikanstadt'],
     [(289, 450), "San Marino", 'San Marino'],
     [(227, 447), "Monaco", 'Monaco'],
     [(164, 457), "Andorra la Vella", 'Andorra'],
