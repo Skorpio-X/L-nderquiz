@@ -4,7 +4,10 @@
 import sys
 from collections import namedtuple
 
-from data.game_class import *
+import pygame
+
+import data.game_class as gc
+import data.globs as gl
 from data.lists.europe_list import europe_list
 from data.lists.africa_list import africa_list
 from data.lists.asia_list import asia_list
@@ -15,22 +18,22 @@ from data.lists.australiaoceania_list import australiaoceania_list
 
 ContTup = namedtuple('ContinentTuple', 'continent map list')
 continents = {
-    "Africa": ContTup(Africa, africa_map, africa_list),
-    "Europe": ContTup(Europe, europe_map, europe_list),
-    "Asia": ContTup(Asia, asia_map, asia_list),
-    "SouthAmerica": ContTup(SouthAmerica, southamerica_map, southamerica_list),
-    "NorthAmerica": ContTup(NorthAmerica, northamerica_map, northamerica_list),
-    "AustraliaOceania": ContTup(AustraliaOceania, australiaoceania_map,
+    "Africa": ContTup(gc.Africa, gl.africa_map, africa_list),
+    "Europe": ContTup(gc.Europe, gl.europe_map, europe_list),
+    "Asia": ContTup(gc.Asia, gl.asia_map, asia_list),
+    "SouthAmerica": ContTup(gc.SouthAmerica, gl.southamerica_map, southamerica_list),
+    "NorthAmerica": ContTup(gc.NorthAmerica, gl.northamerica_map, northamerica_list),
+    "AustraliaOceania": ContTup(gc.AustraliaOceania, gl.australiaoceania_map,
                                 australiaoceania_list),
-    "AfricaCountries": ContTup(AfricaCountries, africa_map2, africa_list),
-    "EuropeCountries": ContTup(EuropeCountries, europe_map, europe_list),
-    "AsiaCountries": ContTup(AsiaCountries, asia_map2, asia_list),
-    "SouthAmericaCountries": ContTup(SouthAmericaCountries, southamerica_map2,
+    "AfricaCountries": ContTup(gc.AfricaCountries, gl.africa_map2, africa_list),
+    "EuropeCountries": ContTup(gc.EuropeCountries, gl.europe_map, europe_list),
+    "AsiaCountries": ContTup(gc.AsiaCountries, gl.asia_map2, asia_list),
+    "SouthAmericaCountries": ContTup(gc.SouthAmericaCountries, gl.southamerica_map2,
                                      southamerica_list),
-    "NorthAmericaCountries": ContTup(NorthAmericaCountries, northamerica_map2,
+    "NorthAmericaCountries": ContTup(gc.NorthAmericaCountries, gl.northamerica_map2,
                                      northamerica_list),
     "AustraliaOceaniaCountries": ContTup(
-        AustraliaOceaniaCountries, australiaoceania_map2, australiaoceania_list),
+        gc.AustraliaOceaniaCountries, gl.australiaoceania_map2, australiaoceania_list),
     }
 
 
@@ -42,84 +45,34 @@ def get_windowsize(map_image):
 def change_scene(game):
     cont_tup = continents[game.scene]
     game = cont_tup.continent(cont_tup.map, cont_tup.list)
-    windowwidth, windowheight = get_windowsize(africa_map)
+    windowwidth, windowheight = get_windowsize(cont_tup.map)
     screen = pygame.display.set_mode([windowwidth, windowheight])
     return game, screen
 
 
 def main():
     pygame.init()
-    windowwidth, windowheight = get_windowsize(europe_map)
+    windowwidth, windowheight = get_windowsize(gl.europe_map)
     screen = pygame.display.set_mode([windowwidth, windowheight])
     
     fps = 30
     
     fpsclock = pygame.time.Clock()
     pygame.mouse.set_visible(True)
-    game = TitleMain()
+    game = gc.TitleMain()
     while not game.done:
         if game.scene is None:
             game.process_events()
             game.run_logic()
             game.display_frame(screen)
         elif game.scene == "TitleMain":
-            game = TitleMain()
+            game = gc.TitleMain()
         elif game.scene == "TitleCountries":
-            game = TitleCountries()
+            game = gc.TitleCountries()
         elif game.scene == "TitleCapitals":
-            game = TitleCapitals()
-        # elif game.scene == "Africa":
-        #     game = Africa(africa_map, africa_list)
-        #     windowwidth, windowheight = get_windowsize(africa_map)
-        #     screen = pygame.display.set_mode([windowwidth, windowheight])
-        # elif game.scene == "Europe":
-        #     game = Europe(europe_map, europe_list)
-        #     windowwidth, windowheight = get_windowsize(europe_map)
-        #     screen = pygame.display.set_mode([windowwidth, windowheight])
-        # elif game.scene == "Asia":
-        #     game = Asia(asia_map, asia_list)
-        #     windowwidth, windowheight = get_windowsize(asia_map)
-        #     screen = pygame.display.set_mode([windowwidth, windowheight])
-        # elif game.scene == "SouthAmerica":
-        #     game = SouthAmerica(southamerica_map, southamerica_list)
-        #     windowwidth = get_windowsize(southamerica_map)[0]
-        #     windowheight = get_windowsize(southamerica_map)[1]
-        #     screen = pygame.display.set_mode([windowwidth, windowheight])
-        # elif game.scene == "NorthAmerica":
-        #     game = NorthAmerica(northamerica_map, northamerica_list)
-        #     windowwidth, windowheight = get_windowsize(northamerica_map)
-        #     screen = pygame.display.set_mode([windowwidth, windowheight])
-        # elif game.scene == "AustraliaOceania":
-        #     game = AustraliaOceania(australiaoceania_map, australiaoceania_list)
-        #     windowwidth, windowheight = get_windowsize(australiaoceania_map)
-        #     screen = pygame.display.set_mode([windowwidth, windowheight])
-        # elif game.scene == "AfricaCountries":
-        #     game = AfricaCountries(africa_map2, africa_list)
-        #     windowwidth, windowheight = get_windowsize(africa_map2)
-        #     screen = pygame.display.set_mode([windowwidth, windowheight])
-        # elif game.scene == "EuropeCountries":
-        #     game = EuropeCountries(europe_map, europe_list)
-        #     windowwidth, windowheight = get_windowsize(europe_map)
-        #     screen = pygame.display.set_mode([windowwidth, windowheight])
-        # elif game.scene == "AsiaCountries":
-        #     game = AsiaCountries(asia_map2, asia_list)
-        #     windowwidth, windowheight = get_windowsize(asia_map2)
-        #     screen = pygame.display.set_mode([windowwidth, windowheight])
-        # elif game.scene == "SouthAmericaCountries":
-        #     game = SouthAmericaCountries(southamerica_map2, southamerica_list)
-        #     windowwidth = get_windowsize(southamerica_map2)[0]
-        #     windowheight = get_windowsize(southamerica_map2)[1]
-        #     screen = pygame.display.set_mode([windowwidth, windowheight])
-        # elif game.scene == "NorthAmericaCountries":
-        #     game = NorthAmericaCountries(northamerica_map2, northamerica_list)
-        #     windowwidth, windowheight = get_windowsize(northamerica_map2)
-        #     screen = pygame.display.set_mode([windowwidth, windowheight])
-        # elif game.scene == "AustraliaOceaniaCountries":
-        #     game = AustraliaOceaniaCountries(australiaoceania_map2, australiaoceania_list)
-        #     windowwidth, windowheight = get_windowsize(australiaoceania_map2)
-        #     screen = pygame.display.set_mode([windowwidth, windowheight])
+            game = gc.TitleCapitals()
         else:
-            game, scene = change_scene(game)
+            game, screen = change_scene(game)
 
         fpsclock.tick(fps)
 #     print(game.marker_list)  # Used to create the capital marks.
