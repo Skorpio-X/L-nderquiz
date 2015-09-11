@@ -1,6 +1,10 @@
+"""Globals constants."""
+
 import pygame
 import os.path
+# import sys
 
+pygame.init()
 pygame.font.init()
 
 BLACK = (0, 0, 0)
@@ -8,44 +12,53 @@ WHITE = (255, 255, 255)
 BLUE = (0, 0, 255)
 RED = (255, 0, 0)
 GREEN = (0, 90, 0)
-window_width, window_height = 800, 600
+WINDOW_WIDTH, WINDOW_HEIGHT = 800, 600
 
-start_screen = pygame.display.set_mode([window_width, window_height])
+START_SCREEN = pygame.display.set_mode([WINDOW_WIDTH, WINDOW_HEIGHT])
 
 # Load images
-europe_map = pygame.image.load(
+# print(os.path)
+# print(sys.path)
+# europe_map = pygame.image.load(
+#     'graphics/europakarte.png'
+#     ).convert()
+EUROPE_MAP = pygame.image.load(
     os.path.join('graphics', "europakarte.png")
     ).convert()
-africa_map = pygame.image.load(
+# Unittest works with this path.
+# europe_map = pygame.image.load(
+#     os.path.join('..', 'graphics', "europakarte.png")
+#     ).convert()
+AFRICA_MAP = pygame.image.load(
     os.path.join('graphics', "afrikakarteB.png")
     ).convert()
-africa_map2 = pygame.image.load(
+AFRICA_MAP2 = pygame.image.load(
     os.path.join('graphics', "afrikakarte3.png")
     ).convert()
-asia_map = pygame.image.load(
+ASIA_MAP = pygame.image.load(
     os.path.join('graphics', "asienkarte.png")
     ).convert()
-asia_map2 = pygame.image.load(
+ASIA_MAP2 = pygame.image.load(
     os.path.join('graphics', "asienkarte2.png")
     ).convert()
-southamerica_map = pygame.image.load(
+SOUTHAMERICA_MAP = pygame.image.load(
     os.path.join('graphics', "suedamerikakarte.png")
     ).convert()
-southamerica_map2 = pygame.image.load(
+SOUTHAMERICA_MAP2 = pygame.image.load(
     os.path.join('graphics', "suedamerikakarte2.png")
     ).convert()
-northamerica_map = pygame.image.load(
+NORTHAMERICA_MAP = pygame.image.load(
     os.path.join('graphics', "nordamerikakarte.png")
     ).convert()
-northamerica_map2 = pygame.image.load(
+NORTHAMERICA_MAP2 = pygame.image.load(
     os.path.join('graphics', "nordamerikakarte2.png")
     ).convert()
-australiaoceania_map = pygame.image.load(
+AUSTRALIAOCEANIA_MAP = pygame.image.load(
     os.path.join('graphics', "australienozeanien.png")
     ).convert()
-australiaoceania_map2 = pygame.image.load(
+AUSTRALIAOCEANIA_MAP2 = pygame.image.load(
     os.path.join('graphics', "australienozeanien2.png")
     ).convert()
 
-font = pygame.font.Font(os.path.join('graphics', "GenBasB.ttf"), 30)
+FONT = pygame.font.Font(os.path.join('graphics', "GenBasB.ttf"), 30)
 # font = pygame.font.Font("C:/WINDOWS/Fonts/ARIAL.TTF", 25)

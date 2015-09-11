@@ -1,3 +1,5 @@
+"""Game classes for country and capital quizzes."""
+
 import random
 import pygame
 import data.pygbutton as pygbutton
@@ -6,6 +8,7 @@ from . import globs as gl
 
 
 def check_text_input(active_name, name):
+    """Checks if active name equals name."""
     if active_name.lower() == name.lower():
         return True
     else:
@@ -16,7 +19,7 @@ class Game:
     done = False
     timer = 0
     scene = None
-    gamemap = None
+    game_map = None
     active_question = None
     active_position = None
     counter = 0
@@ -41,20 +44,23 @@ class Game:
 
 
 class GameCapitals(Game):
+    """Parent game class for capital quizzes."""
 
     def process_events(self):
+        """Handle events."""
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.done = True
 
+            # Locate cities on the map by mouse clicking.
+            # Used to create the list for the indicators.
 #             if event.type == pygame.MOUSEBUTTONDOWN:
-#                 # locate cities on the map
 #                 print(pygame.mouse.get_pos())
 #                 mouse_pos = pygame.mouse.get_pos()
 #                 city = input("Hauptstadt: ")
 #                 self.marker_list.append([mouse_pos, city])
 #                 self.marker_count += 1
-     
+
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     self.scene = "TitleMain"
@@ -93,6 +99,7 @@ class GameCapitals(Game):
                     self.enter = False
 
     def run_logic(self):
+        """Change questions."""
         # self.timer += 1
         # Next country
         if self.enter and len(self.country_list) > self.counter:
@@ -100,7 +107,7 @@ class GameCapitals(Game):
             self.enter = False
         if len(self.country_list) == self.counter:
             self.game_over = True
-            
+
         # --Automatic country changer
 #         if self.timer % 3 == 0 and len(self.country_list) - 1 > self.counter:
 #             self.counter += 1
@@ -109,16 +116,17 @@ class GameCapitals(Game):
         if not self.game_over:
             # city name
             self.active_question = self.country_list[self.counter][1]
-            # city position 
-            self.active_position = self.country_list[self.counter][0] 
+            # city position
+            self.active_position = self.country_list[self.counter][0]
             self.last_position = self.country_list[self.counter - 1][0]
         if len(self.country_list) == self.counter:
             self.last_position = self.active_position
 
     def display_frame(self, screen):
-        screen.blit(self.gamemap, [0, 0])
+        """Blit everything."""
+        screen.blit(self.game_map, [0, 0])
 #         pygame.draw.circle(screen, gl.RED, pygame.mouse.get_pos(), 1)
-        
+
         # active question indicator
         if not self.game_over:
             if len(self.country_list) >= self.counter:
@@ -126,86 +134,76 @@ class GameCapitals(Game):
                 pygame.draw.line(screen, gl.BLUE, self.active_position,
                                  [self.active_position[0] + 10,
                                   self.active_position[1] - 10], 4)
-                pygame.draw.line(screen, gl.BLUE, [self.active_position[0] + 10,
-                                 self.active_position[1] - 10],
-                                 [self.active_position[0] + 50,
-                                  self.active_position[1] - 10], 4)
-                name_text = gl.font.render(self.name, True, gl.BLUE)
-                screen.blit(name_text, [self.active_position[0] + 10,
-                            self.active_position[1] - 40])
+                pygame.draw.line(
+                    screen, gl.BLUE,
+                    [self.active_position[0] + 10,
+                     self.active_position[1] - 10],
+                    [self.active_position[0] + 50,
+                     self.active_position[1] - 10],
+                    4
+                    )
+                name_text = gl.FONT.render(self.name, True, gl.BLUE)
+                screen.blit(name_text,
+                            [self.active_position[0] + 10,
+                             self.active_position[1] - 40]
+                            )
                 screen.blit(name_text, (3, 70))
                 if len(self.country_list[self.counter]) > 2:
-                    country_name = gl.font.render(
-                        "Nenne die Hauptstadt von " + str(
+                    country_name = gl.FONT.render(
+                        "Nenne die Hauptstadt von {}.".format(
                             self.country_list[self.counter][2]), True, gl.GREEN)
                     screen.blit(country_name, [3, 10])
         # display incorrect answer
         if self.incorrect_answer and len(self.country_list) >= self.counter:
 
-            inc_name_text = gl.font.render(
+            inc_name_text = gl.FONT.render(
                 self.country_list[self.counter - 1][1], True, gl.RED)
-            screen.blit(inc_name_text, [self.last_position[0] + 10,
-                        self.last_position[1] - 22])
-            last_answer = gl.font.render(
+            screen.blit(inc_name_text,
+                        [self.last_position[0] + 10,
+                         self.last_position[1] - 22]
+                        )
+            last_answer = gl.FONT.render(
                 "Ihre Antwort war {}".format(self.false_name), True, gl.RED)
-            screen.blit(last_answer, [10, self.gamemap.get_height() - 60])
-            inc_text = gl.font.render(
+            screen.blit(last_answer, [10, self.game_map.get_height() - 60])
+            inc_text = gl.FONT.render(
                 "Die korrekte Antwort lautet " +
                 self.country_list[self.counter - 1][1],
                 True, gl.RED)
-            screen.blit(inc_text, [10, self.gamemap.get_height() - 30])
+            screen.blit(inc_text, [10, self.game_map.get_height() - 30])
 
-#         if self.incorrect_answer == False:
-#             inc_name_text = gl.font.render(self.country_list[self.counter - 1][1], True, gl.GREEN)
-#             screen.blit(inc_name_text, [self.last_position[0] + 10,
-#                               self.last_position[1] - 32])
-        # --string formatting tests
-#         score_txt = gl.font.render(str(self.score) + " richtige von " + str(len(self.country_list)) +
-#                                 str(round(100 / len(self.country_list) * self.score, 2)) +
-#                                 "% korrekt", True, gl.BLACK)
-#         score_txt = gl.font.render("%d richtige Antworten von %d.  %d Prozent korrekt" % (
-#           self.score, len(self.country_list), round(100 / len(self.country_list) * self.score, 3)),
-#                                 True, gl.BLACK)
-
+        try:
+            score = round(100 / self.counter * self.score, 2)
+        except ZeroDivisionError:
+            score = 0
         score_txt = (
-            gl.font.render(
+            gl.FONT.render(
                 "{0} richtige Antworten von {1}. {2} Prozent korrekt".format(
-                    self.score, self.counter,
-                    round(100 / (self.counter + 0.0000001) * self.score, 2)
-                ), True, gl.BLACK
-            )
-        )
+                    self.score, self.counter, score), True, gl.BLACK))
         screen.blit(score_txt, [3, 40])
         if self.game_over:
             game_over_txt = (
-                gl.font.render(
+                gl.FONT.render(
                     "Spiel beendet - Pfeiltaste links für das nächste Quiz",
                     True, gl.GREEN
                 )
             )
-            game_over_txt2 = (gl.font.render(
+            game_over_txt2 = (gl.FONT.render(
                 "ESC um ins Hauptmenü zu gelangen", True, gl.GREEN))
             screen.blit(game_over_txt, [20, 70])
             screen.blit(game_over_txt2, [20, 100])
-            
+
         pygame.display.flip()
 
 
 class GameCountries(Game):
+    """Parent game class for country quizzes."""
 
     def process_events(self):
+        """Handle events."""
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.done = True
 
-#             if event.type == pygame.MOUSEBUTTONDOWN:
-#                 # locate cities on the map
-#                 print(pygame.mouse.get_pos())
-#                 mouse_pos = pygame.mouse.get_pos()
-#                 city = input("Hauptstadt: ")
-#                 self.marker_list.append([mouse_pos, city])
-#                 self.marker_count += 1
-     
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     self.scene = "TitleMain"
@@ -238,12 +236,14 @@ class GameCountries(Game):
                             self.name = ""
                 if event.key == pygame.K_BACKSPACE:
                     self.name = self.name[:-1]
+
             elif event.type == pygame.KEYUP:
                 if (event.key == pygame.K_KP_ENTER or
                         event.key == pygame.K_RETURN):
                     self.enter = False
 
     def run_logic(self):
+        """Change questions."""
         # Next country
         if self.enter and len(self.country_list) > self.counter:
             self.counter += 1
@@ -254,17 +254,18 @@ class GameCountries(Game):
         if not self.game_over:
             # city name
             self.active_question = self.country_list[self.counter][2]
-            # city position 
-            self.active_position = self.country_list[self.counter][0] 
+            # city position
+            self.active_position = self.country_list[self.counter][0]
             self.last_position = self.country_list[self.counter - 1][0]
         if len(self.country_list) == self.counter:
             self.last_position = self.active_position
-        
+
     def display_frame(self, screen):
-        screen.blit(self.gamemap, [0, 0])
+        """Blit everything."""
+        screen.blit(self.game_map, [0, 0])
 
         score_txt = (
-            gl.font.render(
+            gl.FONT.render(
                 "{0} richtige Antworten von {1}. {2} Prozent korrekt".format(
                     self.score, self.counter,
                     round(100 / (self.counter + 0.0000001) * self.score, 2)
@@ -272,41 +273,38 @@ class GameCountries(Game):
             )
         )
         screen.blit(score_txt, [3, 40])
-        
+
         # display incorrect answer
         if self.incorrect_answer and len(self.country_list) >= self.counter:
             pygame.draw.line(screen, gl.RED, self.last_position,
                              [self.last_position[0] - 10,
                               self.last_position[1] - 10], 4)
-            pygame.draw.line(screen, gl.RED, [100,
-                             self.last_position[1] - 10],
+            pygame.draw.line(screen, gl.RED,
+                             [100, self.last_position[1] - 10],
                              [self.last_position[0] - 10,
                               self.last_position[1] - 10], 4)
-            inc_name_text = gl.font.render(
+            inc_name_text = gl.FONT.render(
                 self.country_list[self.counter - 1][2], True, gl.RED)
-#             screen.blit(inc_name_text, [self.last_position[0] - 
+#             screen.blit(inc_name_text, [self.last_position[0] -
 #                 len(self.country_list[self.counter - 1][2]) * 10,
 #                                   self.last_position[1] - 40])
             screen.blit(inc_name_text, [100,
                         self.last_position[1] - 40])
-            last_answer = gl.font.render(
+            last_answer = gl.FONT.render(
                 "Ihre Antwort war {}".format(self.false_name), True, gl.RED)
-            screen.blit(last_answer, [10, self.gamemap.get_height() - 60])
-            inc_text = gl.font.render(
+            screen.blit(last_answer, [10, self.game_map.get_height() - 60])
+            inc_text = gl.FONT.render(
                 "Die korrekte Antwort lautet " +
                 self.country_list[self.counter - 1][2],
                 True, gl.RED)
-            screen.blit(inc_text, [10, self.gamemap.get_height() - 30])
+            screen.blit(inc_text, [10, self.game_map.get_height() - 30])
 
         if self.game_over:
-            game_over_txt = (
-                gl.font.render(
-                    "Spiel beendet - Pfeiltaste links für das nächste Quiz",
-                    True, gl.GREEN
-                )
-            )
-            game_over_txt2 = (gl.font.render("ESC um ins Hauptmenü zu gelangen",
-                              True, gl.GREEN))
+            game_over_txt = gl.FONT.render(
+                "Spiel beendet - Pfeiltaste links für das nächste Quiz",
+                True, gl.GREEN)
+            game_over_txt2 = gl.FONT.render(
+                "ESC um ins Hauptmenü zu gelangen", True, gl.GREEN)
             screen.blit(game_over_txt, [20, 70])
             screen.blit(game_over_txt2, [20, 100])
 
@@ -314,27 +312,33 @@ class GameCountries(Game):
         if not self.game_over:
             if len(self.country_list) >= self.counter:
                 # pygame.draw.circle(screen, gl.BLUE, self.active_position, 4)
-                pygame.draw.line(screen, gl.BLUE, self.active_position,
-                                 [self.active_position[0] + 10,
-                                  self.active_position[1] - 10], 4)
-                pygame.draw.line(screen, gl.BLUE, [self.active_position[0] + 10,
-                                 self.active_position[1] - 10],
-                                 [self.active_position[0] + 50,
-                                  self.active_position[1] - 10], 4)
-                name_text = gl.font.render(self.name, True, gl.BLUE)
-                screen.blit(name_text, [self.active_position[0] + 10,
-                            self.active_position[1] - 40])
+                pygame.draw.line(
+                    screen, gl.BLUE, self.active_position,
+                    [self.active_position[0] + 10,
+                     self.active_position[1] - 10],
+                    4)
+                pygame.draw.line(
+                    screen, gl.BLUE,
+                    [self.active_position[0] + 10,
+                     self.active_position[1] - 10],
+                    [self.active_position[0] + 50,
+                     self.active_position[1] - 10],
+                    4)
+                name_text = gl.FONT.render(self.name, True, gl.BLUE)
+                screen.blit(name_text,
+                            [self.active_position[0] + 10,
+                             self.active_position[1] - 40])
                 screen.blit(name_text, (3, 70))
                 if len(self.country_list[self.counter]) > 2:
-                    question = gl.font.render(
+                    question = gl.FONT.render(
                         "Nenne den Namen dieses Landes ", True, gl.GREEN)
                     screen.blit(question, [3, 10])
-            
+
         pygame.display.flip()
 
 
 class Europe(GameCapitals):
-    gamemap = gl.europe_map
+    game_map = gl.EUROPE_MAP
     scene = None
     next_scene = "Africa"
 
@@ -343,7 +347,7 @@ class Europe(GameCapitals):
 
 
 class Africa(GameCapitals):
-    gamemap = gl.africa_map
+    game_map = gl.AFRICA_MAP
     scene = None
     next_scene = "Asia"
 
@@ -352,7 +356,7 @@ class Africa(GameCapitals):
 
 
 class Asia(GameCapitals):
-    gamemap = gl.asia_map
+    game_map = gl.ASIA_MAP
     scene = None
     next_scene = "SouthAmerica"
 
@@ -361,7 +365,7 @@ class Asia(GameCapitals):
 
 
 class SouthAmerica(GameCapitals):
-    gamemap = gl.southamerica_map
+    game_map = gl.SOUTHAMERICA_MAP
     scene = None
     next_scene = "NorthAmerica"
 
@@ -370,7 +374,7 @@ class SouthAmerica(GameCapitals):
 
 
 class NorthAmerica(GameCapitals):
-    gamemap = gl.northamerica_map
+    game_map = gl.NORTHAMERICA_MAP
     scene = None
     next_scene = "AustraliaOceania"
 
@@ -379,7 +383,7 @@ class NorthAmerica(GameCapitals):
 
 
 class AustraliaOceania(GameCapitals):
-    gamemap = gl.australiaoceania_map
+    game_map = gl.AUSTRALIAOCEANIA_MAP
     scene = None
     next_scene = "Europe"
 
@@ -388,7 +392,7 @@ class AustraliaOceania(GameCapitals):
 
 
 class EuropeCountries(GameCountries):
-    gamemap = gl.europe_map
+    game_map = gl.EUROPE_MAP
     scene = None
     next_scene = "AfricaCountries"
 
@@ -397,7 +401,7 @@ class EuropeCountries(GameCountries):
 
 
 class AfricaCountries(GameCountries):
-    gamemap = gl.africa_map2
+    game_map = gl.AFRICA_MAP2
     scene = None
     next_scene = "AsiaCountries"
 
@@ -406,7 +410,7 @@ class AfricaCountries(GameCountries):
 
 
 class AsiaCountries(GameCountries):
-    gamemap = gl.asia_map2
+    game_map = gl.ASIA_MAP2
     scene = None
     next_scene = "SouthAmericaCountries"
 
@@ -415,7 +419,7 @@ class AsiaCountries(GameCountries):
 
 
 class SouthAmericaCountries(GameCountries):
-    gamemap = gl.southamerica_map2
+    game_map = gl.SOUTHAMERICA_MAP2
     scene = None
     next_scene = "NorthAmericaCountries"
 
@@ -424,7 +428,7 @@ class SouthAmericaCountries(GameCountries):
 
 
 class NorthAmericaCountries(GameCountries):
-    gamemap = gl.northamerica_map2
+    game_map = gl.NORTHAMERICA_MAP2
     scene = None
     next_scene = "AustraliaOceaniaCountries"
 
@@ -433,7 +437,7 @@ class NorthAmericaCountries(GameCountries):
 
 
 class AustraliaOceaniaCountries(GameCountries):
-    gamemap = gl.australiaoceania_map2
+    game_map = gl.AUSTRALIAOCEANIA_MAP2
     scene = None
     next_scene = "EuropeCountries"
 
@@ -479,7 +483,7 @@ class TitleMain:
 
     def display_frame(self, screen):
         screen.fill(gl.WHITE)
-        start_text = gl.font.render(
+        start_text = gl.FONT.render(
             "Geographie-Quiz", True, gl.BLACK)
         screen.blit(start_text, [100, 20])
         self.button_länder.draw(screen)
@@ -489,6 +493,7 @@ class TitleMain:
 
 
 class TitleCountries:
+    """The title menu for country quizzes."""
     done = False
     next_scene = "Europe"
     scene = None
@@ -543,7 +548,7 @@ class TitleCountries:
 
     def display_frame(self, screen):
         screen.fill(gl.WHITE)
-        start_text = (gl.font.render(
+        start_text = (gl.FONT.render(
             "Länder-Quiz", True, gl.BLACK))
         screen.blit(start_text, [100, 20])
         self.button_europe.draw(screen)
@@ -558,6 +563,7 @@ class TitleCountries:
 
 
 class TitleCapitals:
+    """The title menu for capital quizzes."""
     done = False
     next_scene = "Europe"
     scene = None
@@ -612,7 +618,7 @@ class TitleCapitals:
 
     def display_frame(self, screen):
         screen.fill(gl.WHITE)
-        start_text = (gl.font.render(
+        start_text = (gl.FONT.render(
             "Hauptstädte-Quiz", True, gl.BLACK))
         screen.blit(start_text, [100, 20])
         self.button_europe.draw(screen)

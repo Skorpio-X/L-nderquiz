@@ -1,4 +1,6 @@
-europe_list = [
+"""List of european countries with corresponding capitals."""
+
+EUROPE_LIST = [
     [(72, 74), "Reykjavik", 'Island'],
     [(123, 274), "Dublin", 'Irland'],
     [(176, 318), "London", 'Vereinigtes Königreich'],
