@@ -38,6 +38,7 @@ or implied, of Al Sweigart.
 import pygame
 from pygame.locals import *
 
+
 pygame.font.init()
 PYGBUTTON_FONT = pygame.font.Font('freesansbold.ttf', 14)
 
@@ -47,8 +48,10 @@ DARKGRAY  = ( 64,  64,  64)
 GRAY      = (128, 128, 128)
 LIGHTGRAY = (212, 208, 200)
 
+
 class PygButton(object):
-    def __init__(self, rect=None, caption='', bgcolor=LIGHTGRAY, fgcolor=BLACK, font=None, normal=None, down=None, highlight=None):
+    def __init__(self, rect=None, caption='', bgcolor=LIGHTGRAY, fgcolor=BLACK,
+                 font=None, normal=None, down=None, highlight=None):
         """Create a new button object. Parameters:
             rect - The size and position of the button as a pygame.Rect object
                 or 4-tuple of integers.
@@ -90,18 +93,18 @@ class PygButton(object):
             self._font = font
 
         # tracks the state of the button
-        self.buttonDown = False # is the button currently pushed down?
-        self.mouseOverButton = False # is the mouse currently hovering over the button?
-        self.lastMouseDownOverButton = False # was the last mouse down event over the mouse button? (Used to track clicks.)
-        self._visible = True # is the button visible
-        self.customSurfaces = False # button starts as a text button instead of having custom images for each surface
+        self.buttonDown = False  # is the button currently pushed down?
+        self.mouseOverButton = False  # is the mouse currently hovering over the button?
+        self.lastMouseDownOverButton = False  # was the last mouse down event over the mouse button? (Used to track clicks.)
+        self._visible = True  # is the button visible
+        self.customSurfaces = False  # button starts as a text button instead of having custom images for each surface
 
         if normal is None:
             # create the surfaces for a text button
             self.surfaceNormal = pygame.Surface(self._rect.size)
             self.surfaceDown = pygame.Surface(self._rect.size)
             self.surfaceHighlight = pygame.Surface(self._rect.size)
-            self._update() # draw the initial button images
+            self._update()  # draw the initial button images
         else:
             # create the surfaces for a custom image button
             self.setSurfaces(normal, down, highlight)
@@ -189,7 +192,6 @@ class PygButton(object):
             else:
                 surfaceObj.blit(self.surfaceNormal, self._rect)
 
-
     def _update(self):
         """Redraw the button's Surface object. Call this method when the button has changed appearance."""
         if self.customSurfaces:
@@ -234,20 +236,23 @@ class PygButton(object):
         # draw border for highlight button
         self.surfaceHighlight = self.surfaceNormal
 
-
     def mouseClick(self, event):
-        pass # This class is meant to be overridden.
+        pass  # This class is meant to be overridden.
+
     def mouseEnter(self, event):
-        pass # This class is meant to be overridden.
+        pass  # This class is meant to be overridden.
+
     def mouseMove(self, event):
-        pass # This class is meant to be overridden.
+        pass  # This class is meant to be overridden.
+
     def mouseExit(self, event):
-        pass # This class is meant to be overridden.
+        pass  # This class is meant to be overridden.
+
     def mouseDown(self, event):
-        pass # This class is meant to be overridden.
+        pass  # This class is meant to be overridden.
+
     def mouseUp(self, event):
         pass # This class is meant to be overridden.
-
 
     def setSurfaces(self, normalSurface, downSurface=None, highlightSurface=None):
         """Switch the button to a custom image type of button (rather than a
@@ -275,65 +280,51 @@ class PygButton(object):
         self.customSurfaces = True
         self._rect = pygame.Rect((self._rect.left, self._rect.top, self.surfaceNormal.get_width(), self.surfaceNormal.get_height()))
 
-
-
     def _propGetCaption(self):
         return self._caption
-
 
     def _propSetCaption(self, captionText):
         self.customSurfaces = False
         self._caption = captionText
         self._update()
 
-
     def _propGetRect(self):
         return self._rect
-
 
     def _propSetRect(self, newRect):
         # Note that changing the attributes of the Rect won't update the button. You have to re-assign the rect member.
         self._update()
         self._rect = newRect
 
-
     def _propGetVisible(self):
         return self._visible
-
 
     def _propSetVisible(self, setting):
         self._visible = setting
 
-
     def _propGetFgColor(self):
         return self._fgcolor
-
 
     def _propSetFgColor(self, setting):
         self.customSurfaces = False
         self._fgcolor = setting
         self._update()
 
-
     def _propGetBgColor(self):
         return self._bgcolor
-
 
     def _propSetBgColor(self, setting):
         self.customSurfaces = False
         self._bgcolor = setting
         self._update()
 
-
     def _propGetFont(self):
         return self._font
-
 
     def _propSetFont(self, setting):
         self.customSurfaces = False
         self._font = setting
         self._update()
-
 
     caption = property(_propGetCaption, _propSetCaption)
     rect = property(_propGetRect, _propSetRect)

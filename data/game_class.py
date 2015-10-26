@@ -151,7 +151,8 @@ class GameCapitals(Game):
                 if len(self.country_list[self.counter]) > 2:
                     country_name = gl.FONT.render(
                         "Nenne die Hauptstadt von {}.".format(
-                            self.country_list[self.counter][2]), True, gl.GREEN)
+                            self.country_list[self.counter][2]),
+                        True, gl.GREEN)
                     screen.blit(country_name, [3, 10])
         # display incorrect answer
         if self.incorrect_answer and len(self.country_list) >= self.counter:

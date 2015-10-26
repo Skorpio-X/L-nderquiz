@@ -6,7 +6,7 @@
 """A geographical quiz game about countries and capitals."""
 
 # print('länderquiz.py imported')
-__version__ = "1.0.1"
+__version__ = "1.0.2"
 
 import sys
 from collections import namedtuple
@@ -21,6 +21,7 @@ from data.lists.asia_list import asia_list
 from data.lists.southamerica_list import southamerica_list
 from data.lists.northamerica_list import northamerica_list
 from data.lists.australiaoceania_list import australiaoceania_list
+
 
 ContTup = namedtuple('ContinentTuple', 'continent map list')
 CONTINENTS = {
