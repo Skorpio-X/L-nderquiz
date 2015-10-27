@@ -31,7 +31,6 @@ class Title:
         screen.blit(self.start_text, [100, 20])
         for button, _ in self.buttons:
             button.draw(screen)
-        pygame.display.flip()
 
     def process_events(self):
         for event in pygame.event.get():
@@ -63,8 +62,6 @@ class TitleCountries(Title):
     """The title menu for country quizzes."""
 
     def __init__(self):
-        super().__init__()
-        self.start_text = gl.FONT.render("Länder-Quiz", True, gl.BLACK)
         button_texts = [
             'Europas Länder', 'Afrikas Länder', 'Asiens Länder',
             'Südamerikas Länder', 'Nordamerikas Länder',
@@ -75,16 +72,13 @@ class TitleCountries(Title):
             "SouthAmericaCountries", "NorthAmericaCountries",
             "AustraliaOceaniaCountries", "TitleMain", "done"
             ]
-        for y_pos, txt, scne in zip(range(100, 451, 50), button_texts, scenes):
-            self.buttons.append((PygButton((50, y_pos, 200, 30), txt), scne))
+        super().__init__(button_texts, scenes, "Länder-Quiz")
 
 
 class TitleCapitals(Title):
     """The title menu for capital quizzes."""
 
     def __init__(self):
-        super().__init__()
-        self.start_text = gl.FONT.render("Hauptstädte-Quiz", True, gl.BLACK)
         button_texts = [
             'Europas Hauptstädte', 'Afrikas Hauptstädte', 'Asiens Hauptstädte',
             'Südamerikas Hauptstädte', 'Nordamerikas Hauptstädte',
@@ -94,5 +88,4 @@ class TitleCapitals(Title):
             "Europe", "Africa", "Asia", "SouthAmerica", "NorthAmerica",
             "AustraliaOceania", "TitleMain", "done"
             ]
-        for y_pos, txt, scne in zip(range(100, 451, 50), button_texts, scenes):
-            self.buttons.append((PygButton((50, y_pos, 200, 30), txt), scne))
+        super().__init__(button_texts, scenes, "Hauptstädte-Quizz")

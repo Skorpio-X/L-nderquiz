@@ -13,7 +13,7 @@ import pygame
 import data.game_class as gc
 import data.globs as gl
 
-__version__ = "1.0.2"
+__version__ = "1.0.4"
 
 
 def change_scene(game):
@@ -41,6 +41,7 @@ def main():
             game.process_events()
             game.run_logic()
             game.display_frame(screen)
+            pygame.display.flip()
         else:
             game, screen = change_scene(game)
 

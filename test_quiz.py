@@ -1,11 +1,11 @@
 # coding=utf-8
 
 import unittest
-import sys
+# import sys
 # sys.path.append('../')
 # sys.path.append('../data')
 # sys.path.append('../graphics')
-print(sys.path)
+# print(sys.path)
 
 # import länderquiz as lq
 # import data.globs as gl

@@ -3,7 +3,7 @@
 # Can be run from parent directory with $ python -m unittest tests.test_quiz
 
 import unittest
-import sys
+# import sys
 import pygame
 pygame.init()
 # import os
