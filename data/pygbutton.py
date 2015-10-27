@@ -1,8 +1,10 @@
 """
 PygButton v0.1.0
 
-PygButton (pronounced "pig button") is a module that implements UI buttons for Pygame.
-PygButton requires Pygame to be installed. Pygame can be downloaded from http://pygame.org
+PygButton (pronounced "pig button") is a module that implements UI buttons for
+Pygame.
+PygButton requires Pygame to be installed. Pygame can be downloaded from
+http://pygame.org
 PygButton was developed by Al Sweigart (al@inventwithpython.com)
 https://github.com/asweigart/pygbutton
 
@@ -11,30 +13,32 @@ Simplified BSD License:
 
 Copyright 2012 Al Sweigart. All rights reserved.
 
-Redistribution and use in source and binary forms, with or without modification, are
-permitted provided that the following conditions are met:
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
 
-   1. Redistributions of source code must retain the above copyright notice, this list of
-      conditions and the following disclaimer.
+   1. Redistributions of source code must retain the above copyright notice,
+      this list of conditions and the following disclaimer.
 
-   2. Redistributions in binary form must reproduce the above copyright notice, this list
-      of conditions and the following disclaimer in the documentation and/or other materials
-      provided with the distribution.
+   2. Redistributions in binary form must reproduce the above copyright notice,
+      this list of conditions and the following disclaimer in the documentation
+      and/or other materials provided with the distribution.
 
 THIS SOFTWARE IS PROVIDED BY Al Sweigart ''AS IS'' AND ANY EXPRESS OR IMPLIED
-WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
-FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL Al Sweigart OR
-CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
-ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
-NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO
+EVENT SHALL Al Sweigart OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-The views and conclusions contained in the software and documentation are those of the
-authors and should not be interpreted as representing official policies, either expressed
-or implied, of Al Sweigart.
+The views and conclusions contained in the software and documentation are those
+of the authors and should not be interpreted as representing official policies,
+either expressed or implied, of Al Sweigart.
 """
+
 import pygame
 from pygame.locals import *
 
@@ -42,10 +46,10 @@ from pygame.locals import *
 pygame.font.init()
 PYGBUTTON_FONT = pygame.font.Font('freesansbold.ttf', 14)
 
-BLACK     = (  0,   0,   0)
-WHITE     = (255, 255, 255)
-DARKGRAY  = ( 64,  64,  64)
-GRAY      = (128, 128, 128)
+BLACK = (0,   0,   0)
+WHITE = (255, 255, 255)
+DARKGRAY = (64,  64,  64)
+GRAY = (128, 128, 128)
 LIGHTGRAY = (212, 208, 200)
 
 
@@ -94,10 +98,15 @@ class PygButton(object):
 
         # tracks the state of the button
         self.buttonDown = False  # is the button currently pushed down?
-        self.mouseOverButton = False  # is the mouse currently hovering over the button?
-        self.lastMouseDownOverButton = False  # was the last mouse down event over the mouse button? (Used to track clicks.)
+        # is the mouse currently hovering over the button?
+        self.mouseOverButton = False
+        # was the last mouse down event over the mouse button? (Used to track
+        # clicks.)
+        self.lastMouseDownOverButton = False
         self._visible = True  # is the button visible
-        self.customSurfaces = False  # button starts as a text button instead of having custom images for each surface
+        # button starts as a text button instead of having custom images for
+        # each surface
+        self.customSurfaces = False
 
         if normal is None:
             # create the surfaces for a text button
@@ -127,8 +136,10 @@ class PygButton(object):
         when mouseUp() or mouseClick() is called. lastMouseDownOverButton is
         always False when mouseUp() or mouseClick() is called."""
 
-        if eventObj.type not in (MOUSEMOTION, MOUSEBUTTONUP, MOUSEBUTTONDOWN) or not self._visible:
-            # The button only cares bout mouse-related events (or no events, if it is invisible)
+        if (eventObj.type not in (MOUSEMOTION, MOUSEBUTTONUP, MOUSEBUTTONDOWN)
+                or not self._visible):
+            # The button only cares bout mouse-related events (or no events, if
+            # it is invisible)
             return []
 
         retVal = []
@@ -139,10 +150,13 @@ class PygButton(object):
             self.mouseOverButton = True
             self.mouseEnter(eventObj)
             retVal.append('enter')
-        elif self.mouseOverButton and not self._rect.collidepoint(eventObj.pos):
+        elif (self.mouseOverButton
+              and not self._rect.collidepoint(eventObj.pos)):
             # if mouse has exited the button:
             self.mouseOverButton = False
-            hasExited = True # call mouseExit() later, since we want mouseMove() to be handled before mouseExit()
+            # call mouseExit() later, since we want mouseMove() to be handled
+            # before mouseExit()
+            hasExited = True
 
         if self._rect.collidepoint(eventObj.pos):
             # if mouse event happened over the button:
@@ -156,7 +170,8 @@ class PygButton(object):
                 retVal.append('down')
         else:
             if eventObj.type in (MOUSEBUTTONUP, MOUSEBUTTONDOWN):
-                # if an up/down happens off the button, then the next up won't cause mouseClick()
+                # if an up/down happens off the button, then the next up won't
+                # cause mouseClick()
                 self.lastMouseDownOverButton = False
 
         # mouse up is handled whether or not it was over the button
@@ -193,15 +208,21 @@ class PygButton(object):
                 surfaceObj.blit(self.surfaceNormal, self._rect)
 
     def _update(self):
-        """Redraw the button's Surface object. Call this method when the button has changed appearance."""
+        """Redraw the button's Surface object.
+
+        Call this method when the button has changed appearance.
+        """
         if self.customSurfaces:
-            self.surfaceNormal    = pygame.transform.smoothscale(self.origSurfaceNormal, self._rect.size)
-            self.surfaceDown      = pygame.transform.smoothscale(self.origSurfaceDown, self._rect.size)
-            self.surfaceHighlight = pygame.transform.smoothscale(self.origSurfaceHighlight, self._rect.size)
+            self.surfaceNormal = pygame.transform.smoothscale(
+                self.origSurfaceNormal, self._rect.size)
+            self.surfaceDown = pygame.transform.smoothscale(
+                self.origSurfaceDown, self._rect.size)
+            self.surfaceHighlight = pygame.transform.smoothscale(
+                self.origSurfaceHighlight, self._rect.size)
             return
 
-        w = self._rect.width # syntactic sugar
-        h = self._rect.height # syntactic sugar
+        w = self._rect.width  # syntactic sugar
+        h = self._rect.height  # syntactic sugar
 
         # fill background color for all buttons
         self.surfaceNormal.fill(self.bgcolor)
@@ -209,23 +230,28 @@ class PygButton(object):
         self.surfaceHighlight.fill(self.bgcolor)
 
         # draw caption text for all buttons
-        captionSurf = self._font.render(self._caption, True, self.fgcolor, self.bgcolor)
+        captionSurf = self._font.render(self._caption, True, self.fgcolor,
+                                        self.bgcolor)
         captionRect = captionSurf.get_rect()
         captionRect.center = int(w / 2), int(h / 2)
         self.surfaceNormal.blit(captionSurf, captionRect)
         self.surfaceDown.blit(captionSurf, captionRect)
 
         # draw border for normal button
-        pygame.draw.rect(self.surfaceNormal, BLACK, pygame.Rect((0, 0, w, h)), 1) # black border around everything
+        pygame.draw.rect(self.surfaceNormal, BLACK, pygame.Rect((0, 0, w, h)),
+                         1)  # black border around everything
         pygame.draw.line(self.surfaceNormal, WHITE, (1, 1), (w - 2, 1))
         pygame.draw.line(self.surfaceNormal, WHITE, (1, 1), (1, h - 2))
-        pygame.draw.line(self.surfaceNormal, DARKGRAY, (1, h - 1), (w - 1, h - 1))
-        pygame.draw.line(self.surfaceNormal, DARKGRAY, (w - 1, 1), (w - 1, h - 1))
+        pygame.draw.line(self.surfaceNormal, DARKGRAY, (1, h - 1),
+                         (w - 1, h - 1))
+        pygame.draw.line(self.surfaceNormal, DARKGRAY, (w - 1, 1),
+                         (w - 1, h - 1))
         pygame.draw.line(self.surfaceNormal, GRAY, (2, h - 2), (w - 2, h - 2))
         pygame.draw.line(self.surfaceNormal, GRAY, (w - 2, 2), (w - 2, h - 2))
 
-        # draw border for down button
-        pygame.draw.rect(self.surfaceDown, BLACK, pygame.Rect((0, 0, w, h)), 1) # black border around everything
+        # draw border for down button.
+        # black border around everything
+        pygame.draw.rect(self.surfaceDown, BLACK, pygame.Rect((0, 0, w, h)), 1)
         pygame.draw.line(self.surfaceDown, WHITE, (1, 1), (w - 2, 1))
         pygame.draw.line(self.surfaceDown, WHITE, (1, 1), (1, h - 2))
         pygame.draw.line(self.surfaceDown, DARKGRAY, (1, h - 2), (1, 1))
@@ -252,9 +278,10 @@ class PygButton(object):
         pass  # This class is meant to be overridden.
 
     def mouseUp(self, event):
-        pass # This class is meant to be overridden.
+        pass  # This class is meant to be overridden.
 
-    def setSurfaces(self, normalSurface, downSurface=None, highlightSurface=None):
+    def setSurfaces(self, normalSurface, downSurface=None,
+                    highlightSurface=None):
         """Switch the button to a custom image type of button (rather than a
         text button). You can specify either a pygame.Surface object or a
         string of a filename to load for each of the three button appearance
@@ -271,14 +298,19 @@ class PygButton(object):
         if type(highlightSurface) == str:
             self.origSurfaceHighlight = pygame.image.load(highlightSurface)
 
-        if self.origSurfaceNormal.get_size() != self.origSurfaceDown.get_size() != self.origSurfaceHighlight.get_size():
+        if (self.origSurfaceNormal.get_size() !=
+                self.origSurfaceDown.get_size() !=
+                self.origSurfaceHighlight.get_size()):
             raise Exception('foo')
 
         self.surfaceNormal = self.origSurfaceNormal
         self.surfaceDown = self.origSurfaceDown
         self.surfaceHighlight = self.origSurfaceHighlight
         self.customSurfaces = True
-        self._rect = pygame.Rect((self._rect.left, self._rect.top, self.surfaceNormal.get_width(), self.surfaceNormal.get_height()))
+        self._rect = pygame.Rect((self._rect.left,
+                                  self._rect.top,
+                                  self.surfaceNormal.get_width(),
+                                  self.surfaceNormal.get_height()))
 
     def _propGetCaption(self):
         return self._caption
@@ -292,7 +324,8 @@ class PygButton(object):
         return self._rect
 
     def _propSetRect(self, newRect):
-        # Note that changing the attributes of the Rect won't update the button. You have to re-assign the rect member.
+        # Note that changing the attributes of the Rect won't update the
+        # button. You have to re-assign the rect member.
         self._update()
         self._rect = newRect
 

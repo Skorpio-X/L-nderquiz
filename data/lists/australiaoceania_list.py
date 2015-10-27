@@ -1,4 +1,4 @@
-australiaoceania_list = [
+AUSTRALIAOCEANIA_LIST = [
     [(230, 478), 'Canberra', 'Australien'],
     [(554, 379), 'Avarua', 'Cookinseln'],
     [(413, 351), 'Suva', 'Fidschi'],

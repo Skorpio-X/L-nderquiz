@@ -1,4 +1,4 @@
-africa_list = [
+AFRICA_LIST = [
     [(426, 76), 'Kairo', 'Ägypten'],
     [(298, 56), 'Tripolis', 'Libyen'],
     [(282, 26), 'Tunis', 'Tunesien'],

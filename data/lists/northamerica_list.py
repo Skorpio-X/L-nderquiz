@@ -1,4 +1,4 @@
-northamerica_list = [
+NORTHAMERICA_LIST = [
     [(425, 345), 'Washington, D.C.', 'Vereinigte Staaten von Amerika'],
     [(298, 500), 'Mexiko-Stadt', 'Mexiko'],
     [(420, 299), 'Ottawa', 'Kanada'],

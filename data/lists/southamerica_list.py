@@ -1,4 +1,4 @@
-southamerica_list = [
+SOUTHAMERICA_LIST = [
     [(481, 326), 'Brasilia', 'Brasilien'],
     [(383, 418), 'Asunción', 'Paraguay'],
     [(394, 514), 'Montevideo', 'Uruguay'],

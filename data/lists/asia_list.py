@@ -1,4 +1,4 @@
-asia_list = [
+ASIA_LIST = [
     [(620, 317), 'Tokio', 'Japan'],
     [(538, 331), 'Pjöngjang', 'Nordkorea'],
     [(549, 338), 'Seoul', 'Südkorea'],

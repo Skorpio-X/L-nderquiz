@@ -2,7 +2,6 @@
 
 import pygame
 import os.path
-# import sys
 
 pygame.init()
 pygame.font.init()
@@ -17,8 +16,6 @@ WINDOW_WIDTH, WINDOW_HEIGHT = 800, 600
 START_SCREEN = pygame.display.set_mode([WINDOW_WIDTH, WINDOW_HEIGHT])
 
 # Load images
-# print(os.path)
-# print(sys.path)
 # europe_map = pygame.image.load(
 #     'graphics/europakarte.png'
 #     ).convert()
