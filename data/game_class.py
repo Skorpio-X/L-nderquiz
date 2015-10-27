@@ -185,7 +185,7 @@ class GameCapitals(Game):
                 "Ihre Antwort war {}".format(self.false_name), True, gl.RED)
             screen.blit(last_answer, [10, self.game_map.get_height() - 60])
             inc_text = gl.FONT.render(
-                "Die korrekte Antwort lautet ".format(
+                "Die korrekte Antwort lautet {}".format(
                     self.country_list[self.counter - 1][1]),
                 True, gl.RED)
             screen.blit(inc_text, [10, self.game_map.get_height() - 30])
@@ -261,7 +261,7 @@ class GameCountries(Game):
                              [self.last_position[0] - 10,
                               self.last_position[1] - 10], 4)
             inc_name_text = gl.FONT.render(
-                self.country_list[self.counter - 1][2], True, gl.RED)
+                self.country_list[self.counter-1][2], True, gl.RED)
 #             screen.blit(inc_name_text, [self.last_position[0] -
 #                 len(self.country_list[self.counter - 1][2]) * 10,
 #                                   self.last_position[1] - 40])
@@ -272,7 +272,7 @@ class GameCountries(Game):
             screen.blit(last_answer, [10, self.game_map.get_height() - 60])
             inc_text = gl.FONT.render(
                 "Die korrekte Antwort lautet {}".format(
-                    self.country_list[self.counter - 1][2]), True, gl.RED)
+                    self.country_list[self.counter-1][2]), True, gl.RED)
             screen.blit(inc_text, [10, self.game_map.get_height() - 30])
 
         if self.game_over:
