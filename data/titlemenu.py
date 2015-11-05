@@ -32,21 +32,20 @@ class Title:
         for button, _ in self.buttons:
             button.draw(screen)
 
-    def process_events(self):
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                self.done = True
-            elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_ESCAPE:
-                    self.scene = "TitleMain"
-                if event.key == pygame.K_LEFT:
-                    self.scene = 'Europe'
+    def process_events(self, event):
+        if event.type == pygame.QUIT:
+            self.done = True
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:
+                self.scene = "TitleMain"
+            if event.key == pygame.K_LEFT:
+                self.scene = 'Europe'
 
-            for button, scene in self.buttons:
-                if 'click' in button.handleEvent(event):
-                    self.scene = scene
-                if self.scene == 'done':
-                    self.done = True
+        for button, scene in self.buttons:
+            if 'click' in button.handleEvent(event):
+                self.scene = scene
+            if self.scene == 'done':
+                self.done = True
 
 
 class TitleMain(Title):
