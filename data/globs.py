@@ -1,14 +1,14 @@
 """Globals constants."""
 
 import pygame
-import os.path
+import os
 
 pygame.init()
 pygame.font.init()
 
 BLACK = (0, 0, 0)
-RED = (255, 0, 0)
-BLUE = (0, 0, 255)
+RED = (210, 73, 0)
+BLUE = (30, 70, 170)
 GREEN = (0, 90, 0)
 WHITE = (255, 255, 255)
 WINDOW_WIDTH = 800
@@ -18,8 +18,25 @@ START_SCREEN = pygame.display.set_mode([WINDOW_WIDTH, WINDOW_HEIGHT])
 
 
 def load_image(folder, name):
+    """Load opaque images.
+
+    Parameters:
+        folder (str): Folder that contains images.
+        name (str): Name of the image.
+    """
     image = pygame.image.load(os.path.join(folder, name)).convert()
     return image
+
+
+def load_flags():
+    """Load the flag images and insert them into a dict."""
+    path = os.path.join('graphics', 'flags')
+    flags = {}
+    for _, _, filenames in os.walk(path):
+        for filename in filenames:
+            if filename.endswith('.png'):
+                flags[filename[:-4]] = load_image(path, filename)
+    return flags
 
 # Load images
 # europe_map = load(
@@ -48,3 +65,7 @@ FONT = pygame.font.Font(os.path.join('graphics', "GenBasB.ttf"), 30)
 
 win_sound = pygame.mixer.Sound(os.path.join("sound", "win3.wav"))
 fail_sound = pygame.mixer.Sound(os.path.join("sound", "fail3.wav"))
+
+flags_euro = load_flags()
+# print(len(flags_euro))
+# print([name for name in flags_euro])

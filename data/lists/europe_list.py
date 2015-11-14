@@ -1,4 +1,7 @@
 """List of european countries with corresponding capitals."""
+from operator import itemgetter
+from ..globs import flags_euro
+
 
 EUROPE_LIST = [
     [(72, 74), "Reykjavik", 'Island'],
@@ -48,3 +51,58 @@ EUROPE_LIST = [
     [(328, 420), "Zagreb", 'Kroatien'],
     [(314, 416), "Ljubljana", 'Slowenien']
     ]
+
+EUROPE_LIST = [
+    [(377, 489), 'Tirana', 'Albanien', 'Albania'],
+    [(164, 457), 'Andorra la Vella', 'Andorra', 'Andorra'],
+    [(215, 336), 'Brüssel', 'Belgien', 'Belgium'],
+    [(355, 448), 'Sarajevo', 'Bosnien und Herzegowina', 'Belarus'],
+    [(415, 461), 'Sofia', 'Bulgarien', ],
+    [(303, 314), 'Berlin', 'Deutschland', 'Bosnia_and_Herzegovina'],
+    [(296, 268), 'Kopenhagen', 'Dänemark', 'Bulgaria'],
+    [(398, 205), 'Tallinn', 'Estland', 'Croatia'],
+    [(394, 191), 'Helsinki', 'Finnland', 'Cyprus'],
+    [(189, 364), 'Paris', 'Frankreich', 'Czech_Republic'],
+    [(428, 535), 'Athen', 'Griechenland', 'Denmark'],
+    [(123, 274), 'Dublin', 'Irland', 'Estonia'],
+    [(72, 74), 'Reykjavik', 'Island', 'Finland'],
+    [(295, 485), 'Rom', 'Italien', 'France'],
+    [(328, 420), 'Zagreb', 'Kroatien', 'Germany'],
+    [(394, 243), 'Riga', 'Lettland', 'Greece'],
+    [(262, 397), 'Vaduz', 'Liechtenstein', 'Hungary'],
+    [(410, 278), 'Vilnius', 'Litauen', 'Iceland'],
+    [(229, 354), 'Luxemburg', 'Luxemburg', 'Ireland'],
+    [(311, 575), 'Valetta', 'Malta', 'Italy'],
+    [(394, 475), 'Skopje', 'Mazedonien', 'Latvia'],
+    [(463, 389), 'Chisinau', 'Moldawien', 'Liechtenstein'],
+    [(227, 447), 'Monaco', 'Monaco', 'Lithuania'],
+    [(366, 472), 'Podgorica', 'Montenegro', 'Luxembourg'],
+    [(223, 311), 'Amsterdam', 'Niederlande', 'Macedonia'],
+    [(284, 200), 'Oslo', 'Norwegen', 'Malta'],
+    [(373, 319), 'Warschau', 'Polen', 'Moldova'],
+    [(26, 481), 'Lissabon', 'Portugal', 'Monaco'],
+    [(444, 429), 'Bukarest', 'Rumänien', 'Montenegro'],
+    [(506, 236), 'Moskau', 'Russland', 'Netherlands'],
+    [(289, 450), 'San Marino', 'San Marino', 'Norway'],
+    [(343, 210), 'Stockholm', 'Schweden', 'Poland'],
+    [(239, 399), 'Bern', 'Schweiz', 'Portugal'],
+    [(377, 442), 'Belgrad', 'Serbien', 'Romania'],
+    [(342, 383), 'Bratislava', 'Slowakei', 'Russia'],
+    [(314, 416), 'Ljubljana', 'Slowenien', 'San_Marino'],
+    [(89, 474), 'Madrid', 'Spanien', 'Serbia'],
+    [(309, 352), 'Prag', 'Tschechien', 'Slovakia'],
+    [(530, 483), 'Ankara', 'Türkei', 'Slovenia'],
+    [(470, 334), 'Kiew', 'Ukraine', 'Spain'],
+    [(360, 393), 'Budapest', 'Ungarn', 'Sweden'],
+    [(289, 480), 'Vatikanstadt', 'Vatikanstadt', 'Switzerland'],
+    [(176, 318), 'London', 'Vereinigtes Königreich', 'Turkey'],
+    [(429, 285), 'Minsk', 'Weißrussland', 'Ukraine'],
+    [(557, 557), 'Nikosia', 'Zypern', 'United_Kingdom'],
+    [(332, 384), 'Wien', 'Österreich', 'Austria', 'Vatican_City'],
+    ]
+
+# sorted_list = sorted(EUROPE_LIST, key=itemgetter(2))
+# print(sorted_list)
+# sorted_flags = [name for name in sorted(flags_euro)]
+# for (pos, capital, country), country_engl in zip(sorted_list, sorted_flags):
+#     print("[{0}, '{1}', '{2}', '{3}'],".format(pos, capital, country, country_engl))

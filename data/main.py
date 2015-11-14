@@ -13,9 +13,9 @@ def change_scene(game):
         game: game class
     """
     next_game = gc.scenes[game.scene]
-    game.scene = None
+    next_game.reset()
     window_width, window_height = next_game.game_map.get_size()
-    screen = pygame.display.set_mode([window_width, window_height])
+    screen = pygame.display.set_mode([window_width + 90, window_height + 90])
     return next_game, screen
 
 

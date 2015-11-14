@@ -1,6 +1,6 @@
 SOUTHAMERICA_LIST = [
     [(481, 326), 'Brasilia', 'Brasilien'],
-    [(383, 418), 'Asunción', 'Paraguay'],
+    [(383, 418), ('Asunción', 'Asuncion'), 'Paraguay'],
     [(394, 514), 'Montevideo', 'Uruguay'],
     [(374, 514), 'Buenos Aires', 'Argentinien'],
     [(270, 506), 'Santiago de Chile', 'Chile'],
@@ -9,7 +9,7 @@ SOUTHAMERICA_LIST = [
     # [(442, 114), 'Cayenne'], Französisch-Guayana
     [(192, 291), 'Lima', 'Peru'],
     [(170, 172), 'Quito', 'Ecuador'],
-    [(213, 119), 'Bogotá', 'Kolumbien'],
+    [(213, 119), ('Bogotá', 'Bogota'), 'Kolumbien'],
     [(288, 58), 'Caracas', 'Venezuela'],
     [(380, 94), 'Georgetown', 'Guyana'],
     [(411, 104), 'Paramaribo', 'Suriname'],

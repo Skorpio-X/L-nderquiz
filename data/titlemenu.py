@@ -47,6 +47,9 @@ class Title:
             if self.scene == 'done':
                 self.done = True
 
+    def reset(self):
+        self.scene = None
+
 
 class TitleMain(Title):
     """Main menu."""
