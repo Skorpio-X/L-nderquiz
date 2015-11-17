@@ -25,6 +25,7 @@ class Game:
     """
 
     def __init__(self, next_scene, game_map, country_list, quiz_type):
+        self.width, self.height = game_map.get_size()
         self.done = False
         self.scene = None
         self.next_scene = next_scene
@@ -34,7 +35,6 @@ class Game:
         # Use 1 for capital and 2 for country quiz. Used as index of lists.
         self.quiz_type = quiz_type
         self.counter = 0
-        self.enter = False
         self.usr_input = ""
         self.score = 0
         self.incorrect_answer = False
@@ -49,7 +49,6 @@ class Game:
         self.wrong_answer = None
         self.backspace_pressed = False
         self.backspace_timer = 20
-        self.width, self.height = self.game_map.get_size()
         self.question_offset = 0
 
     def reset(self):
@@ -58,7 +57,6 @@ class Game:
         self.active_question = None
         self.active_pos = None
         self.counter = 0
-        self.enter = False
         self.usr_input = ""
         self.score = 0
         self.incorrect_answer = False
@@ -104,7 +102,7 @@ class Game:
                 self.usr_input += "'"
             if event.key == pygame.K_RIGHT:
                 self.scene = self.next_scene
-            # TODO: Add question skipping.
+            # TODO: Add question skipping?
             if (event.key == pygame.K_KP_ENTER or
                 event.key == pygame.K_RETURN):
                 self.next_country()
@@ -112,13 +110,12 @@ class Game:
                 self.backspace_timer = 20
                 self.usr_input = self.usr_input[:-1]
                 self.backspace_pressed = True
+            # Skip country. Debugging.
+            if event.key == pygame.K_0:
+                if not self.game_over:
+                    self.counter += 1
+                    self.usr_input = ""
         elif event.type == pygame.KEYUP:
-            # if (event.key == pygame.K_KP_ENTER
-            #         or event.key == pygame.K_RETURN):
-            #     if not self.incorrect_answer:
-            #         self.enter = False
-            #     else:
-            #         self.incorrect_answer = False
             if event.key == pygame.K_BACKSPACE:
                 self.backspace_pressed = False
 
@@ -126,8 +123,9 @@ class Game:
         if self.backspace_pressed:
             self.backspace_timer -= 1
             self.del_letters()
-        # self.next_country()
-        self.check_game_over()
+        # Check if game is over.
+        if len(self.country_list) == self.counter:
+            self.game_over = True
         self.change_question()
 
     def display_frame(self, screen):
@@ -145,30 +143,18 @@ class Game:
             self.render_active_question(screen)
         pygame.draw.rect(screen, gl.BLACK, (0, 0, self.width, self.height), 2)
 
-    def next_country1(self):
-        if self.enter and len(self.country_list) > self.counter:
-            self.counter += 1
-            self.enter = False
-
     def next_country(self):
-        self.enter = True
+        """Switch to next country."""
         if not self.game_over and not self.incorrect_answer:
             if self.check_input():
                 self.score += 1
-                self.usr_input = ""
-                self.incorrect_answer = False
-                self.counter += 1
             else:
                 self.incorrect_answer = True
                 self.wrong_answer = self.usr_input
-                self.usr_input = ""
-                self.counter += 1
+            self.counter += 1
         elif self.incorrect_answer:
             self.incorrect_answer = False
-
-    def check_game_over(self):
-        if len(self.country_list) == self.counter:
-            self.game_over = True
+        self.usr_input = ""
 
     def change_question(self):
         if not self.game_over:
@@ -187,30 +173,14 @@ class Game:
             self.usr_input = self.usr_input[:-1]
             self.backspace_timer = 2
 
-    def check_input1(self):
-        """Checks if active name equals name."""
-        correct_answer = self.country_list[self.counter][self.quiz_type]
-        # Multiple correct answers in a tuple.
-        if isinstance(correct_answer, tuple):
-            possible_answers = (answ.lower() for answ in correct_answer)
-            if self.usr_input.lower() in possible_answers:
-                gl.win_sound.play()
-                return True
-        if self.usr_input.lower() == correct_answer.lower():
-            gl.win_sound.play()
-            return True
-        else:
-            gl.fail_sound.play()
-            return False
-
     def check_input(self):
         """Checks if active name equals name."""
         correct_answer = self.country_list[self.counter][self.quiz_type]
-        # Multiple correct answers in a tuple.
         try:
             if self.usr_input.lower() == correct_answer.lower():
                 gl.win_sound.play()
                 return True
+        # Multiple correct answers in a tuple.
         except AttributeError:
             correct_answer = (answ.lower() for answ in correct_answer)
             if self.usr_input.lower() in correct_answer:
@@ -225,30 +195,31 @@ class Game:
         except ZeroDivisionError:
             percent = 0
 
+        # TODO: Enter this when the game ends.
         # txt = "{0} richtige Antworten von {1}. {2} Prozent korrekt".format(
         #     self.score, self.counter, percent)
         # score_txt = gl.FONT.render(txt, True, gl.BLACK)
         # screen.blit(score_txt, (3, 10))
 
-        score_txt = gl.FONT.render("Pkte", True, gl.BLACK)
+        score_txt = gl.FONT.render("Pkte", True, gl.BLUE)
         screen.blit(score_txt, (self.width + 9, 10))
 
         txt = "{0}/{1}".format(self.score, self.counter)
-        score_txt = gl.FONT.render(txt, True, gl.BLACK)
+        score_txt = gl.FONT.render(txt, True, gl.BLUE)
         screen.blit(score_txt, (self.width + 9, 45))
 
-        perc_txt = gl.FONT.render("{} %".format(int(percent)), True, gl.BLACK)
+        perc_txt = gl.FONT.render("{} %".format(int(percent)), True, gl.BLUE)
         screen.blit(perc_txt, (self.width + 9, 80))
 
     def render_game_over(self, screen):
         if self.game_over:
             txt = "Spiel beendet - Pfeiltaste rechts für das nächste Quiz,"
-            game_over_txt = gl.FONT.render(txt, True, gl.GREEN)
+            game_over_txt = gl.FONT.render(txt, True, gl.BLUE)
 
             txt = "ESC um ins Hauptmenü zu gelangen."
-            game_over_txt2 = gl.FONT.render(txt, True, gl.GREEN)
+            game_over_txt2 = gl.FONT.render(txt, True, gl.BLUE)
 
-            screen.blit(game_over_txt, (3, self.width + 2))
+            screen.blit(game_over_txt, (3, self.height + 2))
             screen.blit(game_over_txt2, (3, self.height + 32))
 
     def render_active_question(self, screen):
@@ -264,24 +235,7 @@ class Game:
 
             # Why has counter to be > 2?
             if len(self.country_list[self.counter]) > 2:
-                # For capital quiz.
-                # if self.quiz_type == 1:
-                #     self.render_capital_question(screen)
-                # # For country quiz.
-                # elif self.quiz_type == 2:
-                #     self.render_capital_question(screen)
                 self.render_question(screen, self.quiz_type)
-
-    # def render_country_question(self, screen):
-    #     question_txt = "Nenne den Namen dieses Landes "
-    #     question = gl.FONT.render(question_txt, True, gl.GREEN)
-    #     screen.blit(question, (3, self.text_pos))
-    #
-    # def render_capital_question(self, screen):
-    #     active_country = self.country_list[self.counter][2]
-    #     txt = "Nenne die Hauptstadt von {}.".format(active_country)
-    #     country_question = gl.FONT.render(txt, True, gl.GREEN)
-    #     screen.blit(country_question, (3, self.text_pos))
 
     def render_question(self, screen, quiz_type=1):
         if quiz_type == 1:
@@ -319,8 +273,7 @@ class Game:
         screen.blit(name_text, (3 + self.question_offset, self.height + 32))
 
     def render_incorrect_answer(self, screen):
-        not_done = len(self.country_list) >= self.counter
-        if self.incorrect_answer and not_done:
+        if self.incorrect_answer:
             # Red line positions.
             x_pos = self.last_pos[0] - 10
             y_pos = self.last_pos[1] - 10
@@ -337,13 +290,14 @@ class Game:
             inc_name_text = gl.FONT.render(active, True, gl.RED)
             screen.blit(inc_name_text, [100, self.last_pos[1] - 40])
 
-            given_answer = "Ihre Antwort war {}.".format(self.wrong_answer)
-            wrong_answer = gl.FONT.render(given_answer, True, gl.RED)
-            screen.blit(wrong_answer, [3, self.height + 32])
+            if not self.game_over:
+                given_answer = "Ihre Antwort war {}.".format(self.wrong_answer)
+                text = gl.FONT.render(given_answer, True, gl.RED)
+                screen.blit(text, [3, self.height + 32])
 
-            correct = "Die korrekte Antwort lautet {}.".format(active)
-            text = gl.FONT.render(correct, True, gl.RED)
-            screen.blit(text, [3, self.height + 2])
+                correct = "Die korrekte Antwort lautet {}.".format(active)
+                text = gl.FONT.render(correct, True, gl.RED)
+                screen.blit(text, [3, self.height + 2])
 
 scenes = {
     'TitleMain': TitleMain(),
