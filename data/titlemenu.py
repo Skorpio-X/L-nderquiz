@@ -1,10 +1,12 @@
 # coding=utf-8
 
 """Title menu scenes."""
+import gettext
 
 import pygame
 from .pygbutton import PygButton
 from . import globs as gl
+# from .globs import _
 
 
 class Title:
@@ -18,7 +20,7 @@ class Title:
         self.scene = None
         self.buttons = []
         self.start_text = gl.FONT.render(start_text, True, gl.BLACK)
-        for y_pos, txt, scne in zip(range(100, 451, 50), button_texts, scenes):
+        for y_pos, txt, scne in zip(range(100, 501, 50), button_texts, scenes):
             if txt == 'Beenden' and isinstance(self, TitleMain):
                 y_pos = 400
             self.buttons.append((PygButton((50, y_pos, 200, 30), txt), scne))
@@ -37,10 +39,12 @@ class Title:
             self.done = True
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
-                self.scene = "TitleMain"
+                self.scene = 'TitleMain'
             if event.key == pygame.K_LEFT:
                 self.scene = 'Europe'
+        self.check_button_clicks(event)
 
+    def check_button_clicks(self, event):
         for button, scene in self.buttons:
             if 'click' in button.handleEvent(event):
                 self.scene = scene
@@ -55,9 +59,10 @@ class TitleMain(Title):
     """Main menu."""
 
     def __init__(self):
-        button_texts = ['Länderquiz', 'Hauptstadtquiz', 'Beenden']
-        scenes = ["TitleCountries", "TitleCapitals", "done"]
-        super().__init__(button_texts, scenes, "Geographie-Quiz")
+        button_texts = [_('Länderquiz'), _('Hauptstadtquiz'), _('Optionen'),
+                        _('Beenden')]
+        scenes = ('TitleCountries', 'TitleCapitals', 'Options', 'done')
+        super().__init__(button_texts, scenes, _('Geographie-Quiz'))
 
 
 class TitleCountries(Title):
@@ -65,16 +70,16 @@ class TitleCountries(Title):
 
     def __init__(self):
         button_texts = [
-            'Europas Länder', 'Afrikas Länder', 'Asiens Länder',
-            'Südamerikas Länder', 'Nordamerikas Länder',
-            'Australiens u. Ozeaniens Länder', 'Hauptmenü', 'Beenden'
+            _('Europas Länder'), _('Afrikas Länder'), _('Asiens Länder'),
+            _('Südamerikas Länder'), _('Nordamerikas Länder'),
+            _('Australiens/Ozeaniens Länder'), _('Hauptmenü'), _('Beenden')
             ]
         scenes = [
-            "EuropeCountries", "AfricaCountries", "AsiaCountries",
-            "SouthAmericaCountries", "NorthAmericaCountries",
-            "AustraliaOceaniaCountries", "TitleMain", "done"
+            'EuropeCountries', 'AfricaCountries', 'AsiaCountries',
+            'SouthAmericaCountries', 'NorthAmericaCountries',
+            'AustraliaOceaniaCountries', 'TitleMain', 'done'
             ]
-        super().__init__(button_texts, scenes, "Länder-Quiz")
+        super().__init__(button_texts, scenes, _('Länder-Quiz'))
 
 
 class TitleCapitals(Title):
@@ -82,12 +87,47 @@ class TitleCapitals(Title):
 
     def __init__(self):
         button_texts = [
-            'Europas Hauptstädte', 'Afrikas Hauptstädte', 'Asiens Hauptstädte',
-            'Südamerikas Hauptstädte', 'Nordamerikas Hauptstädte',
-            'Australiens u. Ozeaniens Hauptstädte', 'Hauptmenü', 'Beenden'
+            _('Europas Hauptstädte'),
+            _('Afrikas Hauptstädte'),
+            _('Asiens Hauptstädte'),
+            _('Südamerikas Hauptstädte'),
+            _('Nordamerikas Hauptstädte'),
+            _('Australiens/Ozeaniens Hauptstädte'),
+            _('Hauptmenü'),
+            _('Beenden')
             ]
         scenes = [
-            "Europe", "Africa", "Asia", "SouthAmerica", "NorthAmerica",
-            "AustraliaOceania", "TitleMain", "done"
+            'Europe', 'Africa', 'Asia', 'SouthAmerica', 'NorthAmerica',
+            'AustraliaOceania', 'TitleMain', 'done'
             ]
-        super().__init__(button_texts, scenes, "Hauptstädte-Quizz")
+        super().__init__(button_texts, scenes, _('Hauptstädte-Quiz'))
+
+
+class Options(Title):
+    """The options menu."""
+
+    def __init__(self):
+        button_texts = ('Deutsch', 'English', _('Hauptmenü'))
+        languages = ('Deutsch', 'English', 'TitleMain')
+        super().__init__(button_texts, languages, _('Optionen'))
+
+    def display_frame(self, screen):
+        super().display_frame(screen)
+        txt = gl.FONT.render(_('Sprache'), True, gl.BLACK)
+        screen.blit(txt, (100, 50))
+
+    def check_button_clicks(self, event):
+        for button, scene in self.buttons:
+            if 'click' in button.handleEvent(event):
+                if scene == 'TitleMain':
+                    self.scene = scene
+                elif scene == 'Deutsch':
+                    # de = gettext.translation('quiz', localedir='locale',
+                    #                          languages=['de'])
+                    # de.install()
+                    self.scene = scene
+                elif scene == 'English':
+                    # en = gettext.translation('quiz', localedir='locale',
+                    #                          languages=['en'])
+                    # en.install()
+                    self.scene = scene

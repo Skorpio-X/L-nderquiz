@@ -5,7 +5,8 @@ import random
 import pygame
 
 from . import globs as gl
-from .titlemenu import TitleMain, TitleCountries, TitleCapitals
+# from .globs import _
+from .titlemenu import TitleMain, TitleCountries, TitleCapitals, Options
 from data.lists.australiaoceania_list import AUSTRALIAOCEANIA_LIST
 from data.lists.southamerica_list import SOUTHAMERICA_LIST
 from data.lists.northamerica_list import NORTHAMERICA_LIST
@@ -43,7 +44,7 @@ class Game:
         # Used to manually mark positions of cities on the map.
     #     marker_list = []
     #     marker_count = 0
-        pygame.display.set_caption('Länderquiz')
+        pygame.display.set_caption(_('Länderquiz'))
         random.shuffle(country_list)
         self.country_list = country_list
         self.wrong_answer = None
@@ -62,7 +63,7 @@ class Game:
         self.incorrect_answer = False
         self.last_pos = None
         self.game_over = False
-        pygame.display.set_caption('Länderquiz')
+        pygame.display.set_caption(_('Länderquiz'))
         random.shuffle(self.country_list)
         self.wrong_answer = None
         self.question_offset = 0
@@ -195,13 +196,13 @@ class Game:
         except ZeroDivisionError:
             percent = 0
 
-        # TODO: Enter this when the game ends.
+        # TODO: Render this when the game ends.
         # txt = "{0} richtige Antworten von {1}. {2} Prozent korrekt".format(
         #     self.score, self.counter, percent)
         # score_txt = gl.FONT.render(txt, True, gl.BLACK)
         # screen.blit(score_txt, (3, 10))
 
-        score_txt = gl.FONT.render("Pkte", True, gl.BLUE)
+        score_txt = gl.FONT.render(_('Pkte'), True, gl.BLUE)
         screen.blit(score_txt, (self.width + 9, 10))
 
         txt = "{0}/{1}".format(self.score, self.counter)
@@ -213,10 +214,10 @@ class Game:
 
     def render_game_over(self, screen):
         if self.game_over:
-            txt = "Spiel beendet - Pfeiltaste rechts für das nächste Quiz,"
+            txt = _('Spiel beendet - Pfeiltaste rechts für das nächste Quiz,')
             game_over_txt = gl.FONT.render(txt, True, gl.BLUE)
 
-            txt = "ESC um ins Hauptmenü zu gelangen."
+            txt = _('ESC um ins Hauptmenü zu gelangen.')
             game_over_txt2 = gl.FONT.render(txt, True, gl.BLUE)
 
             screen.blit(game_over_txt, (3, self.height + 2))
@@ -240,13 +241,15 @@ class Game:
     def render_question(self, screen, quiz_type=1):
         if quiz_type == 1:
             active_country = self.country_list[self.counter][2]
-            txt = "Nennen Sie die Hauptstadt von"
+            if isinstance(active_country, tuple):
+                active_country = active_country[0]
+            txt = _('Nennen Sie die Hauptstadt von')
             txt2 = "{}:".format(active_country)
             country = gl.FONT.render(txt2, True, gl.BLUE)
             self.question_offset = country.get_width() + 8
             screen.blit(country, (3, self.height + 32))
         else:
-            txt = "Nennen Sie den Namen dieses Landes: "
+            txt = _('Nennen Sie den Namen dieses Landes: ')
         question = gl.FONT.render(txt, True, gl.BLUE)
         screen.blit(question, (3, self.height + 2))
 
@@ -291,11 +294,12 @@ class Game:
             screen.blit(inc_name_text, [100, self.last_pos[1] - 40])
 
             if not self.game_over:
-                given_answer = "Ihre Antwort war {}.".format(self.wrong_answer)
+                given_answer = _('Ihre Antwort war {}.').format(
+                    self.wrong_answer)
                 text = gl.FONT.render(given_answer, True, gl.RED)
                 screen.blit(text, [3, self.height + 32])
 
-                correct = "Die korrekte Antwort lautet {}.".format(active)
+                correct = _('Die korrekte Antwort lautet {}.').format(active)
                 text = gl.FONT.render(correct, True, gl.RED)
                 screen.blit(text, [3, self.height + 2])
 
@@ -303,6 +307,7 @@ scenes = {
     'TitleMain': TitleMain(),
     'TitleCountries': TitleCountries(),
     'TitleCapitals': TitleCapitals(),
+    'Options': Options(),
     'Europe': Game('Africa', gl.EUROPE_MAP, EUROPE_LIST, 1),
     'Africa': Game('Asia', gl.AFRICA_MAP, AFRICA_LIST, 1),
     'Asia': Game('SouthAmerica', gl.ASIA_MAP, ASIA_LIST, 1),

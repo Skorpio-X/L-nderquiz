@@ -1,4 +1,15 @@
 import sys
+import gettext
+
+
+# def _(string):
+#     return string
+
+en = gettext.translation('quiz', localedir='locale', languages=['en'])
+en.install()
+# print(en)
+# print(dir(en))
+de = gettext.translation('quiz', localedir='locale', languages=['de'])
 
 import pygame
 
@@ -36,6 +47,16 @@ def main():
             game.run_logic()
             game.display_frame(screen)
             pygame.display.flip()
+        elif game.scene == 'Deutsch':
+            # global _
+            # def _(string):
+            #     return string
+            # gl._ = _
+            de.install()
+            game.scene = None
+        elif game.scene == 'English':
+            en.install()
+            game.scene = None
         else:
             game, screen = change_scene(game)
 
