@@ -1,8 +1,10 @@
-# from ..globs import _
+def _(message):
+    return message
 
 
 NORTHAMERICA_LIST = [
-    [(425, 345), (_('Washington, D.C.'), _('Washington'), _('Washington D.C.')),
+    [(425, 345),
+     (_('Washington, D.C.'), _('Washington'), _('Washington D.C.')),
      (_('Vereinigte Staaten von Amerika'), _('USA'))],
     [(298, 500), _('Mexiko-Stadt'), _('Mexiko')],
     [(420, 299), _('Ottawa'), _('Kanada')],
@@ -17,13 +19,15 @@ NORTHAMERICA_LIST = [
     [(463, 486), _('Kingston'), _('Jamaika')],
     [(490, 474), _('Port-au-Prince'), _('Haiti')],
     [(507, 469), _('Santo Domingo'), _('Dominikanische Republik')],
-    [(203, 490), "Saint John's", _('Antigua und Barbuda')],
+    [(203, 490), _("Saint John's"), _('Antigua und Barbuda')],
     [(448, 442), _('Nassau'), _('Bahamas')],
     [(239, 523), _('Bridgetown'), _('Barbados')],
     [(213, 507), _('Roseau'), _('Dominica')],
-    [(220, 544), "St. George's", _('Grenada')],
+    [(220, 544), _("St. George's"), _('Grenada')],
     [(193, 492), _('Basseterre'), _('St. Kitts und Nevis')],
     [(221, 519), _('Castries'), _('St. Lucia')],
     [(221, 530), _('Kingstown'), _('St. Vincent und die Grenadinen')],
     [(228, 560), _('Port of Spain'), _('Trinidad und Tobago')]
     ]
+
+del _

@@ -1,8 +1,9 @@
-# from ..globs import _
+def _(message):
+    return message
 
 
 SOUTHAMERICA_LIST = [
-    [(481, 326), _('Brasilia'), _('Brasilien')],
+    [(481, 326), _('Brasília'), _('Brasilien')],
     [(383, 418), (_('Asunción'), _('Asuncion')), _('Paraguay')],
     [(394, 514), _('Montevideo'), _('Uruguay')],
     [(374, 514), _('Buenos Aires'), _('Argentinien')],
@@ -18,3 +19,5 @@ SOUTHAMERICA_LIST = [
     [(411, 104), _('Paramaribo'), _('Suriname')],
     [(345, 55), _('Port of Spain'), _('Trinidad und Tobago')]
     ]
+
+del _

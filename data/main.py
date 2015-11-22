@@ -1,15 +1,5 @@
 import sys
-import gettext
-
-
-# def _(string):
-#     return string
-
-en = gettext.translation('quiz', localedir='locale', languages=['en'])
-en.install()
-# print(en)
-# print(dir(en))
-de = gettext.translation('quiz', localedir='locale', languages=['de'])
+# import gettext
 
 import pygame
 
@@ -18,16 +8,19 @@ from . import globs as gl
 
 
 def change_scene(game):
-    """Change the scene.
+    """Create a new instance of the scene and fill it with params.
 
     Parameters:
         game: game class
     """
-    next_game = gc.scenes[game.scene]
-    next_game.reset()
-    window_width, window_height = next_game.game_map.get_size()
+    next_params = gc.scenes[game.scene]
+    try:
+        next_scene = next_params()  # Menu object.
+    except TypeError:
+        next_scene = next_params[0](*next_params[1:])  # Game w/ params.
+    window_width, window_height = next_scene.game_map.get_size()
     screen = pygame.display.set_mode([window_width + 90, window_height + 90])
-    return next_game, screen
+    return next_scene, screen
 
 
 def main():
@@ -37,7 +30,7 @@ def main():
     screen = pygame.display.set_mode([window_width, window_height])
     fps_clock = pygame.time.Clock()
     pygame.mouse.set_visible(True)
-    game = gc.scenes['TitleMain']
+    game = gc.scenes['TitleMain']()
     fps = 30
 
     while not game.done:
@@ -48,14 +41,10 @@ def main():
             game.display_frame(screen)
             pygame.display.flip()
         elif game.scene == 'Deutsch':
-            # global _
-            # def _(string):
-            #     return string
-            # gl._ = _
-            de.install()
+            gl.de.install()
             game.scene = None
         elif game.scene == 'English':
-            en.install()
+            gl.en.install()
             game.scene = None
         else:
             game, screen = change_scene(game)

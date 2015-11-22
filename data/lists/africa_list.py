@@ -1,4 +1,5 @@
-# from ..globs import _
+def _(message):
+    return message
 
 
 AFRICA_LIST = [
@@ -49,7 +50,7 @@ AFRICA_LIST = [
     [(411, 428), _('Lusaka'), _('Sambia')],
     [(422, 335), _('Bujumbura'), _('Burundi')],
     [(427, 324), _('Kigali'), _('Ruanda')],
-    # [(497, 364), _('daressalam'), _('Tansania')],
+    # [(497, 364), _('Daressalam'), _('Tansania')],
     [(469, 357), _('Dodoma'), _('Tansania')],
     [(528, 402), _('Moroni'), _('Komoren')],
     [(560, 389), _('Victoria'), _('Seychellen')],
@@ -58,3 +59,6 @@ AFRICA_LIST = [
     [(454, 416), _('Lilongwe'), _('Malawi')],
     [(438, 267), _('Juba'), _('Südsudan')]
     ]
+
+
+del _

@@ -1,12 +1,8 @@
-# coding=utf-8
-
 """Title menu scenes."""
-import gettext
 
 import pygame
 from .pygbutton import PygButton
 from . import globs as gl
-# from .globs import _
 
 
 class Title:

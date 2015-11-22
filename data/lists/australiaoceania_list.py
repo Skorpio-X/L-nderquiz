@@ -1,4 +1,5 @@
-# from ..globs import _
+def _(message):
+    return message
 
 
 AUSTRALIAOCEANIA_LIST = [
@@ -18,3 +19,5 @@ AUSTRALIAOCEANIA_LIST = [
     [(421, 284), _('Funafuti'), _('Tuvalu')],
     [(345, 349), _('Port Vila'), _('Vanuatu')]
     ]
+
+del _

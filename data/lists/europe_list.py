@@ -1,14 +1,18 @@
 """List of european countries with corresponding capitals."""
 # from operator import itemgetter
 # from ..globs import flags_euro
-# from ..globs import _
+
+
+def _(message):
+    return message
 
 
 EUROPE_LIST = [
     [(377, 489), _('Tirana'), _('Albanien'), 'Albania'],
     [(164, 457), _('Andorra la Vella'), _('Andorra'), 'Andorra'],
     [(215, 336), _('Brüssel'), _('Belgien'), 'Belgium'],
-    [(355, 448), _('Sarajevo'), _('Bosnien und Herzegowina'), 'Bosnia_and_Herzegovina'],
+    [(355, 448), _('Sarajevo'), _('Bosnien und Herzegowina'),
+     'Bosnia_and_Herzegovina'],
     [(415, 461), _('Sofia'), _('Bulgarien'), 'Bulgaria'],
     [(303, 314), _('Berlin'), _('Deutschland'), 'Germany'],
     [(296, 268), _('Kopenhagen'), _('Dänemark'), 'Denmark'],
@@ -52,6 +56,9 @@ EUROPE_LIST = [
     [(429, 285), _('Minsk'), _('Weißrussland'), 'Belarus'],
     [(557, 557), _('Nikosia'), _('Zypern'), 'Cyprus'],
     ]
+
+
+del _
 
 # sorted_list = sorted(EUROPE_LIST, key=itemgetter(2))
 # print(sorted_list)

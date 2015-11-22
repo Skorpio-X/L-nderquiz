@@ -5,7 +5,6 @@ import random
 import pygame
 
 from . import globs as gl
-# from .globs import _
 from .titlemenu import TitleMain, TitleCountries, TitleCapitals, Options
 from data.lists.australiaoceania_list import AUSTRALIAOCEANIA_LIST
 from data.lists.southamerica_list import SOUTHAMERICA_LIST
@@ -52,21 +51,21 @@ class Game:
         self.backspace_timer = 20
         self.question_offset = 0
 
-    def reset(self):
-        self.done = False
-        self.scene = None
-        self.active_question = None
-        self.active_pos = None
-        self.counter = 0
-        self.usr_input = ""
-        self.score = 0
-        self.incorrect_answer = False
-        self.last_pos = None
-        self.game_over = False
-        pygame.display.set_caption(_('Länderquiz'))
-        random.shuffle(self.country_list)
-        self.wrong_answer = None
-        self.question_offset = 0
+    # def reset(self):
+    #     self.done = False
+    #     self.scene = None
+    #     self.active_question = None
+    #     self.active_pos = None
+    #     self.counter = 0
+    #     self.usr_input = ""
+    #     self.score = 0
+    #     self.incorrect_answer = False
+    #     self.last_pos = None
+    #     self.game_over = False
+    #     pygame.display.set_caption(_('Länderquiz'))
+    #     random.shuffle(self.country_list)
+    #     self.wrong_answer = None
+    #     self.question_offset = 0
 
     def process_events(self, event):
         """Handle events.
@@ -176,14 +175,15 @@ class Game:
 
     def check_input(self):
         """Checks if active name equals name."""
+        # Is either a tuple or a string.
         correct_answer = self.country_list[self.counter][self.quiz_type]
         try:
-            if self.usr_input.lower() == correct_answer.lower():
+            if self.usr_input.lower() == _(correct_answer).lower():
                 gl.win_sound.play()
                 return True
-        # Multiple correct answers in a tuple.
+        # correct_answer was a tuple.
         except AttributeError:
-            correct_answer = (answ.lower() for answ in correct_answer)
+            correct_answer = (_(answ).lower() for answ in correct_answer)
             if self.usr_input.lower() in correct_answer:
                 gl.win_sound.play()
                 return True
@@ -244,7 +244,7 @@ class Game:
             if isinstance(active_country, tuple):
                 active_country = active_country[0]
             txt = _('Nennen Sie die Hauptstadt von')
-            txt2 = "{}:".format(active_country)
+            txt2 = "{}:".format(_(active_country))
             country = gl.FONT.render(txt2, True, gl.BLUE)
             self.question_offset = country.get_width() + 8
             screen.blit(country, (3, self.height + 32))
@@ -290,6 +290,7 @@ class Game:
             active = self.country_list[self.counter - 1][self.quiz_type]
             if isinstance(active, tuple):
                 active = active[0]
+            active = _(active)
             inc_name_text = gl.FONT.render(active, True, gl.RED)
             screen.blit(inc_name_text, [100, self.last_pos[1] - 40])
 
@@ -304,35 +305,35 @@ class Game:
                 screen.blit(text, [3, self.height + 2])
 
 scenes = {
-    'TitleMain': TitleMain(),
-    'TitleCountries': TitleCountries(),
-    'TitleCapitals': TitleCapitals(),
-    'Options': Options(),
-    'Europe': Game('Africa', gl.EUROPE_MAP, EUROPE_LIST, 1),
-    'Africa': Game('Asia', gl.AFRICA_MAP, AFRICA_LIST, 1),
-    'Asia': Game('SouthAmerica', gl.ASIA_MAP, ASIA_LIST, 1),
-    'SouthAmerica': Game(
-        'NorthAmerica', gl.SOUTHAMERICA_MAP, SOUTHAMERICA_LIST, 1),
-    'NorthAmerica': Game(
-        'AustraliaOceania', gl.NORTHAMERICA_MAP, NORTHAMERICA_LIST, 1),
-    'AustraliaOceania': Game(
-        'Europe', gl.AUSTRALIAOCEANIA_MAP, AUSTRALIAOCEANIA_LIST, 1),
-    'EuropeCountries': Game(
-        'AfricaCountries', gl.EUROPE_MAP, EUROPE_LIST, 2),
-    'AfricaCountries': Game(
-        'AsiaCountries', gl.AFRICA_MAP2, AFRICA_LIST, 2),
-    'AsiaCountries': Game(
-        'SouthAmericaCountries', gl.ASIA_MAP2, ASIA_LIST, 2),
-    'SouthAmericaCountries': Game(
-        'NorthAmericaCountries',
-        gl.SOUTHAMERICA_MAP2,
-        SOUTHAMERICA_LIST, 2),
-    'NorthAmericaCountries': Game(
-        'AustraliaOceaniaCountries',
-        gl.NORTHAMERICA_MAP2,
-        NORTHAMERICA_LIST, 2),
-    'AustraliaOceaniaCountries': Game(
-        'EuropeCountries',
-        gl.AUSTRALIAOCEANIA_MAP2,
-        AUSTRALIAOCEANIA_LIST, 2),
+    'TitleMain': TitleMain,
+    'TitleCountries': TitleCountries,
+    'TitleCapitals': TitleCapitals,
+    'Options': Options,
+    'Europe':
+        (Game, 'Africa', gl.EUROPE_MAP, EUROPE_LIST, 1),
+    'Africa':
+        (Game, 'Asia', gl.AFRICA_MAP, AFRICA_LIST, 1),
+    'Asia':
+        (Game, 'SouthAmerica', gl.ASIA_MAP, ASIA_LIST, 1),
+    'SouthAmerica':
+        (Game, 'NorthAmerica', gl.SOUTHAMERICA_MAP, SOUTHAMERICA_LIST, 1),
+    'NorthAmerica':
+        (Game, 'AustraliaOceania', gl.NORTHAMERICA_MAP, NORTHAMERICA_LIST, 1),
+    'AustraliaOceania':
+        (Game, 'Europe', gl.AUSTRALIAOCEANIA_MAP, AUSTRALIAOCEANIA_LIST, 1),
+    'EuropeCountries':
+        (Game, 'AfricaCountries', gl.EUROPE_MAP, EUROPE_LIST, 2),
+    'AfricaCountries':
+        (Game, 'AsiaCountries', gl.AFRICA_MAP2, AFRICA_LIST, 2),
+    'AsiaCountries':
+        (Game, 'SouthAmericaCountries', gl.ASIA_MAP2, ASIA_LIST, 2),
+    'SouthAmericaCountries':
+        (Game, 'NorthAmericaCountries', gl.SOUTHAMERICA_MAP2,
+         SOUTHAMERICA_LIST, 2),
+    'NorthAmericaCountries':
+        (Game, 'AustraliaOceaniaCountries', gl.NORTHAMERICA_MAP2,
+         NORTHAMERICA_LIST, 2),
+    'AustraliaOceaniaCountries':
+        (Game, 'EuropeCountries', gl.AUSTRALIAOCEANIA_MAP2,
+         AUSTRALIAOCEANIA_LIST, 2),
     }

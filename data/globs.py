@@ -2,16 +2,13 @@
 
 import pygame
 import os
-# import gettext
-#
-#
-# # def _(string):
-# #     return string
-#
-# en = gettext.translation('quiz', localedir='locale', languages=['en'])
-# en.install()
-# print(en)
-# print(dir(en))
+import gettext
+
+
+en = gettext.translation('quiz', localedir='locale', languages=['en'])
+de = gettext.translation('quiz', localedir='locale', languages=['de'])
+en.install()
+
 pygame.init()
 pygame.font.init()
 

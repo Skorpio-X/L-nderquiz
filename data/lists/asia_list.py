@@ -1,4 +1,5 @@
-# from ..globs import _
+def _(message):
+    return message
 
 
 ASIA_LIST = [
@@ -47,5 +48,9 @@ ASIA_LIST = [
     [(45, 268), _('Beirut'), _('Libanon')],
     [(57, 366), _('Riad'), _('Saudi-Arabien')],
     [(47, 273), _('Damaskus'), _('Syrien')],
-    [(60, 224), _('Ankara'), _('Türkei')]
+    [(60, 224), _('Ankara'), _('Türkei')],
+    [(444, 550), _('Phnom Penh'), _('Kambodscha')]
     ]
+
+
+del _
