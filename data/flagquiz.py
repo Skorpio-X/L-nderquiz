@@ -3,13 +3,12 @@ import random
 import pygame
 
 from . import globs as gl
-from data.lists.europe_list import EUROPE_LIST
 
 
 class FlagQuiz:
 
-    def __init__(self, flags, next_scene):
-        self.flags = flags
+    def __init__(self, countries, next_scene):
+        self.countries = countries
         self.width, self.height = 800, 600
         self.done = False
         self.scene = None
@@ -68,7 +67,7 @@ class FlagQuiz:
                 self.scene = self.next_scene
             if (event.key == pygame.K_KP_ENTER or
                 event.key == pygame.K_RETURN):
-                self.next_country()
+                self.next_flag()
             if event.key == pygame.K_BACKSPACE:
                 self.backspace_timer = 20
                 self.usr_input = self.usr_input[:-1]

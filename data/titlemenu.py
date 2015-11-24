@@ -1,6 +1,9 @@
 """Title menu scenes."""
 
+import gettext
+
 import pygame
+
 from .pygbutton import PygButton
 from . import globs as gl
 
@@ -17,7 +20,7 @@ class Title:
         self.buttons = []
         self.start_text = gl.FONT.render(start_text, True, gl.BLACK)
         for y_pos, txt, scne in zip(range(100, 501, 50), button_texts, scenes):
-            if txt == 'Beenden' and isinstance(self, TitleMain):
+            if txt == _('Beenden') and isinstance(self, TitleMain):
                 y_pos = 400
             self.buttons.append((PygButton((50, y_pos, 200, 30), txt), scne))
 
@@ -36,13 +39,13 @@ class Title:
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
                 self.scene = 'TitleMain'
-            if event.key == pygame.K_LEFT:
+            if event.key == pygame.K_RIGHT:
                 self.scene = 'Europe'
         self.check_button_clicks(event)
 
     def check_button_clicks(self, event):
         for button, scene in self.buttons:
-            if 'click' in button.handleEvent(event):
+            if 'click' in button.handle_event(event):
                 self.scene = scene
             if self.scene == 'done':
                 self.done = True
@@ -105,25 +108,27 @@ class Options(Title):
     def __init__(self):
         button_texts = ('Deutsch', 'English', _('Hauptmenü'))
         languages = ('Deutsch', 'English', 'TitleMain')
+        self.language = 'English'
         super().__init__(button_texts, languages, _('Optionen'))
 
     def display_frame(self, screen):
         super().display_frame(screen)
         txt = gl.FONT.render(_('Sprache'), True, gl.BLACK)
         screen.blit(txt, (100, 50))
+        txt2 = gl.FONT.render(self.language, True, gl.BLACK)
+        offset = txt.get_width() + 10
+        screen.blit(txt2, (100 + offset, 50))
 
     def check_button_clicks(self, event):
         for button, scene in self.buttons:
-            if 'click' in button.handleEvent(event):
+            if 'click' in button.handle_event(event):
                 if scene == 'TitleMain':
                     self.scene = scene
                 elif scene == 'Deutsch':
-                    # de = gettext.translation('quiz', localedir='locale',
-                    #                          languages=['de'])
-                    # de.install()
-                    self.scene = scene
+                    gettext.install('quiz')
+                    self.language = 'Deutsch'
+                    self.scene = None
                 elif scene == 'English':
-                    # en = gettext.translation('quiz', localedir='locale',
-                    #                          languages=['en'])
-                    # en.install()
-                    self.scene = scene
+                    gl.en.install()
+                    self.language = 'English'
+                    self.scene = None

@@ -5,13 +5,6 @@ import random
 import pygame
 
 from . import globs as gl
-from .titlemenu import TitleMain, TitleCountries, TitleCapitals, Options
-from data.lists.australiaoceania_list import AUSTRALIAOCEANIA_LIST
-from data.lists.southamerica_list import SOUTHAMERICA_LIST
-from data.lists.northamerica_list import NORTHAMERICA_LIST
-from data.lists.europe_list import EUROPE_LIST
-from data.lists.africa_list import AFRICA_LIST
-from data.lists.asia_list import ASIA_LIST
 
 
 class Game:
@@ -50,22 +43,6 @@ class Game:
         self.backspace_pressed = False
         self.backspace_timer = 20
         self.question_offset = 0
-
-    # def reset(self):
-    #     self.done = False
-    #     self.scene = None
-    #     self.active_question = None
-    #     self.active_pos = None
-    #     self.counter = 0
-    #     self.usr_input = ""
-    #     self.score = 0
-    #     self.incorrect_answer = False
-    #     self.last_pos = None
-    #     self.game_over = False
-    #     pygame.display.set_caption(_('Länderquiz'))
-    #     random.shuffle(self.country_list)
-    #     self.wrong_answer = None
-    #     self.question_offset = 0
 
     def process_events(self, event):
         """Handle events.
@@ -303,37 +280,3 @@ class Game:
                 correct = _('Die korrekte Antwort lautet {}.').format(active)
                 text = gl.FONT.render(correct, True, gl.RED)
                 screen.blit(text, [3, self.height + 2])
-
-scenes = {
-    'TitleMain': TitleMain,
-    'TitleCountries': TitleCountries,
-    'TitleCapitals': TitleCapitals,
-    'Options': Options,
-    'Europe':
-        (Game, 'Africa', gl.EUROPE_MAP, EUROPE_LIST, 1),
-    'Africa':
-        (Game, 'Asia', gl.AFRICA_MAP, AFRICA_LIST, 1),
-    'Asia':
-        (Game, 'SouthAmerica', gl.ASIA_MAP, ASIA_LIST, 1),
-    'SouthAmerica':
-        (Game, 'NorthAmerica', gl.SOUTHAMERICA_MAP, SOUTHAMERICA_LIST, 1),
-    'NorthAmerica':
-        (Game, 'AustraliaOceania', gl.NORTHAMERICA_MAP, NORTHAMERICA_LIST, 1),
-    'AustraliaOceania':
-        (Game, 'Europe', gl.AUSTRALIAOCEANIA_MAP, AUSTRALIAOCEANIA_LIST, 1),
-    'EuropeCountries':
-        (Game, 'AfricaCountries', gl.EUROPE_MAP, EUROPE_LIST, 2),
-    'AfricaCountries':
-        (Game, 'AsiaCountries', gl.AFRICA_MAP2, AFRICA_LIST, 2),
-    'AsiaCountries':
-        (Game, 'SouthAmericaCountries', gl.ASIA_MAP2, ASIA_LIST, 2),
-    'SouthAmericaCountries':
-        (Game, 'NorthAmericaCountries', gl.SOUTHAMERICA_MAP2,
-         SOUTHAMERICA_LIST, 2),
-    'NorthAmericaCountries':
-        (Game, 'AustraliaOceaniaCountries', gl.NORTHAMERICA_MAP2,
-         NORTHAMERICA_LIST, 2),
-    'AustraliaOceaniaCountries':
-        (Game, 'EuropeCountries', gl.AUSTRALIAOCEANIA_MAP2,
-         AUSTRALIAOCEANIA_LIST, 2),
-    }

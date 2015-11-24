@@ -9,8 +9,8 @@ SOUTHAMERICA_LIST = [
     [(374, 514), _('Buenos Aires'), _('Argentinien')],
     [(270, 506), _('Santiago de Chile'), _('Chile')],
     [(310, 355), _('Sucre'), _('Bolivien')],
-    # [(280, 331), _('La Paz')],  # Regierungssitz
-    # [(442, 114), _('Cayenne')], _(Französisch-Guayana)
+    # [(280, 331), _('La Paz'), _('Bolivien')],  # Seat of government.
+    # [(442, 114), _('Cayenne'), _('Französisch-Guayana')],
     [(192, 291), _('Lima'), _('Peru')],
     [(170, 172), _('Quito'), _('Ecuador')],
     [(213, 119), (_('Bogotá'), _('Bogota')), _('Kolumbien')],

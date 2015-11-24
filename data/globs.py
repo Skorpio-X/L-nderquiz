@@ -6,7 +6,6 @@ import gettext
 
 
 en = gettext.translation('quiz', localedir='locale', languages=['en'])
-de = gettext.translation('quiz', localedir='locale', languages=['de'])
 en.install()
 
 pygame.init()
@@ -40,6 +39,7 @@ def load_flags():
     flags = {}
     for _, _, filenames in os.walk(path):
         for filename in filenames:
+            print(filename)
             if filename.endswith('.png'):
                 flags[filename[:-4]] = load_image(path, filename)
     return flags

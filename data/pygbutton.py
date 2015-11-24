@@ -46,9 +46,9 @@ from pygame.locals import *
 pygame.font.init()
 PYGBUTTON_FONT = pygame.font.Font('freesansbold.ttf', 14)
 
-BLACK = (0,   0,   0)
+BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
-DARKGRAY = (64,  64,  64)
+DARKGRAY = (64, 64, 64)
 GRAY = (128, 128, 128)
 LIGHTGRAY = (212, 208, 200)
 
@@ -116,11 +116,11 @@ class PygButton(object):
             self._update()  # draw the initial button images
         else:
             # create the surfaces for a custom image button
-            self.setSurfaces(normal, down, highlight)
+            self.set_surfaces(normal, down, highlight)
 
-    def handleEvent(self, eventObj):
+    def handle_event(self, event_obj):
         """All MOUSEMOTION, MOUSEBUTTONUP, MOUSEBUTTONDOWN event objects
-        created by Pygame should be passed to this method. handleEvent() will
+        created by Pygame should be passed to this method. handle_event() will
         detect if the event is relevant to this button and change its state.
 
         There are two ways that your code can respond to button-events. One is
@@ -134,78 +134,86 @@ class PygButton(object):
 
         buttonDown is always True when mouseDown() is called, and always False
         when mouseUp() or mouseClick() is called. lastMouseDownOverButton is
-        always False when mouseUp() or mouseClick() is called."""
+        always False when mouseUp() or mouseClick() is called.
 
-        if (eventObj.type not in (MOUSEMOTION, MOUSEBUTTONUP, MOUSEBUTTONDOWN)
-                or not self._visible):
+        Parameters:
+            event_obj
+        """
+
+        if (event_obj.type not in (MOUSEMOTION, MOUSEBUTTONUP, MOUSEBUTTONDOWN)
+            or not self._visible):
             # The button only cares bout mouse-related events (or no events, if
             # it is invisible)
             return []
 
-        retVal = []
+        ret_val = []
 
-        hasExited = False
-        if not self.mouseOverButton and self._rect.collidepoint(eventObj.pos):
+        has_exited = False
+        if not self.mouseOverButton and self._rect.collidepoint(event_obj.pos):
             # if mouse has entered the button:
             self.mouseOverButton = True
-            self.mouseEnter(eventObj)
-            retVal.append('enter')
+            self.mouse_enter(event_obj)
+            ret_val.append('enter')
         elif (self.mouseOverButton
-              and not self._rect.collidepoint(eventObj.pos)):
+              and not self._rect.collidepoint(event_obj.pos)):
             # if mouse has exited the button:
             self.mouseOverButton = False
             # call mouseExit() later, since we want mouseMove() to be handled
             # before mouseExit()
-            hasExited = True
+            has_exited = True
 
-        if self._rect.collidepoint(eventObj.pos):
+        if self._rect.collidepoint(event_obj.pos):
             # if mouse event happened over the button:
-            if eventObj.type == MOUSEMOTION:
-                self.mouseMove(eventObj)
-                retVal.append('move')
-            elif eventObj.type == MOUSEBUTTONDOWN:
+            if event_obj.type == MOUSEMOTION:
+                self.mouse_move(event_obj)
+                ret_val.append('move')
+            elif event_obj.type == MOUSEBUTTONDOWN:
                 self.buttonDown = True
                 self.lastMouseDownOverButton = True
-                self.mouseDown(eventObj)
-                retVal.append('down')
+                self.mouse_down(event_obj)
+                ret_val.append('down')
         else:
-            if eventObj.type in (MOUSEBUTTONUP, MOUSEBUTTONDOWN):
+            if event_obj.type in (MOUSEBUTTONUP, MOUSEBUTTONDOWN):
                 # if an up/down happens off the button, then the next up won't
                 # cause mouseClick()
                 self.lastMouseDownOverButton = False
 
         # mouse up is handled whether or not it was over the button
-        doMouseClick = False
-        if eventObj.type == MOUSEBUTTONUP:
+        do_mouse_click = False
+        if event_obj.type == MOUSEBUTTONUP:
             if self.lastMouseDownOverButton:
-                doMouseClick = True
+                do_mouse_click = True
             self.lastMouseDownOverButton = False
 
             if self.buttonDown:
                 self.buttonDown = False
-                self.mouseUp(eventObj)
-                retVal.append('up')
+                self.mouse_up(event_obj)
+                ret_val.append('up')
 
-            if doMouseClick:
+            if do_mouse_click:
                 self.buttonDown = False
-                self.mouseClick(eventObj)
-                retVal.append('click')
+                self.mouse_click(event_obj)
+                ret_val.append('click')
 
-        if hasExited:
-            self.mouseExit(eventObj)
-            retVal.append('exit')
+        if has_exited:
+            self.mouse_exit(event_obj)
+            ret_val.append('exit')
 
-        return retVal
+        return ret_val
 
-    def draw(self, surfaceObj):
-        """Blit the current button's appearance to the surface object."""
+    def draw(self, surface_obj):
+        """Blit the current button's appearance to the surface object.
+
+        Parameters:
+            surface_obj (pygame.Surface)
+        """
         if self._visible:
             if self.buttonDown:
-                surfaceObj.blit(self.surfaceDown, self._rect)
+                surface_obj.blit(self.surfaceDown, self._rect)
             elif self.mouseOverButton:
-                surfaceObj.blit(self.surfaceHighlight, self._rect)
+                surface_obj.blit(self.surfaceHighlight, self._rect)
             else:
-                surfaceObj.blit(self.surfaceNormal, self._rect)
+                surface_obj.blit(self.surfaceNormal, self._rect)
 
     def _update(self):
         """Redraw the button's Surface object.
@@ -230,12 +238,12 @@ class PygButton(object):
         self.surfaceHighlight.fill(self.bgcolor)
 
         # draw caption text for all buttons
-        captionSurf = self._font.render(self._caption, True, self.fgcolor,
-                                        self.bgcolor)
-        captionRect = captionSurf.get_rect()
-        captionRect.center = int(w / 2), int(h / 2)
-        self.surfaceNormal.blit(captionSurf, captionRect)
-        self.surfaceDown.blit(captionSurf, captionRect)
+        caption_surf = self._font.render(self._caption, True, self.fgcolor,
+                                         self.bgcolor)
+        caption_rect = caption_surf.get_rect()
+        caption_rect.center = int(w / 2), int(h / 2)
+        self.surfaceNormal.blit(caption_surf, caption_rect)
+        self.surfaceDown.blit(caption_surf, caption_rect)
 
         # draw border for normal button
         pygame.draw.rect(self.surfaceNormal, BLACK, pygame.Rect((0, 0, w, h)),
@@ -262,41 +270,47 @@ class PygButton(object):
         # draw border for highlight button
         self.surfaceHighlight = self.surfaceNormal
 
-    def mouseClick(self, event):
+    def mouse_click(self, event):
         pass  # This class is meant to be overridden.
 
-    def mouseEnter(self, event):
+    def mouse_enter(self, event):
         pass  # This class is meant to be overridden.
 
-    def mouseMove(self, event):
+    def mouse_move(self, event):
         pass  # This class is meant to be overridden.
 
-    def mouseExit(self, event):
+    def mouse_exit(self, event):
         pass  # This class is meant to be overridden.
 
-    def mouseDown(self, event):
+    def mouse_down(self, event):
         pass  # This class is meant to be overridden.
 
-    def mouseUp(self, event):
+    def mouse_up(self, event):
         pass  # This class is meant to be overridden.
 
-    def setSurfaces(self, normalSurface, downSurface=None,
-                    highlightSurface=None):
+    def set_surfaces(self, normal_surface, down_surface=None,
+                     highlight_surface=None):
         """Switch the button to a custom image type of button (rather than a
         text button). You can specify either a pygame.Surface object or a
         string of a filename to load for each of the three button appearance
-        states."""
-        if downSurface is None:
-            downSurface = normalSurface
-        if highlightSurface is None:
-            highlightSurface = normalSurface
+        states.
 
-        if type(normalSurface) == str:
-            self.origSurfaceNormal = pygame.image.load(normalSurface)
-        if type(downSurface) == str:
-            self.origSurfaceDown = pygame.image.load(downSurface)
-        if type(highlightSurface) == str:
-            self.origSurfaceHighlight = pygame.image.load(highlightSurface)
+        Parameters:
+            normal_surface
+            down_surface
+            highlight_surface
+        """
+        if down_surface is None:
+            down_surface = normal_surface
+        if highlight_surface is None:
+            highlight_surface = normal_surface
+
+        if type(normal_surface) == str:
+            self.origSurfaceNormal = pygame.image.load(normal_surface)
+        if type(down_surface) == str:
+            self.origSurfaceDown = pygame.image.load(down_surface)
+        if type(highlight_surface) == str:
+            self.origSurfaceHighlight = pygame.image.load(highlight_surface)
 
         if (self.origSurfaceNormal.get_size() !=
                 self.origSurfaceDown.get_size() !=
@@ -312,56 +326,56 @@ class PygButton(object):
                                   self.surfaceNormal.get_width(),
                                   self.surfaceNormal.get_height()))
 
-    def _propGetCaption(self):
+    def _prop_get_caption(self):
         return self._caption
 
-    def _propSetCaption(self, captionText):
+    def _prop_set_caption(self, caption_text):
         self.customSurfaces = False
-        self._caption = captionText
+        self._caption = caption_text
         self._update()
 
-    def _propGetRect(self):
+    def _prop_get_rect(self):
         return self._rect
 
-    def _propSetRect(self, newRect):
+    def _prop_set_rect(self, new_rect):
         # Note that changing the attributes of the Rect won't update the
         # button. You have to re-assign the rect member.
         self._update()
-        self._rect = newRect
+        self._rect = new_rect
 
-    def _propGetVisible(self):
+    def _prop_get_visible(self):
         return self._visible
 
-    def _propSetVisible(self, setting):
+    def _prop_set_visible(self, setting):
         self._visible = setting
 
-    def _propGetFgColor(self):
+    def _prop_get_fg_color(self):
         return self._fgcolor
 
-    def _propSetFgColor(self, setting):
+    def _prop_set_fg_color(self, setting):
         self.customSurfaces = False
         self._fgcolor = setting
         self._update()
 
-    def _propGetBgColor(self):
+    def _prop_get_bg_color(self):
         return self._bgcolor
 
-    def _propSetBgColor(self, setting):
+    def _prop_set_bg_color(self, setting):
         self.customSurfaces = False
         self._bgcolor = setting
         self._update()
 
-    def _propGetFont(self):
+    def _prop_get_font(self):
         return self._font
 
-    def _propSetFont(self, setting):
+    def _prop_set_font(self, setting):
         self.customSurfaces = False
         self._font = setting
         self._update()
 
-    caption = property(_propGetCaption, _propSetCaption)
-    rect = property(_propGetRect, _propSetRect)
-    visible = property(_propGetVisible, _propSetVisible)
-    fgcolor = property(_propGetFgColor, _propSetFgColor)
-    bgcolor = property(_propGetBgColor, _propSetBgColor)
-    font = property(_propGetFont, _propSetFont)
+    caption = property(_prop_get_caption, _prop_set_caption)
+    rect = property(_prop_get_rect, _prop_set_rect)
+    visible = property(_prop_get_visible, _prop_set_visible)
+    fgcolor = property(_prop_get_fg_color, _prop_set_fg_color)
+    bgcolor = property(_prop_get_bg_color, _prop_set_bg_color)
+    font = property(_prop_get_font, _prop_set_font)
