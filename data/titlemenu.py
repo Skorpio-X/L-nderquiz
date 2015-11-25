@@ -67,8 +67,10 @@ class TitleMain(Title):
     """Main menu."""
 
     def __init__(self):
-        button_texts = [_('Länderquiz'), _('Hauptstadtquiz'), _('Flaggenquiz'),
-                        _('Optionen'), _('Beenden')]
+        button_texts = (
+            _('Länderquiz'), _('Hauptstadtquiz'), _('Flaggenquiz'),
+            _('Optionen'), _('Beenden')
+            )
         scenes = ('TitleCountries', 'TitleCapitals', 'TitleFlags', 'Options',
                   'done')
         super().__init__(button_texts, scenes, _('Geographie-Quiz'))
@@ -78,16 +80,16 @@ class TitleCountries(Title):
     """The title menu for country quizzes."""
 
     def __init__(self):
-        button_texts = [
+        button_texts = (
             _('Europas Länder'), _('Afrikas Länder'), _('Asiens Länder'),
             _('Südamerikas Länder'), _('Nordamerikas Länder'),
             _('Australiens/Ozeaniens Länder'), _('Hauptmenü'), _('Beenden')
-            ]
-        scenes = [
+            )
+        scenes = (
             'EuropeCountries', 'AfricaCountries', 'AsiaCountries',
             'SouthAmericaCountries', 'NorthAmericaCountries',
             'AustraliaOceaniaCountries', 'TitleMain', 'done'
-            ]
+            )
         super().__init__(button_texts, scenes, _('Länder-Quiz'))
 
 
@@ -95,7 +97,7 @@ class TitleCapitals(Title):
     """The title menu for capital quizzes."""
 
     def __init__(self):
-        button_texts = [
+        button_texts = (
             _('Europas Hauptstädte'),
             _('Afrikas Hauptstädte'),
             _('Asiens Hauptstädte'),
@@ -104,11 +106,11 @@ class TitleCapitals(Title):
             _('Australiens/Ozeaniens Hauptstädte'),
             _('Hauptmenü'),
             _('Beenden')
-            ]
-        scenes = [
+            )
+        scenes = (
             'Europe', 'Africa', 'Asia', 'SouthAmerica', 'NorthAmerica',
             'AustraliaOceania', 'TitleMain', 'done'
-            ]
+            )
         super().__init__(button_texts, scenes, _('Hauptstädte-Quiz'))
 
 
@@ -116,7 +118,7 @@ class TitleFlags(Title):
     """The title menu for capital quizzes."""
 
     def __init__(self):
-        button_texts = [
+        button_texts = (
             _('Europas Flaggen'),
             _('Afrikas Flaggen'),
             _('Asiens Flaggen'),
@@ -125,12 +127,12 @@ class TitleFlags(Title):
             _('Australiens/Ozeaniens Flaggen'),
             _('Hauptmenü'),
             _('Beenden')
-            ]
-        scenes = [
+            )
+        scenes = (
             'EuropeFlags', 'Africa', 'Asia', 'SouthAmerica', 'NorthAmerica',
             'AustraliaOceania', 'TitleMain', 'done'
-            ]
-        super().__init__(button_texts, scenes, _('Hauptstädte-Quiz'))
+            )
+        super().__init__(button_texts, scenes, _('Flaggenquiz'))
 
 
 class Options(Title):

@@ -46,10 +46,23 @@ def load_flags():
             if filename.endswith('.png'):
                 country_name = filename[:-4]
                 with open(os.path.join(path, filename), 'rb') as file:
-                    flags[country_name] = pygame.image.load(file).convert()
+                    img = pygame.image.load(file).convert()
+                    flags[country_name] = scale(img)
     # print(flags)
     return flags
 
+
+def scale(img):
+    """Scale images to 380 px height.
+
+    Parameters:
+        img (pygame.Surface): The image to be scaled.
+    """
+    width, height = img.get_size()
+    percent = 100 / 380 * height
+    mult = 100 / percent
+    return pygame.transform.smoothscale(img, (int(width * mult),
+                                              int(height * mult)))
 
 # Load images
 # europe_map = load(

@@ -10,7 +10,7 @@ License: MIT License
 from data.main import main
 
 
-__version__ = "1.0.11"
+__version__ = "1.0.12"
 
 
 if __name__ == "__main__":

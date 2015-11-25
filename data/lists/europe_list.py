@@ -53,7 +53,6 @@ EUROPE_LIST = [
     [(176, 318), _('London'), _('Vereinigtes Königreich')],
     [(429, 285), _('Minsk'), _('Weißrussland')],
     [(557, 557), _('Nikosia'), _('Zypern')],
-    [(72, 74), _('Reykjavik'), _('Island')],
     ]
 
 

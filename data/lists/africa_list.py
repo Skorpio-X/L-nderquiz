@@ -35,6 +35,7 @@ AFRICA_LIST = [
     [(337, 273), _('Bangui'), _('Zentralafrikanische Republik')],
     [(281, 278), _('Yaoundé'), _('Kamerun')],
     [(260, 279), _('Malabo'), _('Äquatorialguinea')],
+    # TODO: In English it's Sao Tomé and Príncipe as capital.
     [(242, 306), _('Sao Tomé'), _('Sao Tomé')],
     [(267, 304), _('Libreville'), _('Gabun')],
     [(308, 336), _('Brazzaville'), _('Republik Kongo')],
