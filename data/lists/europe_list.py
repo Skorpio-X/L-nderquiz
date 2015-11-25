@@ -1,6 +1,5 @@
 """List of european countries with corresponding capitals."""
 # from operator import itemgetter
-# from ..globs import flags_euro
 
 
 def _(message):  # For deferred translation.

@@ -29,6 +29,15 @@ class Title:
 
     def display_frame(self, screen):
         screen.fill(gl.WHITE)
+        # Flags as background.
+        # offset = 0
+        # for i, flag in enumerate(gl.FLAGS_EUROPE.values()):
+        #     flag = pygame.transform.scale(flag, (80, 40))
+        #     screen.blit(flag, (180 * (i % 4), 80 * offset))
+        #     if i % 7 == 6:
+        #         offset += 1
+        # screen.blit(gl.FLAGS_EUROPE['Türkei'], (300, 100))
+
         screen.blit(self.start_text, [100, 20])
         for button, _ in self.buttons:
             button.draw(screen)
@@ -58,9 +67,10 @@ class TitleMain(Title):
     """Main menu."""
 
     def __init__(self):
-        button_texts = [_('Länderquiz'), _('Hauptstadtquiz'), _('Optionen'),
-                        _('Beenden')]
-        scenes = ('TitleCountries', 'TitleCapitals', 'Options', 'done')
+        button_texts = [_('Länderquiz'), _('Hauptstadtquiz'), _('Flaggenquiz'),
+                        _('Optionen'), _('Beenden')]
+        scenes = ('TitleCountries', 'TitleCapitals', 'TitleFlags', 'Options',
+                  'done')
         super().__init__(button_texts, scenes, _('Geographie-Quiz'))
 
 
@@ -97,6 +107,27 @@ class TitleCapitals(Title):
             ]
         scenes = [
             'Europe', 'Africa', 'Asia', 'SouthAmerica', 'NorthAmerica',
+            'AustraliaOceania', 'TitleMain', 'done'
+            ]
+        super().__init__(button_texts, scenes, _('Hauptstädte-Quiz'))
+
+
+class TitleFlags(Title):
+    """The title menu for capital quizzes."""
+
+    def __init__(self):
+        button_texts = [
+            _('Europas Flaggen'),
+            _('Afrikas Flaggen'),
+            _('Asiens Flaggen'),
+            _('Südamerikas Flaggen'),
+            _('Nordamerikas Flaggen'),
+            _('Australiens/Ozeaniens Flaggen'),
+            _('Hauptmenü'),
+            _('Beenden')
+            ]
+        scenes = [
+            'EuropeFlags', 'Africa', 'Asia', 'SouthAmerica', 'NorthAmerica',
             'AustraliaOceania', 'TitleMain', 'done'
             ]
         super().__init__(button_texts, scenes, _('Hauptstädte-Quiz'))

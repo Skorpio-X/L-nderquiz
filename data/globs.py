@@ -16,6 +16,9 @@ RED = (210, 73, 0)
 BLUE = (30, 70, 170)
 GREEN = (0, 90, 0)
 WHITE = (255, 255, 255)
+# WHITE = (185, 180, 175)
+# WHITE = (200, 210, 225)
+# WHITE = (100, 90, 70)
 WINDOW_WIDTH = 800
 WINDOW_HEIGHT = 600
 
@@ -39,10 +42,14 @@ def load_flags():
     flags = {}
     for _, _, filenames in os.walk(path):
         for filename in filenames:
-            print(filename)
+            # print(filename)
             if filename.endswith('.png'):
-                flags[filename[:-4]] = load_image(path, filename)
+                country_name = filename[:-4]
+                with open(os.path.join(path, filename), 'rb') as file:
+                    flags[country_name] = pygame.image.load(file).convert()
+    # print(flags)
     return flags
+
 
 # Load images
 # europe_map = load(
@@ -72,6 +79,6 @@ FONT = pygame.font.Font(os.path.join('graphics', "GenBasB.ttf"), 30)
 win_sound = pygame.mixer.Sound(os.path.join("sound", "win3.wav"))
 fail_sound = pygame.mixer.Sound(os.path.join("sound", "fail3.wav"))
 
-flags_euro = load_flags()
+FLAGS_EUROPE = load_flags()
 # print(len(flags_euro))
 # print([name for name in flags_euro])

@@ -7,42 +7,8 @@ import pygame
 from . import globs as gl
 
 
-class Game:
-    """Game class for country and capital quizzes.
-
-    Attributes:
-        usr_input (str): Currently entered name of country/capital.
-        quiz_type (int): 1 for capital, 2 for country quiz.
-        next_scene (str): Switch to this scene if left arrow pressed.
-        counter (int): Index of current active country/capital.
-    """
-
-    def __init__(self, next_scene, game_map, country_list, quiz_type):
-        self.width, self.height = game_map.get_size()
-        self.done = False
-        self.scene = None
-        self.next_scene = next_scene
-        self.game_map = game_map
-        self.active_question = None
-        self.active_pos = None
-        # Use 1 for capital and 2 for country quiz. Used as index of lists.
-        self.quiz_type = quiz_type
-        self.counter = 0
-        self.usr_input = ""
-        self.score = 0
-        self.incorrect_answer = False
-        self.last_pos = None
-        self.game_over = False
-        # Used to manually mark positions of cities on the map.
-    #     marker_list = []
-    #     marker_count = 0
-        pygame.display.set_caption(_('Länderquiz'))
-        random.shuffle(country_list)
-        self.country_list = country_list
-        self.wrong_answer = None
-        self.backspace_pressed = False
-        self.backspace_timer = 20
-        self.question_offset = 0
+class BaseGame:
+    """Base class for games."""
 
     def process_events(self, event):
         """Handle events.
@@ -103,22 +69,12 @@ class Game:
         # Check if game is over.
         if len(self.country_list) == self.counter:
             self.game_over = True
-        self.change_question()
 
-    def display_frame(self, screen):
-        """Render everything.
-
-        Parameters:
-            screen: pygame.Surface. The game display.
-        """
-        screen.fill(gl.WHITE)
-        screen.blit(self.game_map, (0, 0))
-        self.render_score(screen)
-        self.render_game_over(screen)
-        self.render_incorrect_answer(screen)
-        if not self.incorrect_answer:
-            self.render_active_question(screen)
-        pygame.draw.rect(screen, gl.BLACK, (0, 0, self.width, self.height), 2)
+    def del_letters(self):
+        """When backspace is pressed continuously delete letters."""
+        if self.backspace_timer <= 0:
+            self.usr_input = self.usr_input[:-1]
+            self.backspace_timer = 2
 
     def next_country(self):
         """Switch to next country."""
@@ -133,6 +89,124 @@ class Game:
             self.incorrect_answer = False
         self.usr_input = ""
 
+    def check_input(self):
+        """Checks if active name equals name."""
+        # Is either a tuple or a string.
+        correct_answer = self.country_list[self.counter][self.quiz_type]
+        try:
+            correct = self.usr_input.lower() == _(correct_answer).lower()
+        # correct_answer was a tuple.
+        except AttributeError:
+            correct_answer = {_(answ).lower() for answ in correct_answer}
+            correct = self.usr_input.lower() in correct_answer
+        if correct:
+            gl.win_sound.play()
+            return True
+        else:
+            gl.fail_sound.play()
+            return False
+
+    def calc_percent(self):
+        try:
+            percent = round(100 / self.counter * self.score, 2)
+        except ZeroDivisionError:
+            percent = 0
+        return percent
+
+    def get_active(self):
+        active = self.country_list[self.counter - 1][self.quiz_type]
+        if isinstance(active, tuple):
+            active = active[0]
+        return _(active)
+
+    def render_game_over(self, screen):
+        if self.game_over:
+            txt = _('Spiel beendet - Pfeiltaste rechts für das nächste Quiz,')
+            txt2 = _('ESC um ins Hauptmenü zu gelangen.')
+
+            game_over_txt = gl.FONT.render(txt, True, gl.BLUE)
+            game_over_txt2 = gl.FONT.render(txt2, True, gl.BLUE)
+
+            screen.blit(game_over_txt, (10, self.height + 2))
+            screen.blit(game_over_txt2, (10, self.height + 32))
+
+
+class Game(BaseGame):
+    """Game class for country and capital quizzes.
+
+    Attributes:
+        usr_input (str): Currently entered name of country/capital.
+        quiz_type (int): 1 for capital, 2 for country quiz.
+        next_scene (str): Switch to this scene if left arrow pressed.
+        counter (int): Index of current active country/capital.
+    """
+
+    def __init__(self, game_map, country_list, quiz_type, next_scene):
+        self.width, self.height = game_map.get_size()
+        self.done = False
+        self.scene = None
+        self.next_scene = next_scene
+        self.game_map = game_map
+        self.active_question = None
+        self.active_pos = None
+        # Use 1 for capital and 2 for country quiz. Used as index of lists.
+        self.quiz_type = quiz_type
+        self.counter = 0
+        self.usr_input = ""
+        self.score = 0
+        self.incorrect_answer = False
+        self.last_pos = None
+        self.game_over = False
+        # Used to manually mark positions of cities on the map.
+    #     marker_list = []
+    #     marker_count = 0
+        pygame.display.set_caption(_('Länderquiz'))
+        random.shuffle(country_list)
+        self.country_list = country_list
+        self.wrong_answer = None
+        self.backspace_pressed = False
+        self.backspace_timer = 20
+        self.question_offset = 0
+
+    def run_logic(self):
+        super().run_logic()
+        # if self.backspace_pressed:
+        #     self.backspace_timer -= 1
+        #     self.del_letters()
+        # # Check if game is over.
+        # if len(self.country_list) == self.counter:
+        #     self.game_over = True
+        self.change_question()
+
+    def display_frame(self, screen):
+        """Render everything.
+
+        Parameters:
+            screen: pygame.Surface. The game display.
+        """
+        screen.fill(gl.WHITE)
+        screen.blit(self.game_map, (0, 0))
+        self.render_score(screen)
+        self.render_game_over(screen)
+        active = self.get_active()
+        self.render_incorrect_answer(screen, active)
+        if not self.incorrect_answer:
+            self.render_active_question(screen)
+        pygame.draw.rect(screen, gl.BLACK, (0, 0, self.width, self.height), 2)
+
+    # def next_country(self):
+    #     """Switch to next country."""
+    #     if not self.game_over and not self.incorrect_answer:
+    #         if self.check_input():
+    #             self.score += 1
+    #         else:
+    #             self.incorrect_answer = True
+    #             self.wrong_answer = self.usr_input
+    #         self.counter += 1
+    #     elif self.incorrect_answer:
+    #         self.incorrect_answer = False
+    #     self.usr_input = ""
+
     def change_question(self):
         if not self.game_over:
             # Country/capital name.
@@ -144,34 +218,35 @@ class Game:
         if len(self.country_list) == self.counter:
             self.last_pos = self.active_pos
 
-    def del_letters(self):
-        """When backspace is pressed continuously delete letters."""
-        if self.backspace_timer <= 0:
-            self.usr_input = self.usr_input[:-1]
-            self.backspace_timer = 2
+    # def del_letters(self):
+    #     """When backspace is pressed continuously delete letters."""
+    #     if self.backspace_timer <= 0:
+    #         self.usr_input = self.usr_input[:-1]
+    #         self.backspace_timer = 2
 
-    def check_input(self):
-        """Checks if active name equals name."""
-        # Is either a tuple or a string.
-        correct_answer = self.country_list[self.counter][self.quiz_type]
-        try:
-            if self.usr_input.lower() == _(correct_answer).lower():
-                gl.win_sound.play()
-                return True
-        # correct_answer was a tuple.
-        except AttributeError:
-            correct_answer = (_(answ).lower() for answ in correct_answer)
-            if self.usr_input.lower() in correct_answer:
-                gl.win_sound.play()
-                return True
-        gl.fail_sound.play()
-        return False
+    # def check_input(self):
+    #     """Checks if active name equals name."""
+    #     # Is either a tuple or a string.
+    #     correct_answer = self.country_list[self.counter][self.quiz_type]
+    #     try:
+    #         if self.usr_input.lower() == _(correct_answer).lower():
+    #             gl.win_sound.play()
+    #             return True
+    #     # correct_answer was a tuple.
+    #     except AttributeError:
+    #         correct_answer = (_(answ).lower() for answ in correct_answer)
+    #         if self.usr_input.lower() in correct_answer:
+    #             gl.win_sound.play()
+    #             return True
+    #     gl.fail_sound.play()
+    #     return False
 
     def render_score(self, screen):
-        try:
-            percent = round(100 / self.counter * self.score, 2)
-        except ZeroDivisionError:
-            percent = 0
+        # try:
+        #     percent = round(100 / self.counter * self.score, 2)
+        # except ZeroDivisionError:
+        #     percent = 0
+        percent = self.calc_percent()
 
         # TODO: Render this when the game ends.
         # txt = "{0} richtige Antworten von {1}. {2} Prozent korrekt".format(
@@ -189,16 +264,16 @@ class Game:
         perc_txt = gl.FONT.render("{} %".format(int(percent)), True, gl.BLUE)
         screen.blit(perc_txt, (self.width + 9, 80))
 
-    def render_game_over(self, screen):
-        if self.game_over:
-            txt = _('Spiel beendet - Pfeiltaste rechts für das nächste Quiz,')
-            game_over_txt = gl.FONT.render(txt, True, gl.BLUE)
-
-            txt = _('ESC um ins Hauptmenü zu gelangen.')
-            game_over_txt2 = gl.FONT.render(txt, True, gl.BLUE)
-
-            screen.blit(game_over_txt, (3, self.height + 2))
-            screen.blit(game_over_txt2, (3, self.height + 32))
+    # def render_game_over(self, screen):
+    #     if self.game_over:
+    #         txt = _('Spiel beendet - Pfeiltaste rechts für das nächste Quiz,')
+    #         game_over_txt = gl.FONT.render(txt, True, gl.BLUE)
+    #
+    #         txt = _('ESC um ins Hauptmenü zu gelangen.')
+    #         game_over_txt2 = gl.FONT.render(txt, True, gl.BLUE)
+    #
+    #         screen.blit(game_over_txt, (3, self.height + 2))
+    #         screen.blit(game_over_txt2, (3, self.height + 32))
 
     def render_active_question(self, screen):
         """Display pointer to active country/capital.
@@ -252,7 +327,36 @@ class Game:
         screen.blit(name_text, pos)
         screen.blit(name_text, (3 + self.question_offset, self.height + 32))
 
-    def render_incorrect_answer(self, screen):
+    # def render_incorrect_answer(self, screen):
+    #     if self.incorrect_answer:
+    #         # Red line positions.
+    #         x_pos = self.last_pos[0] - 10
+    #         y_pos = self.last_pos[1] - 10
+    #
+    #         pos = (x_pos, y_pos)
+    #         pygame.draw.line(screen, gl.RED, self.last_pos, pos, 4)
+    #
+    #         pos_end = (100, y_pos)
+    #         pygame.draw.line(screen, gl.RED, pos, pos_end, 4)
+    #
+    #         active = self.country_list[self.counter - 1][self.quiz_type]
+    #         if isinstance(active, tuple):
+    #             active = active[0]
+    #         active = _(active)
+    #         inc_name_text = gl.FONT.render(active, True, gl.RED)
+    #         screen.blit(inc_name_text, [100, self.last_pos[1] - 40])
+    #
+    #         if not self.game_over:
+    #             given_answer = _('Ihre Antwort war {}.').format(
+    #                 self.wrong_answer)
+    #             text = gl.FONT.render(given_answer, True, gl.RED)
+    #             screen.blit(text, [3, self.height + 32])
+    #
+    #             correct = _('Die korrekte Antwort lautet {}.').format(active)
+    #             text = gl.FONT.render(correct, True, gl.RED)
+    #             screen.blit(text, [3, self.height + 2])
+
+    def render_incorrect_answer(self, screen, active):
         if self.incorrect_answer:
             # Red line positions.
             x_pos = self.last_pos[0] - 10
@@ -264,10 +368,10 @@ class Game:
             pos_end = (100, y_pos)
             pygame.draw.line(screen, gl.RED, pos, pos_end, 4)
 
-            active = self.country_list[self.counter - 1][self.quiz_type]
-            if isinstance(active, tuple):
-                active = active[0]
-            active = _(active)
+            # active = self.country_list[self.counter - 1][self.quiz_type]
+            # if isinstance(active, tuple):
+            #     active = active[0]
+            # active = _(active)
             inc_name_text = gl.FONT.render(active, True, gl.RED)
             screen.blit(inc_name_text, [100, self.last_pos[1] - 40])
 
