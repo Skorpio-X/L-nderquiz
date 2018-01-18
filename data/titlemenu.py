@@ -129,8 +129,8 @@ class TitleFlags(Title):
             _('Beenden')
             )
         scenes = (
-            'EuropeFlags', 'Africa', 'Asia', 'SouthAmerica', 'NorthAmerica',
-            'AustraliaOceania', 'TitleMain', 'done'
+            'EuropeFlags', 'AfricaFlags', 'AsiaFlags', 'SouthAmericaFlags',
+            'NorthAmericaFlags', 'AustraliaOceaniaFlags', 'TitleMain', 'done'
             )
         super().__init__(button_texts, scenes, _('Flaggenquiz'))
 

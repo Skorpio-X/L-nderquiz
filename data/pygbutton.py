@@ -54,34 +54,37 @@ LIGHTGRAY = (212, 208, 200)
 
 
 class PygButton(object):
+    """Create a new button object.
+
+    Parameters:
+        rect - The size and position of the button as a pygame.Rect object
+            or 4-tuple of integers.
+        caption - The text on the button (default is blank)
+        bgcolor - The background color of the button (default is a light
+            gray color)
+        fgcolor - The foreground color (i.e. the color of the text).
+            Default is black.
+        font - The pygame.font.Font object for the font of the text.
+            Default is freesansbold in point 14.
+        normal - A pygame.Surface object for the button's normal
+            appearance.
+        down - A pygame.Surface object for the button's pushed down
+            appearance.
+        highlight - A pygame.Surface object for the button's appearance
+            when the mouse is over it.
+
+    If the Surface objects are used, then the caption, bgcolor,
+    fgcolor, and font parameters are ignored (and vice versa).
+    Specifying the Surface objects lets the user use a custom image
+    for the button.
+    The normal, down, and highlight Surface objects must all be the
+    same size as each other. Only the normal Surface object needs to
+    be specified. The others, if left out, will default to the normal
+    surface.
+    """
+
     def __init__(self, rect=None, caption='', bgcolor=LIGHTGRAY, fgcolor=BLACK,
                  font=None, normal=None, down=None, highlight=None):
-        """Create a new button object. Parameters:
-            rect - The size and position of the button as a pygame.Rect object
-                or 4-tuple of integers.
-            caption - The text on the button (default is blank)
-            bgcolor - The background color of the button (default is a light
-                gray color)
-            fgcolor - The foreground color (i.e. the color of the text).
-                Default is black.
-            font - The pygame.font.Font object for the font of the text.
-                Default is freesansbold in point 14.
-            normal - A pygame.Surface object for the button's normal
-                appearance.
-            down - A pygame.Surface object for the button's pushed down
-                appearance.
-            highlight - A pygame.Surface object for the button's appearance
-                when the mouse is over it.
-
-            If the Surface objects are used, then the caption, bgcolor,
-            fgcolor, and font parameters are ignored (and vice versa).
-            Specifying the Surface objects lets the user use a custom image
-            for the button.
-            The normal, down, and highlight Surface objects must all be the
-            same size as each other. Only the normal Surface object needs to
-            be specified. The others, if left out, will default to the normal
-            surface.
-            """
         if rect is None:
             self._rect = pygame.Rect(0, 0, 30, 60)
         else:

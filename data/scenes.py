@@ -46,5 +46,15 @@ scenes = {
         partial(Game, gl.AUSTRALIAOCEANIA_MAP2, AUSTRALIAOCEANIA_LIST, 2,
                 'EuropeCountries'),
     'EuropeFlags':
-        partial(FlagQuiz, gl.FLAGS_EUROPE, EUROPE_LIST, 'AfricaFlags')
+        partial(FlagQuiz, gl.FLAGS_EUROPE, EUROPE_LIST, 'AfricaFlags'),
+    'AfricaFlags':
+        partial(FlagQuiz, gl.FLAGS_AFRICA, AFRICA_LIST, 'AsiaFlags'),
+    'AsiaFlags':
+        partial(FlagQuiz, gl.FLAGS_ASIA, ASIA_LIST, 'SouthAmericaFlags'),
+    'SouthAmericaFlags':
+        partial(FlagQuiz, gl.FLAGS_SOUTHAMERICA, SOUTHAMERICA_LIST, 'NorthAmericaFlags'),
+    'NorthAmericaFlags':
+        partial(FlagQuiz, gl.FLAGS_NORTHAMERICA, NORTHAMERICA_LIST, 'AustraliaOceaniaFlags'),
+    'AustraliaOceaniaFlags':
+        partial(FlagQuiz, gl.FLAGS_AUSTRALIAOCEANIA, AUSTRALIAOCEANIA_LIST, 'EuropeFlags'),
     }

@@ -1,6 +1,6 @@
 # coding=utf-8
 
-"""A geographical quiz about countries and capitals.
+"""A geography quiz about countries and capitals and flags.
 
 Author: Skorpio
 License: MIT License
@@ -10,8 +10,8 @@ License: MIT License
 from data.main import main
 
 
-__version__ = "1.0.12"
+__version__ = '1.0.13'
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

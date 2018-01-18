@@ -4,7 +4,7 @@ def _(message):
 
 AUSTRALIAOCEANIA_LIST = [
     [(230, 478), _('Canberra'), _('Australien')],
-    [(554, 379), _('Avarua'), _('Cookinseln')],
+    # [(554, 379), _('Avarua'), _('Cookinseln')],  # Not independent.
     [(413, 351), _('Suva'), _('Fidschi')],
     [(378, 212), _('South Tarawa'), _('Kiribati')],
     [(366, 173), _('Majuro'), _('Marshallinseln')],

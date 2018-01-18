@@ -3,7 +3,7 @@ def _(message):
 
 
 SOUTHAMERICA_LIST = [
-    [(481, 326), _('Brasília'), _('Brasilien')],
+    [(481, 326), (_('Brasília'), _('Brasilia')), _('Brasilien')],
     [(383, 418), (_('Asunción'), _('Asuncion')), _('Paraguay')],
     [(394, 514), _('Montevideo'), _('Uruguay')],
     [(374, 514), _('Buenos Aires'), _('Argentinien')],

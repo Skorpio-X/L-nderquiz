@@ -111,7 +111,7 @@ class BaseGame:
             self.counter += 1
         elif self.incorrect_answer:
             self.incorrect_answer = False
-        self.usr_input = ""
+        self.usr_input = ''
 
     def check_input(self):
         """Checks if active name equals name."""
@@ -131,6 +131,7 @@ class BaseGame:
             return False
 
     def calc_percent(self):
+        """Calculate percentage of correct answers."""
         try:
             percent = round(100 / self.counter * self.score, 2)
         except ZeroDivisionError:
@@ -174,6 +175,17 @@ class BaseGame:
         screen.blit(score_txt2, (self.width + 9, 45))
         screen.blit(perc_txt, (self.width + 9, 80))
 
+    def render_incorrect_answer(self, screen, active):
+        if not self.game_over and self.incorrect_answer:
+            given_answer = _('Ihre Antwort war {}.').format(self.wrong_answer)
+            correct = _('Die korrekte Antwort lautet {}.').format(active)
+
+            text = gl.FONT.render(given_answer, True, gl.RED)
+            text2 = gl.FONT.render(correct, True, gl.RED)
+
+            screen.blit(text, (10, self.height + 2))
+            screen.blit(text2, (10, self.height + 32))
+
 
 class Game(BaseGame):
     """Game class for country and capital quizzes.
@@ -193,8 +205,8 @@ class Game(BaseGame):
         self.quiz_type = quiz_type
         self.last_pos = None
         # Used to manually mark positions of cities on the map.
-    #     marker_list = []
-    #     marker_count = 0
+        # marker_list = []
+        # marker_count = 0
         pygame.display.set_caption(_('Länderquiz'))
         self.question_offset = 0
 
@@ -233,7 +245,7 @@ class Game(BaseGame):
         """Display pointer to active country/capital.
 
         Parameters:
-            screen: pygame.Surface. The game display.
+            screen (pygame.Surface): The game display.
         """
         # Probably used to locate cities.
         # pygame.draw.circle(screen, gl.RED, pygame.mouse.get_pos(), 1)
@@ -253,17 +265,17 @@ class Game(BaseGame):
             txt2 = "{}:".format(_(active_country))
             country = gl.FONT.render(txt2, True, gl.BLUE)
             self.question_offset = country.get_width() + 8
-            screen.blit(country, (3, self.height + 32))
+            screen.blit(country, (10, self.height + 32))
         else:
             txt = _('Nennen Sie den Namen dieses Landes: ')
         question = gl.FONT.render(txt, True, gl.BLUE)
-        screen.blit(question, (3, self.height + 2))
+        screen.blit(question, (10, self.height + 2))
 
     def render_active_indicator(self, screen):
         """Render the indicator and current user input name.
 
         Parameters:
-            screen (pygame.Surface): The game screen.
+            screen (pygame.Surface): The game display.
         """
         # pygame.draw.circle(screen, gl.BLUE, self.active_position, 4)
         # Short diagonal part.
@@ -279,7 +291,7 @@ class Game(BaseGame):
         name_text = gl.FONT.render(self.usr_input, True, gl.BLUE)
         pos = (x_pos, self.active_pos[1] - 40)
         screen.blit(name_text, pos)
-        screen.blit(name_text, (3 + self.question_offset, self.height + 32))
+        screen.blit(name_text, (10 + self.question_offset, self.height + 32))
 
     def render_incorrect_answer(self, screen, active):
         if self.incorrect_answer:
@@ -295,13 +307,4 @@ class Game(BaseGame):
 
             inc_name_text = gl.FONT.render(active, True, gl.RED)
             screen.blit(inc_name_text, [100, self.last_pos[1] - 40])
-
-            if not self.game_over:
-                given_answer = _('Ihre Antwort war {}.').format(
-                    self.wrong_answer)
-                text = gl.FONT.render(given_answer, True, gl.RED)
-                screen.blit(text, [3, self.height + 32])
-
-                correct = _('Die korrekte Antwort lautet {}.').format(active)
-                text = gl.FONT.render(correct, True, gl.RED)
-                screen.blit(text, [3, self.height + 2])
+        super().render_incorrect_answer(screen, active)

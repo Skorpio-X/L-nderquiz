@@ -4,6 +4,7 @@ from . import globs as gl
 from .game_class import BaseGame
 
 
+# TODO: Display if the last answer was correct.
 class FlagQuiz(BaseGame):
 
     def __init__(self, flags, country_list, next_scene):
@@ -21,11 +22,24 @@ class FlagQuiz(BaseGame):
         screen.fill((230, 230, 230))
         # Blit next flag.
         if not self.incorrect_answer and not self.game_over:
-            current_flag = self.flags[self.country_list[self.counter][2]]
+            # current_flag = self.flags[self.country_list[self.counter][2]]
+
+            # Need to check if two country names are available.
+            # country = self.flags[self.country_list[self.counter][2]]
+            # current_flag = country if not isinstance(country, tuple) else country[0]
+            try:
+                current_flag = self.flags[self.country_list[self.counter][2]]
+            except KeyError:
+                current_flag = self.flags[self.country_list[self.counter][2][0]]
             screen.blit(current_flag, (20, 20))
             self.render_question(screen)
         else:
-            current_flag = self.flags[self.country_list[self.counter - 1][2]]
+            # current_flag = self.flags[self.country_list[self.counter - 1][2]]
+            # Need to check if two country names are available.
+            try:
+                current_flag = self.flags[self.country_list[self.counter - 1][2]]
+            except KeyError:
+                current_flag = self.flags[self.country_list[self.counter - 1][2][0]]
             screen.blit(current_flag, (20, 20))
         # Blit points.
         self.render_score(screen)
@@ -41,14 +55,3 @@ class FlagQuiz(BaseGame):
 
         screen.blit(country, (10, self.height + 2))
         screen.blit(answer, (10, self.height + 32))
-
-    def render_incorrect_answer(self, screen, active):
-        if not self.game_over and self.incorrect_answer:
-            given_answer = _('Ihre Antwort war {}.').format(self.wrong_answer)
-            correct = _('Die korrekte Antwort lautet {}.').format(active)
-
-            text = gl.FONT.render(given_answer, True, gl.RED)
-            text2 = gl.FONT.render(correct, True, gl.RED)
-
-            screen.blit(text, (10, self.height + 2))
-            screen.blit(text2, (10, self.height + 32))
