@@ -1,0 +1,15 @@
+Asset - Author - License
+_______________________________
+Afrikakarte - TUBS - CC-BY 3.0
+Nordamerikakarte - TUBS - CC-BY 3.0
+Südamerikakarte - TUBS - CC-BY 3.0
+Asienkarte - TUBS - CC-BY 3.0
+Europakarte - San Jose - CC-BY-SA 3.0
+QwarsIconsRegular.ttf - Alexandr Selunin - GNU General Public License
+Grundschrift.ttf - Christian Urff - CC-BY 3.0
+Anke.ttf - Noe Araujo - OFL (SIL Open Font License)
+Gentium font - SIL - OFL (SIL Open Font License)
+
+Code
+____
+Pygbutton.py - Al Sweigart - Simplified BSD License
