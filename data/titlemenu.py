@@ -22,7 +22,7 @@ class Title:
         for y_pos, txt, scne in zip(range(100, 501, 50), button_texts, scenes):
             if txt == _('Beenden') and isinstance(self, TitleMain):
                 y_pos = 400
-            self.buttons.append((PygButton((50, y_pos, 200, 30), txt), scne))
+            self.buttons.append((PygButton((50, y_pos, 260, 30), txt), scne))
 
     def run_logic(self):
         pass

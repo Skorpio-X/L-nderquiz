@@ -1,0 +1,1733 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR ORGANIZATION
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2015-11-17 03:49+0100\n"
+"PO-Revision-Date: 2018-01-19 19:03+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: pygettext.py 1.5\n"
+"X-Generator: Poedit 1.8.6\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: game_class.py:55 game_class.py:74
+msgid "Länderquiz"
+msgstr "Country Quiz"
+
+#: game_class.py:213
+msgid "Pkte"
+msgstr "Score"
+
+#: game_class.py:225
+msgid "Spiel beendet - Pfeiltaste rechts für das nächste Quiz,"
+msgstr "Game over - Right arrow button for the next quiz,"
+
+#: game_class.py:228
+msgid "ESC um ins Hauptmenü zu gelangen."
+msgstr "ESC to get back to the main menu."
+
+#: game_class.py:252
+msgid "Nennen Sie die Hauptstadt von"
+msgstr "What is the capital of"
+
+#: game_class.py:258
+msgid "Nennen Sie den Namen dieses Landes: "
+msgstr "What is the name of this country: "
+
+#: game_class.py:303
+msgid "Ihre Antwort war {}."
+msgstr "Your answer was {}."
+
+#: game_class.py:308
+msgid "Die korrekte Antwort lautet {}."
+msgstr "The correct answer is {}."
+
+#: titlemenu.py:58
+msgid "Hauptstadtquiz"
+msgstr "Capital Quiz"
+
+#: titlemenu.py:58 titlemenu.py:70 titlemenu.py:92
+msgid "Beenden"
+msgstr "Quit"
+
+#: titlemenu.py:60
+msgid "Geographie-Quiz"
+msgstr "Geography Quiz"
+
+#: titlemenu.py:68
+msgid "Afrikas Länder"
+msgstr "Africa's Countries"
+
+#: titlemenu.py:68
+msgid "Asiens Länder"
+msgstr "Asia's Countries"
+
+#: titlemenu.py:68
+msgid "Europas Länder"
+msgstr "Europe's Countries"
+
+#: titlemenu.py:69
+msgid "Nordamerikas Länder"
+msgstr "Northamerica's Countries"
+
+#: titlemenu.py:69
+msgid "Südamerikas Länder"
+msgstr "Southamerica's Countries"
+
+#: titlemenu.py:70
+msgid "Australiens/Ozeaniens Länder"
+msgstr "Australia/Oceania's Countries"
+
+#: titlemenu.py:70 titlemenu.py:91
+msgid "Hauptmenü"
+msgstr "Main Menu"
+
+#: titlemenu.py:70
+msgid "Flaggenquiz"
+msgstr "Flag Quiz"
+
+#: titlemenu.py:77
+msgid "Länder-Quiz"
+msgstr "Country Quiz"
+
+#: titlemenu.py:85
+msgid "Europas Hauptstädte"
+msgstr "Europe's Capitals"
+
+#: titlemenu.py:86
+msgid "Afrikas Hauptstädte"
+msgstr "Africa's Capitals"
+
+#: titlemenu.py:87
+msgid "Asiens Hauptstädte"
+msgstr "Asia's Capitals"
+
+#: titlemenu.py:88
+msgid "Südamerikas Hauptstädte"
+msgstr "Southamerica's Capitals"
+
+#: titlemenu.py:89
+msgid "Nordamerikas Hauptstädte"
+msgstr "Northamerica's Capitals"
+
+#: titlemenu.py:90
+msgid "Australiens/Ozeaniens Hauptstädte"
+msgstr "Australia/Oceania's Capitals"
+
+#: titlemenu.py:98
+msgid "Hauptstädte-Quiz"
+msgstr "Capital Quiz"
+
+#: titlemenu.py:112
+msgid "Optionen"
+msgstr "Options"
+
+#: titlemenu.py:116
+msgid "Sprache"
+msgstr "Language"
+
+#: europe_list.py:56
+msgid "Albanien"
+msgstr "Albania"
+
+#: europe_list.py:56
+msgid "Tirana"
+msgstr "Tirana"
+
+#: europe_list.py:57
+msgid "Andorra"
+msgstr "Andorra"
+
+#: europe_list.py:57
+msgid "Andorra la Vella"
+msgstr "Andorra la Vella"
+
+#: europe_list.py:58
+msgid "Belgien"
+msgstr "Belgium"
+
+#: europe_list.py:58
+msgid "Brüssel"
+msgstr "Brussels"
+
+#: europe_list.py:59
+msgid "Bosnien und Herzegowina"
+msgstr "Bosnia and Herzegovina"
+
+#: europe_list.py:59
+msgid "Sarajevo"
+msgstr "Sarajevo"
+
+#: europe_list.py:60
+msgid "Bulgarien"
+msgstr "Bulgaria"
+
+#: europe_list.py:60
+msgid "Sofia"
+msgstr "Sofia"
+
+#: europe_list.py:61
+msgid "Berlin"
+msgstr "Berlin"
+
+#: europe_list.py:61
+msgid "Deutschland"
+msgstr "Germany"
+
+#: europe_list.py:62
+msgid "Dänemark"
+msgstr "Denmark"
+
+#: europe_list.py:62
+msgid "Kopenhagen"
+msgstr "Copenhagen"
+
+#: europe_list.py:63
+msgid "Estland"
+msgstr "Estonia"
+
+#: europe_list.py:63
+msgid "Tallinn"
+msgstr "Tallinn"
+
+#: europe_list.py:64
+msgid "Finnland"
+msgstr "Finland"
+
+#: europe_list.py:64
+msgid "Helsinki"
+msgstr "Helsinki"
+
+#: europe_list.py:65
+msgid "Frankreich"
+msgstr "France"
+
+#: europe_list.py:65
+msgid "Paris"
+msgstr "Paris"
+
+#: europe_list.py:66
+msgid "Athen"
+msgstr "Athens"
+
+#: europe_list.py:66
+msgid "Griechenland"
+msgstr "Greece"
+
+#: europe_list.py:67
+msgid "Dublin"
+msgstr "Dublin"
+
+#: europe_list.py:67
+msgid "Irland"
+msgstr "Ireland"
+
+#: europe_list.py:68
+msgid "Island"
+msgstr "Iceland"
+
+#: europe_list.py:68
+msgid "Reykjavik"
+msgstr "Reykjavik"
+
+#: europe_list.py:69
+msgid "Italien"
+msgstr "Italy"
+
+#: europe_list.py:69
+msgid "Rom"
+msgstr "Rome"
+
+#: europe_list.py:70
+msgid "Kroatien"
+msgstr "Croatia"
+
+#: europe_list.py:70
+msgid "Zagreb"
+msgstr "Zagreb"
+
+#: europe_list.py:71
+msgid "Lettland"
+msgstr "Latvia"
+
+#: europe_list.py:71
+msgid "Riga"
+msgstr "Riga"
+
+#: europe_list.py:72
+msgid "Liechtenstein"
+msgstr "Liechtenstein"
+
+#: europe_list.py:72
+msgid "Vaduz"
+msgstr "Vaduz"
+
+#: europe_list.py:73
+msgid "Litauen"
+msgstr "Lithuania"
+
+#: europe_list.py:73
+msgid "Vilnius"
+msgstr "Vilnius"
+
+#: europe_list.py:74
+msgid "Luxemburg"
+msgstr "Luxembourg"
+
+#: europe_list.py:75
+msgid "Malta"
+msgstr "Malta"
+
+#: europe_list.py:75
+msgid "Valetta"
+msgstr "Valetta"
+
+#: europe_list.py:76
+msgid "Mazedonien"
+msgstr "Macedonia"
+
+#: europe_list.py:76
+msgid "Skopje"
+msgstr "Skopje"
+
+#: europe_list.py:77
+msgid "Chisinau"
+msgstr "Chisinau"
+
+#: europe_list.py:77
+msgid "Moldawien"
+msgstr "Moldova"
+
+#: europe_list.py:78
+msgid "Monaco"
+msgstr "Monaco"
+
+#: europe_list.py:79
+msgid "Montenegro"
+msgstr "Montenegro"
+
+#: europe_list.py:79
+msgid "Podgorica"
+msgstr "Podgorica"
+
+#: europe_list.py:80
+msgid "Amsterdam"
+msgstr "Amsterdam"
+
+#: europe_list.py:80
+msgid "Niederlande"
+msgstr "Netherlands"
+
+#: europe_list.py:81
+msgid "Norwegen"
+msgstr "Norway"
+
+#: europe_list.py:81
+msgid "Oslo"
+msgstr "Oslo"
+
+#: europe_list.py:82
+msgid "Wien"
+msgstr "Vienna"
+
+#: europe_list.py:82
+msgid "Österreich"
+msgstr "Austria"
+
+#: europe_list.py:83
+msgid "Polen"
+msgstr "Poland"
+
+#: europe_list.py:83
+msgid "Warschau"
+msgstr "Warsaw"
+
+#: europe_list.py:84
+msgid "Lissabon"
+msgstr "Lisbon"
+
+#: europe_list.py:84
+msgid "Portugal"
+msgstr "Portugal"
+
+#: europe_list.py:85
+msgid "Bukarest"
+msgstr "Bucharest"
+
+#: europe_list.py:85
+msgid "Rumänien"
+msgstr "Romania"
+
+#: europe_list.py:86
+msgid "Moskau"
+msgstr "Moscow"
+
+#: europe_list.py:86
+msgid "Russland"
+msgstr "Russia"
+
+#: europe_list.py:87
+msgid "San Marino"
+msgstr "San Marino"
+
+#: europe_list.py:88
+msgid "Schweden"
+msgstr "Sweden"
+
+#: europe_list.py:88
+msgid "Stockholm"
+msgstr "Stockholm"
+
+#: europe_list.py:89
+msgid "Bern"
+msgstr "Bern"
+
+#: europe_list.py:89
+msgid "Schweiz"
+msgstr "Switzerland"
+
+#: europe_list.py:90
+msgid "Belgrad"
+msgstr "Belgrade"
+
+#: europe_list.py:90
+msgid "Serbien"
+msgstr "Serbia"
+
+#: europe_list.py:91
+msgid "Bratislava"
+msgstr "Bratislava"
+
+#: europe_list.py:91
+msgid "Slowakei"
+msgstr "Slovakia"
+
+#: europe_list.py:92
+msgid "Ljubljana"
+msgstr "Ljubljana"
+
+#: europe_list.py:92
+msgid "Slowenien"
+msgstr "Slovenia"
+
+#: europe_list.py:93
+msgid "Madrid"
+msgstr "Madrid"
+
+#: europe_list.py:93
+msgid "Spanien"
+msgstr "Spain"
+
+#: europe_list.py:94
+msgid "Prag"
+msgstr "Prague"
+
+#: europe_list.py:94
+msgid "Tschechien"
+msgstr "Czech Republic"
+
+#: europe_list.py:95
+msgid "Ankara"
+msgstr "Ankara"
+
+#: europe_list.py:95
+msgid "Türkei"
+msgstr "Turkey"
+
+#: europe_list.py:96
+msgid "Kiew"
+msgstr "Kiev"
+
+#: europe_list.py:96
+msgid "Ukraine"
+msgstr "Ukraine"
+
+#: europe_list.py:97
+msgid "Budapest"
+msgstr "Budapest"
+
+#: europe_list.py:97
+msgid "Ungarn"
+msgstr "Hungary"
+
+#: europe_list.py:98
+msgid "Vatikanstadt"
+msgstr "Vatican City"
+
+#: europe_list.py:99
+msgid "London"
+msgstr "London"
+
+#: europe_list.py:99
+msgid "Vereinigtes Königreich"
+msgstr "United Kingdom"
+
+#: europe_list.py:100
+msgid "Minsk"
+msgstr "Minsk"
+
+#: europe_list.py:100
+msgid "Weißrussland"
+msgstr "Belarus"
+
+#: europe_list.py:101
+msgid "Nikosia"
+msgstr "Nicosia"
+
+#: europe_list.py:101
+msgid "Zypern"
+msgstr "Cyprus"
+
+#: africa_list.py:2
+msgid "Kairo"
+msgstr "Cairo"
+
+#: africa_list.py:2
+msgid "Ägypten"
+msgstr "Egypt"
+
+#: africa_list.py:3
+msgid "Libyen"
+msgstr "Libya"
+
+#: africa_list.py:3
+msgid "Tripolis"
+msgstr "Tripoli"
+
+#: africa_list.py:4
+msgid "Tunesien"
+msgstr "Tunisia"
+
+#: africa_list.py:4
+msgid "Tunis"
+msgstr "Tunis"
+
+#: africa_list.py:5
+msgid "Algerien"
+msgstr "Algeria"
+
+#: africa_list.py:5
+msgid "Algier"
+msgstr "Algiers"
+
+#: africa_list.py:6
+msgid "Marokko"
+msgstr "Morocco"
+
+#: africa_list.py:6
+msgid "Rabat"
+msgstr "Rabat"
+
+#: africa_list.py:7
+msgid "Mauretanien"
+msgstr "Mauritania"
+
+#: africa_list.py:7
+msgid "Nouakchott"
+msgstr "Nouakchott"
+
+#: africa_list.py:8
+msgid "Dakar"
+msgstr "Dakar"
+
+#: africa_list.py:8
+msgid "Senegal"
+msgstr "Senegal"
+
+#: africa_list.py:9
+msgid "Kap Verde"
+msgstr "Cape Verde"
+
+#: africa_list.py:9
+msgid "Praia"
+msgstr "Praia"
+
+#: africa_list.py:10
+msgid "Banjul"
+msgstr "Banjul"
+
+#: africa_list.py:10
+msgid "Gambia"
+msgstr "Gambia"
+
+#: africa_list.py:11
+msgid "Bissau"
+msgstr "Bissau"
+
+#: africa_list.py:11
+msgid "Guinea-Bissau"
+msgstr "Guinea-Bissau"
+
+#: africa_list.py:12
+msgid "Conakry"
+msgstr "Conakry"
+
+#: africa_list.py:12
+msgid "Guinea"
+msgstr "Guinea"
+
+#: africa_list.py:13
+msgid "Freetown"
+msgstr "Freetown"
+
+#: africa_list.py:13
+msgid "Sierra Leone"
+msgstr "Sierra Leone"
+
+#: africa_list.py:14
+msgid "Liberia"
+msgstr "Liberia"
+
+#: africa_list.py:14
+msgid "Monrovia"
+msgstr "Monrovia"
+
+#: africa_list.py:15
+msgid "Elfenbeinküste"
+msgstr "Ivory Coast"
+
+#: africa_list.py:15
+msgid "Yamoussoukro"
+msgstr "Yamoussoukro"
+
+#: africa_list.py:16
+msgid "Bamako"
+msgstr "Bamako"
+
+#: africa_list.py:16
+msgid "Mali"
+msgstr "Mali"
+
+#: africa_list.py:17
+msgid "Burkina Faso"
+msgstr "Burkina Faso"
+
+#: africa_list.py:17
+msgid "Ouagadougou"
+msgstr "Ouagadougou"
+
+#: africa_list.py:18
+msgid "Accra"
+msgstr "Accra"
+
+#: africa_list.py:18
+msgid "Ghana"
+msgstr "Ghana"
+
+#: africa_list.py:19
+msgid "Lomé"
+msgstr "Lomé"
+
+#: africa_list.py:19
+msgid "Togo"
+msgstr "Togo"
+
+#: africa_list.py:20
+msgid "Benin"
+msgstr "Benin"
+
+#: africa_list.py:20
+msgid "Porto-Novo"
+msgstr "Porto-Novo"
+
+#: africa_list.py:21
+msgid "Abuja"
+msgstr "Abuja"
+
+#: africa_list.py:21
+msgid "Nigeria"
+msgstr "Nigeria"
+
+#: africa_list.py:22
+msgid "Niamey"
+msgstr "Niamey"
+
+#: africa_list.py:22
+msgid "Niger"
+msgstr "Niger"
+
+#: africa_list.py:23
+msgid "N'Djamena"
+msgstr "N'Djamena"
+
+#: africa_list.py:23
+msgid "Tschad"
+msgstr "Chad"
+
+#: africa_list.py:24
+msgid "Khartum"
+msgstr "Khartoum"
+
+#: africa_list.py:24
+msgid "Sudan"
+msgstr "Sudan"
+
+#: africa_list.py:25
+msgid "Asmara"
+msgstr "Asmara"
+
+#: africa_list.py:25
+msgid "Eritrea"
+msgstr "Eritrea"
+
+#: africa_list.py:26
+msgid "Addis Abeba"
+msgstr "Addis Abeba"
+
+#: africa_list.py:26
+msgid "Äthiopien"
+msgstr "Ethiopia"
+
+#: africa_list.py:27
+msgid "Dschibuti"
+msgstr "Djibouti"
+
+#: africa_list.py:28
+msgid "Mogadischu"
+msgstr "Mogadishu"
+
+#: africa_list.py:28
+msgid "Somalia"
+msgstr "Somalia"
+
+#: africa_list.py:29
+msgid "Kenia"
+msgstr "Kenya"
+
+#: africa_list.py:29
+msgid "Nairobi"
+msgstr "Nairobi"
+
+#: africa_list.py:30
+msgid "Kampala"
+msgstr "Kampala"
+
+#: africa_list.py:30
+msgid "Uganda"
+msgstr "Uganda"
+
+#: africa_list.py:31
+msgid "Bangui"
+msgstr "Bangui"
+
+#: africa_list.py:31
+msgid "Zentralafrikanische Republik"
+msgstr "Central African Republic"
+
+#: africa_list.py:32
+msgid "Kamerun"
+msgstr "Cameroon"
+
+#: africa_list.py:32
+msgid "Yaoundé"
+msgstr "Yaoundé"
+
+#: africa_list.py:33
+msgid "Malabo"
+msgstr "Malabo"
+
+#: africa_list.py:33
+msgid "Äquatorialguinea"
+msgstr "Equatorial Guinea"
+
+#: africa_list.py:34
+msgid "Sao Tomé"
+msgstr "Sao Tomé and Príncipe"
+
+#: africa_list.py:35
+msgid "Gabun"
+msgstr "Gabon"
+
+#: africa_list.py:35
+msgid "Libreville"
+msgstr "Libreville"
+
+#: africa_list.py:36
+msgid "Brazzaville"
+msgstr "Brazzaville"
+
+#: africa_list.py:36
+msgid "Republik Kongo"
+msgstr "Republic of the Congo"
+
+#: africa_list.py:37
+msgid "Demokratische Republik Kongo"
+msgstr "Democratic Republic of the Congo"
+
+#: africa_list.py:37
+msgid "Kinshasa"
+msgstr "Kinshasa"
+
+#: africa_list.py:38
+msgid "Angola"
+msgstr "Angola"
+
+#: africa_list.py:38
+msgid "Luanda"
+msgstr "Luanda"
+
+#: africa_list.py:39
+msgid "Namibia"
+msgstr "Namibia"
+
+#: africa_list.py:39
+msgid "Windhoek"
+msgstr "Windhoek"
+
+#: africa_list.py:40
+msgid "Botswana"
+msgstr "Botswana"
+
+#: africa_list.py:40
+msgid "Gaborone"
+msgstr "Gaborone"
+
+#: africa_list.py:41
+msgid "Pretoria"
+msgstr "Pretoria"
+
+#: africa_list.py:41
+msgid "Südafrika"
+msgstr "South Africa"
+
+#: africa_list.py:42
+msgid "Lesotho"
+msgstr "Lesotho"
+
+#: africa_list.py:42
+msgid "Maseru"
+msgstr "Maseru"
+
+#: africa_list.py:43
+msgid "Mbabane"
+msgstr "Mbabane"
+
+#: africa_list.py:43
+msgid "Swasiland"
+msgstr "Swaziland"
+
+#: africa_list.py:44
+msgid "Maputo"
+msgstr "Maputo"
+
+#: africa_list.py:44
+msgid "Mosambik"
+msgstr "Mozambique"
+
+#: africa_list.py:45
+msgid "Harare"
+msgstr "Harare"
+
+#: africa_list.py:45
+msgid "Simbabwe"
+msgstr "Zimbabwe"
+
+#: africa_list.py:46
+msgid "Lusaka"
+msgstr "Lusaka"
+
+#: africa_list.py:46
+msgid "Sambia"
+msgstr "Zambia"
+
+#: africa_list.py:47
+msgid "Bujumbura"
+msgstr "Bujumbura"
+
+#: africa_list.py:47
+msgid "Burundi"
+msgstr "Burundi"
+
+#: africa_list.py:48
+msgid "Kigali"
+msgstr "Kigali"
+
+#: africa_list.py:48
+msgid "Ruanda"
+msgstr "Rwanda"
+
+#: africa_list.py:50
+msgid "Dodoma"
+msgstr "Dodoma"
+
+#: africa_list.py:50
+msgid "Tansania"
+msgstr "Tanzania"
+
+#: africa_list.py:51
+msgid "Komoren"
+msgstr "Comoros"
+
+#: africa_list.py:51
+msgid "Moroni"
+msgstr "Moroni"
+
+#: africa_list.py:52
+msgid "Seychellen"
+msgstr "Seychelles"
+
+#: africa_list.py:52
+msgid "Victoria"
+msgstr "Victoria"
+
+#: africa_list.py:53
+msgid "Antananarivo"
+msgstr "Antananarivo"
+
+#: africa_list.py:53
+msgid "Madagaskar"
+msgstr "Madagascar"
+
+#: africa_list.py:54
+msgid "Mauritius"
+msgstr "Mauritius"
+
+#: africa_list.py:54
+msgid "Port Louis"
+msgstr "Port Louis"
+
+#: africa_list.py:55
+msgid "Lilongwe"
+msgstr "Lilongwe"
+
+#: africa_list.py:55
+msgid "Malawi"
+msgstr "Malawi"
+
+#: africa_list.py:56
+msgid "Juba"
+msgstr "Juba"
+
+#: africa_list.py:56
+msgid "Südsudan"
+msgstr "South Sudan"
+
+#: asia_list.py:2
+msgid "Japan"
+msgstr "Japan"
+
+#: asia_list.py:2
+msgid "Tokio"
+msgstr "Tokyo"
+
+#: asia_list.py:3
+msgid "Nordkorea"
+msgstr "North Korea"
+
+#: asia_list.py:3
+msgid "Pjöngjang"
+msgstr "Pyongyang"
+
+#: asia_list.py:4
+msgid "Seoul"
+msgstr "Seoul"
+
+#: asia_list.py:4
+msgid "Südkorea"
+msgstr "South Korea"
+
+#: asia_list.py:5
+msgid "Mongolei"
+msgstr "Mongolia"
+
+#: asia_list.py:5
+msgid "Ulaanbaatar"
+msgstr "Ulaanbaatar"
+
+#: asia_list.py:6
+msgid "Astana"
+msgstr "Astana"
+
+#: asia_list.py:6
+msgid "Kasachstan"
+msgstr "Kazakhstan"
+
+#: asia_list.py:7
+msgid "China"
+msgstr "China"
+
+#: asia_list.py:7
+msgid "Peking"
+msgstr "Beijing"
+
+#: asia_list.py:8
+msgid "Bischkek"
+msgstr "Bishkek"
+
+#: asia_list.py:8
+msgid "Kirgistan"
+msgstr "Kyrgyzstan"
+
+#: asia_list.py:9
+msgid "Duschanbe"
+msgstr "Dushanbe"
+
+#: asia_list.py:9
+msgid "Tadschikistan"
+msgstr "Tajikistan"
+
+#: asia_list.py:10
+msgid "Taschkent"
+msgstr "Tashkent"
+
+#: asia_list.py:10
+msgid "Usbekistan"
+msgstr "Uzbekistan"
+
+#: asia_list.py:11
+msgid "Asgabat"
+msgstr "Ashgabat"
+
+#: asia_list.py:11
+msgid "Turkmenistan"
+msgstr "Turkmenistan"
+
+#: asia_list.py:12
+msgid "Iran"
+msgstr "Iran"
+
+#: asia_list.py:12
+msgid "Teheran"
+msgstr "Tehran"
+
+#: asia_list.py:13
+msgid "Aserbaidschan"
+msgstr "Azerbaijan"
+
+#: asia_list.py:13
+msgid "Baku"
+msgstr "Baku"
+
+#: asia_list.py:14
+msgid "Georgien"
+msgstr "Georgia"
+
+#: asia_list.py:14
+msgid "Tiflis"
+msgstr "Tbilisi"
+
+#: asia_list.py:15
+msgid "Armenien"
+msgstr "Armenia"
+
+#: asia_list.py:15
+msgid "Jerewan"
+msgstr "Yerevan"
+
+#: asia_list.py:16
+msgid "Afghanistan"
+msgstr "Afghanistan"
+
+#: asia_list.py:16
+msgid "Kabul"
+msgstr "Kabul"
+
+#: asia_list.py:17
+msgid "Islamabad"
+msgstr "Islamabad"
+
+#: asia_list.py:17
+msgid "Pakistan"
+msgstr "Pakistan"
+
+#: asia_list.py:18
+msgid "Indien"
+msgstr "India"
+
+#: asia_list.py:18
+msgid "Neu-Delhi"
+msgstr "New Delhi"
+
+#: asia_list.py:19
+msgid "Kathmandu"
+msgstr "Kathmandu"
+
+#: asia_list.py:19
+msgid "Nepal"
+msgstr "Nepal"
+
+#: asia_list.py:20
+msgid "Bhutan"
+msgstr "Bhutan"
+
+#: asia_list.py:20
+msgid "Thimphu"
+msgstr "Thimphu"
+
+#: asia_list.py:21
+msgid "Malediven"
+msgstr "Maldives"
+
+#: asia_list.py:21
+msgid "Malé"
+msgstr "Malé"
+
+#: asia_list.py:22
+msgid "Colombo"
+msgstr "Colombo"
+
+#: asia_list.py:22
+msgid "Sri Lanka"
+msgstr "Sri Lanka"
+
+#: asia_list.py:23
+msgid "Bangladesch"
+msgstr "Bangladesh"
+
+#: asia_list.py:23
+msgid "Dhaka"
+msgstr "Dhaka"
+
+#: asia_list.py:24
+msgid "Taipeh"
+msgstr "Taipei"
+
+#: asia_list.py:24
+msgid "Taiwan"
+msgstr "Taiwan"
+
+#: asia_list.py:25
+msgid "Bandar Seri Begawan"
+msgstr "Bandar Seri Begawan"
+
+#: asia_list.py:25
+msgid "Brunei"
+msgstr "Brunei"
+
+#: asia_list.py:26
+msgid "Indonesien"
+msgstr "Indonesia"
+
+#: asia_list.py:26
+msgid "Jakarta"
+msgstr "Jakarta"
+
+#: asia_list.py:27
+msgid "Manila"
+msgstr "Manila"
+
+#: asia_list.py:27
+msgid "Philippinen"
+msgstr "Philippines"
+
+#: asia_list.py:28
+msgid "Myanmar"
+msgstr "Myanmar"
+
+#: asia_list.py:28
+msgid "Naypyidaw"
+msgstr "Naypyidaw"
+
+#: asia_list.py:29
+msgid "Kuala Lumpur"
+msgstr "Kuala Lumpur"
+
+#: asia_list.py:29
+msgid "Malaysia"
+msgstr "Malaysia"
+
+#: asia_list.py:30
+msgid "Bangkok"
+msgstr "Bangkok"
+
+#: asia_list.py:30
+msgid "Thailand"
+msgstr "Thailand"
+
+#: asia_list.py:31
+msgid "Singapur"
+msgstr "Singapore"
+
+#: asia_list.py:32
+msgid "Dili"
+msgstr "Dili"
+
+#: asia_list.py:32
+msgid "Osttimor"
+msgstr "East Timor"
+
+#: asia_list.py:33
+msgid "Hanoi"
+msgstr "Hanoi"
+
+#: asia_list.py:33
+msgid "Vietnam"
+msgstr "Vietnam"
+
+#: asia_list.py:34
+msgid "Laos"
+msgstr "Laos"
+
+#: asia_list.py:34
+msgid "Vientiane"
+msgstr "Vientiane"
+
+#: asia_list.py:35
+msgid "Abu Dhabi"
+msgstr "Abu Dhabi"
+
+#: asia_list.py:35
+msgid "Vereinigte Arabische Emirate"
+msgstr "United Arab Emirates"
+
+#: asia_list.py:36
+msgid "Maskat"
+msgstr "Muscat"
+
+#: asia_list.py:36
+msgid "Oman"
+msgstr "Oman"
+
+#: asia_list.py:37
+msgid "Bahrain"
+msgstr "Bahrain"
+
+#: asia_list.py:37
+msgid "Manama"
+msgstr "Manama"
+
+#: asia_list.py:38
+msgid "Doha"
+msgstr "Doha"
+
+#: asia_list.py:38
+msgid "Katar"
+msgstr "Qatar"
+
+#: asia_list.py:39
+msgid "Jemen"
+msgstr "Yemen"
+
+#: asia_list.py:39
+msgid "Sanaa"
+msgstr "Sana'a"
+
+#: asia_list.py:40
+msgid "Israel"
+msgstr "Israel"
+
+#: asia_list.py:40
+msgid "Jerusalem"
+msgstr "Jerusalem"
+
+#: asia_list.py:41
+msgid "Bagdad"
+msgstr "Baghdad"
+
+#: asia_list.py:41
+msgid "Irak"
+msgstr "Iraq"
+
+#: asia_list.py:42
+msgid "Amman"
+msgstr "Amman"
+
+#: asia_list.py:42
+msgid "Jordanien"
+msgstr "Jordan"
+
+#: asia_list.py:43
+msgid "Kuwait"
+msgstr "Kuwait"
+
+#: asia_list.py:43
+msgid "Kuwait-Stadt"
+msgstr "Kuwait City"
+
+#: asia_list.py:44
+msgid "Beirut"
+msgstr "Beirut"
+
+#: asia_list.py:44
+msgid "Libanon"
+msgstr "Lebanon"
+
+#: asia_list.py:45
+msgid "Riad"
+msgstr "Riyadh"
+
+#: asia_list.py:45
+msgid "Saudi-Arabien"
+msgstr "Saudi Arabia"
+
+#: asia_list.py:46
+msgid "Damaskus"
+msgstr "Damascus"
+
+#: asia_list.py:46
+msgid "Syrien"
+msgstr "Syria"
+
+#: asia_list.py:52
+msgid "Phnom Penh"
+msgstr "Phnom Penh"
+
+#: asia_list.py:52
+msgid "Kambodscha"
+msgstr "Cambodia"
+
+#: northamerica_list.py:2
+msgid "Washington"
+msgstr "Washington"
+
+#: northamerica_list.py:2
+msgid "Washington D.C."
+msgstr "Washington D.C."
+
+#: northamerica_list.py:2
+msgid "Washington, D.C."
+msgstr "Washington, D.C."
+
+#: northamerica_list.py:3
+msgid "USA"
+msgstr "USA"
+
+#: northamerica_list.py:3
+msgid "Vereinigte Staaten von Amerika"
+msgstr "United States of America"
+
+#: northamerica_list.py:4
+msgid "Mexiko"
+msgstr "Mexico"
+
+#: northamerica_list.py:4
+msgid "Mexiko-Stadt"
+msgstr "Mexico City"
+
+#: northamerica_list.py:5
+msgid "Kanada"
+msgstr "Canada"
+
+#: northamerica_list.py:5
+msgid "Ottawa"
+msgstr "Ottawa"
+
+#: northamerica_list.py:6
+msgid "Belize"
+msgstr "Belize"
+
+#: northamerica_list.py:6
+msgid "Belmopan"
+msgstr "Belmopan"
+
+#: northamerica_list.py:7
+msgid "Guatemala"
+msgstr "Guatemala"
+
+#: northamerica_list.py:7
+msgid "Guatemala-Stadt"
+msgstr "Guatemala City"
+
+#: northamerica_list.py:8
+msgid "El Salvador"
+msgstr "El Salvador"
+
+#: northamerica_list.py:8
+msgid "San Salvador"
+msgstr "San Salvador"
+
+#: northamerica_list.py:9
+msgid "Honduras"
+msgstr "Honduras"
+
+#: northamerica_list.py:9
+msgid "Tegucigalpa"
+msgstr "Tegucigalpa"
+
+#: northamerica_list.py:10
+msgid "Managua"
+msgstr "Managua"
+
+#: northamerica_list.py:10
+msgid "Nicaragua"
+msgstr "Nicaragua"
+
+#: northamerica_list.py:11
+msgid "Panama"
+msgstr "Panama"
+
+#: northamerica_list.py:11
+msgid "Panama-Stadt"
+msgstr "Panama City"
+
+#: northamerica_list.py:12
+msgid "Costa Rica"
+msgstr "Costa Rica"
+
+#: northamerica_list.py:12
+msgid "San José"
+msgstr "San José"
+
+#: northamerica_list.py:13
+msgid "Havanna"
+msgstr "Havana"
+
+#: northamerica_list.py:13
+msgid "Kuba"
+msgstr "Cuba"
+
+#: northamerica_list.py:14
+msgid "Jamaika"
+msgstr "Jamaica"
+
+#: northamerica_list.py:14
+msgid "Kingston"
+msgstr "Kingston"
+
+#: northamerica_list.py:15
+msgid "Haiti"
+msgstr "Haiti"
+
+#: northamerica_list.py:15
+msgid "Port-au-Prince"
+msgstr "Port-au-Prince"
+
+#: northamerica_list.py:16
+msgid "Dominikanische Republik"
+msgstr "Dominican Republic"
+
+#: northamerica_list.py:16
+msgid "Santo Domingo"
+msgstr "Santo Domingo"
+
+#: northamerica_list.py:17
+msgid "Antigua und Barbuda"
+msgstr "Antigua and Barbuda"
+
+#: northamerica_list.py:17
+msgid "Saint John's"
+msgstr "Saint John's"
+
+#: northamerica_list.py:18
+msgid "Bahamas"
+msgstr "Bahamas"
+
+#: northamerica_list.py:18
+msgid "Nassau"
+msgstr "Nassau"
+
+#: northamerica_list.py:19
+msgid "Barbados"
+msgstr "Barbados"
+
+#: northamerica_list.py:19
+msgid "Bridgetown"
+msgstr "Bridgetown"
+
+#: northamerica_list.py:20
+msgid "Dominica"
+msgstr "Dominica"
+
+#: northamerica_list.py:20
+msgid "Roseau"
+msgstr "Roseau"
+
+#: northamerica_list.py:21
+msgid "Grenada"
+msgstr "Grenada"
+
+#: northamerica_list.py:21
+msgid "St. George's"
+msgstr "St. George's"
+
+#: northamerica_list.py:22
+msgid "Basseterre"
+msgstr "Basseterre"
+
+#: northamerica_list.py:22
+msgid "St. Kitts und Nevis"
+msgstr "Saint Kitts and Nevis"
+
+#: northamerica_list.py:23
+msgid "Castries"
+msgstr "Castries"
+
+#: northamerica_list.py:23
+msgid "St. Lucia"
+msgstr "Saint Lucia"
+
+#: northamerica_list.py:24
+msgid "Kingstown"
+msgstr "Kingstown"
+
+#: northamerica_list.py:24
+msgid "St. Vincent und die Grenadinen"
+msgstr "Saint Vincent and the Grenadines"
+
+#: northamerica_list.py:25
+msgid "Port of Spain"
+msgstr "Port of Spain"
+
+#: northamerica_list.py:25
+msgid "Trinidad und Tobago"
+msgstr "Trinidad and Tobago"
+
+#: australiaoceania_list.py:2
+msgid "Australien"
+msgstr "Australia"
+
+#: australiaoceania_list.py:2
+msgid "Canberra"
+msgstr "Canberra"
+
+#: australiaoceania_list.py:3
+msgid "Avarua"
+msgstr "Avarua"
+
+#: australiaoceania_list.py:3
+msgid "Cookinseln"
+msgstr "Cook Islands"
+
+#: australiaoceania_list.py:4
+msgid "Fidschi"
+msgstr "Fiji"
+
+#: australiaoceania_list.py:4
+msgid "Suva"
+msgstr "Suva"
+
+#: australiaoceania_list.py:5
+msgid "Kiribati"
+msgstr "Kiribati"
+
+#: australiaoceania_list.py:5
+msgid "South Tarawa"
+msgstr "South Tarawa"
+
+#: australiaoceania_list.py:6
+msgid "Majuro"
+msgstr "Majuro"
+
+#: australiaoceania_list.py:6
+msgid "Marshallinseln"
+msgstr "Marshall Islands"
+
+#: australiaoceania_list.py:7
+msgid "Mikronesien"
+msgstr "Micronesia"
+
+#: australiaoceania_list.py:7
+msgid "Palikir"
+msgstr "Palikir"
+
+#: australiaoceania_list.py:8
+msgid "Nauru"
+msgstr "Nauru"
+
+#: australiaoceania_list.py:8
+msgid "Yaren"
+msgstr "Yaren"
+
+#: australiaoceania_list.py:9
+msgid "Neuseeland"
+msgstr "New Zealand"
+
+#: australiaoceania_list.py:9
+msgid "Wellington"
+msgstr "Wellington"
+
+#: australiaoceania_list.py:10
+msgid "Melekeok"
+msgstr "Ngerulmud"
+
+#: australiaoceania_list.py:10
+msgid "Palau"
+msgstr "Palau"
+
+#: australiaoceania_list.py:11
+msgid "Papua-Neuguinea"
+msgstr "Papua New Guinea"
+
+#: australiaoceania_list.py:11
+msgid "Port Moresby"
+msgstr "Port Moresby"
+
+#: australiaoceania_list.py:12
+msgid "Honiara"
+msgstr "Honiara"
+
+#: australiaoceania_list.py:12
+msgid "Salomonen"
+msgstr "Solomon Islands"
+
+#: australiaoceania_list.py:13
+msgid "Apia"
+msgstr "Apia"
+
+#: australiaoceania_list.py:13
+msgid "Samoa"
+msgstr "Samoa"
+
+#: australiaoceania_list.py:14
+msgid "Nuku'Alofa"
+msgstr "Nuku'Alofa"
+
+#: australiaoceania_list.py:14
+msgid "Tonga"
+msgstr "Tonga"
+
+#: australiaoceania_list.py:15
+msgid "Funafuti"
+msgstr "Funafuti"
+
+#: australiaoceania_list.py:15
+msgid "Tuvalu"
+msgstr "Tuvalu"
+
+#: australiaoceania_list.py:16
+msgid "Port Vila"
+msgstr "Port Vila"
+
+#: australiaoceania_list.py:16
+msgid "Vanuatu"
+msgstr "Vanuatu"
+
+#: southamerica_list.py:2
+msgid "Brasília"
+msgstr "Brasília"
+
+#: southamerica_list.py:2
+msgid "Brasilien"
+msgstr "Brazil"
+
+#: southamerica_list.py:3
+msgid "Asuncion"
+msgstr "Asuncion"
+
+#: southamerica_list.py:3
+msgid "Asunción"
+msgstr "Asunción"
+
+#: southamerica_list.py:3
+msgid "Paraguay"
+msgstr "Paraguay"
+
+#: southamerica_list.py:4
+msgid "Montevideo"
+msgstr "Montevideo"
+
+#: southamerica_list.py:4
+msgid "Uruguay"
+msgstr "Uruguay"
+
+#: southamerica_list.py:5
+msgid "Argentinien"
+msgstr "Argentina"
+
+#: southamerica_list.py:5
+msgid "Buenos Aires"
+msgstr "Buenos Aires"
+
+#: southamerica_list.py:6
+msgid "Chile"
+msgstr "Chile"
+
+#: southamerica_list.py:6
+msgid "Santiago de Chile"
+msgstr "Santiago"
+
+#: southamerica_list.py:7
+msgid "Bolivien"
+msgstr "Bolivia"
+
+#: southamerica_list.py:7
+msgid "Sucre"
+msgstr "Sucre"
+
+#: southamerica_list.py:10
+msgid "Lima"
+msgstr "Lima"
+
+#: southamerica_list.py:10
+msgid "Peru"
+msgstr "Peru"
+
+#: southamerica_list.py:11
+msgid "Ecuador"
+msgstr "Ecuador"
+
+#: southamerica_list.py:11
+msgid "Quito"
+msgstr "Quito"
+
+#: southamerica_list.py:12
+msgid "Bogota"
+msgstr "Bogota"
+
+#: southamerica_list.py:12
+msgid "Bogotá"
+msgstr "Bogotá"
+
+#: southamerica_list.py:12
+msgid "Kolumbien"
+msgstr "Colombia"
+
+#: southamerica_list.py:13
+msgid "Caracas"
+msgstr "Caracas"
+
+#: southamerica_list.py:13
+msgid "Venezuela"
+msgstr "Venezuela"
+
+#: southamerica_list.py:14
+msgid "Georgetown"
+msgstr "Georgetown"
+
+#: southamerica_list.py:14
+msgid "Guyana"
+msgstr "Guyana"
+
+#: southamerica_list.py:15
+msgid "Paramaribo"
+msgstr "Paramaribo"
+
+#: southamerica_list.py:15
+msgid "Suriname"
+msgstr "Suriname"
+
+#: flagquiz.py:13
+msgid "Vexillologiequiz"
+msgstr "Vexillology Quiz"
+
+#: flagquiz.py:38
+msgid "Welches Land benutzt diese Flagge?"
+msgstr "Which country uses this flag?"
+
+#: flagquiz.py:52
+msgid "Zu welchem Land gehört diese Flagge?"
+msgstr "To which country does this flag belong?"
+
+#: flagquiz.py:120
+msgid "Europas Flaggen"
+msgstr "Europe's Flags"
+
+#: flagquiz.py:121
+msgid "Afrikas Flaggen"
+msgstr "Africa's Flags"
+
+#: flagquiz.py:121
+msgid "Asiens Flaggen"
+msgstr "Asia's Flags"
+
+#: flagquiz.py:121
+msgid "Südamerikas Flaggen"
+msgstr "South America's Flags"
+
+#: flagquiz.py:121
+msgid "Nordamerikas Flaggen"
+msgstr "North America's Flags"
+
+#: flagquiz.py:121
+msgid "Australiens/Ozeaniens Flaggen"
+msgstr "Australia/Oceania's Flags"
+
+#~ msgid "Nennen Sie die Hauptstadt von {}"
+#~ msgstr "What is the capital of {}? "

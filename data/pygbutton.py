@@ -39,11 +39,15 @@ of the authors and should not be interpreted as representing official policies,
 either expressed or implied, of Al Sweigart.
 """
 
+import os
+
 import pygame
 from pygame.locals import *
 
 
 pygame.font.init()
+
+# Need to copy this font from the pygame folder for the frozen version.
 PYGBUTTON_FONT = pygame.font.Font('freesansbold.ttf', 14)
 
 BLACK = (0, 0, 0)

@@ -11,7 +11,7 @@ class FlagQuiz(BaseGame):
         super().__init__(country_list, next_scene)
         self.flags = flags
         self.game_map = pygame.Surface((self.width, self.height))
-        pygame.display.set_caption(_('Vexilologiequiz'))
+        pygame.display.set_caption(_('Vexillologiequiz'))
 
     def display_frame(self, screen):
         """Render everything.
@@ -49,7 +49,7 @@ class FlagQuiz(BaseGame):
         self.render_game_over(screen)
 
     def render_question(self, screen):
-        txt = _('Welches Land benutzt diese Flagge?')
+        txt = _('Zu welchem Land gehört diese Flagge?')
         country = gl.FONT.render(txt, True, gl.BLUE)
         answer = gl.FONT.render(self.usr_input, True, gl.BLUE)
 
