@@ -21,3 +21,5 @@ pygame
 ## License
 
 MIT
+
+![Laenderquiz screenshot](/graphics/screenshot.jpg?raw=true "Laenderquiz Screenshot")
